@@ -5,8 +5,7 @@
         <title>Xây dựng blog cá nhân</title>
         <meta charset="UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css" type="text/css"/>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -28,25 +27,31 @@
 
                 </div> 
                 <form class="d-flex">
-                    <input class="form-control " type="text" label="Tìm kiếm" placeholder="Tìm kiếm">
+                    <input class="form-control" type="text" label="Tìm kiếm" placeholder="Tìm kiếm">
                 </form>
             </div>
         </nav>
         <main class="container">
             <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-touch="true">
+
+
+                <!--                Indicator-->
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
                     <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
                     <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
                     <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3"></button>
                 </div>
+
+                <!--                main carousel-->
+
                 <div class="carousel-inner">
                     <div class="carousel-item active">                       
                         <img src="img/159414778_505907824146012_4802705699852904088_n.png" class="d-block w-100">
                         <div class="carousel-caption d-none d-md-block bg-text">
                             <h5>CHĂM SÓC BẢN THÂN (SELF-CARE) HAY LÀ ÍCH KỶ (SELFISH)? </h5>
                             <p>Ai trong chúng ta cũng có những nhu cầu riêng cho bản thân dù trong bất kỳ khía cạnh nào trong cuộc sống: công việc, gia đình, mối quan hệ, hay chỉ đơn giản là nhu cầu ăn uống, vui chơi, nghỉ ngơi.</p>
-                            <a class="btn btn-light" href="#">Xem thêm</a>
+                            <a class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">Xem thêm</a>
                         </div>
                     </div>
                     <div class="carousel-item ">                       
@@ -55,7 +60,7 @@
                             <h5>XỬ LÝ CÁC CẢM XÚC TIÊU CỰC
                             </h5>
                             <p>Mình nghĩ là nhiều người trong chúng ta hơi kém trong việc đối mặt và xử lý các cảm xúc tiêu cực. Mỗi khi chúng ta rơi vào trạng thái đau khổ, buồn bã hoặc cảm thấy khổ sở, ta thường cố gắng vật vã tìm cách nào nhanh nhất có thể để ngắt mình khỏi cảm xúc ấy.</p>
-                            <a class="btn btn-light" href="#">Xem thêm</a>
+                            <a class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">Xem thêm</a>
                         </div>
                     </div>
                     <div class="carousel-item">                       
@@ -63,7 +68,7 @@
                         <div class="carousel-caption d-none d-md-block bg-text">
                             <h5>ĐỪNG BỎ QUA NHỮNG NỖI ĐAU NHỎ </h5>
                             <p>Đã bao giờ bạn tự nhiên cảm thấy rất đau, sợ hãi, lo lắng, buồn, khổ sở mà không hề có lý do cụ thể không?</p>
-                            <a class="btn btn-light" href="#">Xem thêm</a>
+                            <a class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">Xem thêm</a>
                         </div>
                     </div>
                     <div class="carousel-item">                       
@@ -72,10 +77,15 @@
                             <h5>ĐI NGƯỢC LẠI VỚI ĐỊNH NGHĨA "THÀNH CÔNG"?</h5>
                             <p>Tôi ngày càng trở nên dễ tâm giao với các bạn trẻ gần tới 30, liệu chăng là luật hấp dẫn, hay vì 1 lí do gì khác, tôi cũng không biết nữa. Tôi vẫn nhớ hoài năm tôi 29 tuổi, chính thức chia tay mối tình bình yên một cách văn minh. Rồi 30 tuổi, tôi bắt đầu hành trình đi sâu vào trong mình qua những khóa học phát triển bản thân.
                                 Năm 30 tuổi ấy, tôi đổi nghề.</p>
-                            <a class="btn btn-light" href="#">Xem thêm</a>
+                            <a class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">Xem thêm</a>
                         </div>
                     </div>
                 </div>  
+
+
+
+                <!--                Control buttons-->
+
                 <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -85,6 +95,9 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+
+            <!--            ------->
+
             <div class="row mb-2">
                 <div class="col-md">
                     <div class="row shadow rounded m-3 p-2">
@@ -92,14 +105,17 @@
                             <img src="img/158351993_501520857918042_9005686644728006349_n.png" class="w-100" alt=""/>
                         </div>
                         <div class="col-md-8">
+                            <!--                            Content-->
                             <h6 class="pt-2">"MÙA ĐÔNG Ủ ẤM, MÙA HÈ TẢN BỘ"</h6>
                             <p class=""> 
                                 "The best relationship is the one that makes you become a better person, without changing you into someone than yourself."
                                 Bạn đời, trước hết phải là bạn.
                                 Tôi không biết phụ nữ khác đánh giá đàn ông thế nào.
                                 Với tôi, đẹp trai đến mấy mà không lịch sự cũng chẳng bằng ô hợp lang bạt. Giàu có đến mấy mà bẩn bựa cũng không bằng anh nông dân chân chất.</p>
+                            <!--                            Button "Xem thêm"-->
+
                             <p class="text-end">
-                                <a class="btn btn-primary" href="#">Xem thêm</a>
+                                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Xem thêm</a>
                             </p>
                         </div>
                     </div>
@@ -110,10 +126,14 @@
                             <img src="img/156506992_497887028281425_8352005501900063895_n.jpg" class="w-100" alt=""/>
                         </div>
                         <div class="col-md-8">
+                            <!--                            Content-->
                             <h6 class="pt-2">LUÔN YÊU BẢN THÂN</h6>
                             <p class="p-2">Hãy nhớ rằng: sức khoẻ tinh thần của bạn quan trọng hơn sự nghiệp của bạn, tiền bạc, ý kiến của những người khác, những trách nhiệm hay lời hứa mà bạn đã nói như buổi tiệc cuối tuần hay hẹn hò cafe. Thậm chí, sức khoẻ tinh thần của bạn cũng quan trọng hơn cảm xúc hay mong muốn của những người khác trong gia đình. Nếu chăm sóc bản thân có nghĩa là làm ai đó thất vọng. THÌ LÀM HỌ THẤT VỌNG ĐI.</p>
+
+                            <!--                            Button "Xem thêm"-->
+
                             <p class="text-end">
-                                <a class="btn btn-primary" href="#">Xem thêm</a>
+                                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Xem thêm</a>
                             </p>
                         </div>
                     </div>
@@ -235,13 +255,38 @@
                     </div><br>
 
                 </div>
-                <div class="col-3">
-                    <h5>Dòng thời gian</h5>
+                <div class="h-100 col-3 sticky-top">
+                    <h5 class="text-center">Dòng thời gian</h5>
+                    <p class="text-center">
                     <a href="#thg3-2021">Tháng 3, 2021</a> <br>
                     <a href="#thg2-2021">Tháng 2, 2021</a> <br>
                     <a href="#thg1-2021">Tháng 1, 2021</a> <br>
+                    </p>
+                    <div id="button-to-top">
+                        <p class="text-center">
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                                <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                                </svg>
+                            </a>
+                        </p>
+                    </div>
                 </div>
+
         </main>
+
+        <div class="modal" id="myModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p class="text-secondary">Tính năng này hiện đang trong giai đoạn phát triển</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
 
