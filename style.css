@@ -1,3 +1,43 @@
 .bg-text {
-    background-color: rgba(0,0,0, 0.07);
+  background-color: rgba(0, 0, 0, 0.07);
+}
+
+#login .form-floating:focus-within {
+  z-index: 2;
+}
+
+#login input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#login input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#signup .form-floating:focus-within {
+  z-index: 2;
+}
+
+#signup input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#signup input#floatingPassword {
+  margin-bottom: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#signup input#floatingReEnterPassword {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
