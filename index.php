@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 
 <html>
@@ -5,28 +8,81 @@
 <head>
     <title>Xây dựng blog cá nhân</title>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/logo/Logo1.png" sizes="32x32" type="image/png">
     <link rel="icon" href="img/logo/Logo1.png" sizes="16x16" type="image/png">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-        $(document).ready(function () {
-            $(window).scroll(function () {
+        $(document).ready(function() {
+            $(window).scroll(function() {
                 if ($(this).scrollTop != 0) {
                     $("#back-to-top").fadeIn();
                 } else {
                     $("#back-to-top").fadeOut();
                 }
-                $("#back-to-top").click(function () {
-                    $("body,html").animate({ scrollTop: 0 }, 0);
+                $("#back-to-top").click(function() {
+                    $("body,html").animate({
+                        scrollTop: 0
+                    }, 0);
                 });
+            });
+
+            $("#signup-btn").click(function() {
+                var email = $('#floatingInputSignup').val();
+                var password = $('#floatingPasswordSignup').val();
+                var reenterPassword = $('floatingReEnterPasswordSignup').val();
+                $.ajax({
+                    method: "POST",
+                    url: "dangky.php",
+                    data: {
+                        email: email,
+                        password: password
+                    },
+                    success: function(data) {
+                        if (data == "No") {
+                            alert("Email này đã được sử dụng");
+                        } else {
+                            $("#signup").hide();
+                            location.reload();
+                        }
+                    }
+                })
+            });
+
+
+
+            $("#signin-btn").click(function() {
+                var email = $("#floatingInputSignin").val();
+                var password = $("#floatingPasswordSignin").val();
+                $.ajax({
+                    method: "POST",
+                    url: "dangnhap.php",
+                    data: {
+                        email: email,
+                        password: password
+                    },
+                    success: function(data) {
+                        if (data == "No")
+                            alert("Email hoặc mật khẩu không đúng");
+                        else {
+                            $("#signin").hide();
+                            location.reload();
+                        }
+                    }
+                })
+            });
+
+            $("#logout-btn").click(function() {
+                $.ajax({
+                    url: "dangxuat.php",
+                    success: function(data) {
+                        location.reload();
+                    }
+                })
             });
         });
     </script>
@@ -34,12 +90,11 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="">
-                <img src="img/logo/Logo2.png" width="48px" height="48px">
-            </a>
-            <div class="collapse navbar-collapse">
-                <!-- <ul class="navbar-nav">
+        <a class="navbar-brand px-5" href="">
+            <img src="img/logo/Logo2.png" width="68px" height="68px">
+        </a>
+        <div class="collapse navbar-collapse">
+            <!-- <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" href="">Trang chủ</a>
                     </li>
@@ -51,15 +106,27 @@
                     </li>
                 </ul> -->
 
-            </div>
-            <form class="d-flex">
-                <input class="form-control" type="text" label="Tìm kiếm" placeholder="Tìm kiếm">
-            </form>
+        </div>
+        <form class="">
+            <input class="form-control" type="text" label="Tìm kiếm" placeholder="Tìm kiếm">
+        </form>
+        <?php
+        if (isset($_SESSION["email"])) {
+        ?>
             <div>
-                <a class="btn" data-bs-toggle="modal" data-bs-target="#login">Đăng nhập</a>
+                <p><?php echo $_SESSION["email"]; ?></p>
+                <a class="btn" id="logout-btn">Đăng xuất</a>
+            </div>
+        <?php
+        } else {
+        ?>
+            <div>
+                <a class="btn" data-bs-toggle="modal" data-bs-target="#signin">Đăng nhập</a>
                 <a class="btn" data-bs-toggle="modal" data-bs-target="#signup">Đăng ký</a>
             </div>
-        </div>
+        <?php
+        }
+        ?>
     </nav>
     <main class="container">
         <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-touch="true">
@@ -189,8 +256,7 @@
             <div class="col-9">
                 <div class="blog-post p-3">
                     <h2 class="blog-post-title" id="thg3-2021"> ăn trông nồi, ngồi trông hướng</h2>
-                    <p class="blog-post-meta">25 Thg 3, 2021 by <a href="https://www.facebook.com/stellimicanseyes/"
-                            target="_blank">Mắt Toét</a></p>
+                    <p class="blog-post-meta">25 Thg 3, 2021 by <a href="https://www.facebook.com/stellimicanseyes/" target="_blank">Mắt Toét</a></p>
                     <hr>
                     <p>cái cách mà chúng ta làm một điều gì đó đều một phần thể hiện phong thái (manner) của chính mình.
                         từng việc làm có thể nhỏ như gấp chăn màn, cuộn thảm yoga, hay việc to hơn một chút là nấu ăn
@@ -221,8 +287,7 @@
                 </div>
                 <div class="blog-post p-3">
                     <h2 class="blog-post-title">Điều mình làm & Người mình là</h2>
-                    <p class="blog-post-meta">8 Thg 3, 2021 by <a href="https://www.facebook.com/stellimicanseyes/"
-                            target="_blank">Mắt Toét</a></p>
+                    <p class="blog-post-meta">8 Thg 3, 2021 by <a href="https://www.facebook.com/stellimicanseyes/" target="_blank">Mắt Toét</a></p>
                     <hr>
                     <p>Tớ là một đứa rất ghét đi học. Thằng bạn tớ thường nói “Việc học mày để dưới đít, còn việc của tổ
                         chức X, tổ chức A mày đội lên đầu”. Nó không sai. Cơ mà có một điều tớ rất thích khi đi học, là
@@ -289,8 +354,7 @@
                 </div>
                 <div class="blog-post p-3">
                     <h2 class="blog-post-title">THẤT TÌNH THÌ ĐỌC GÌ </h2>
-                    <p class="blog-post-meta">1 Thg 3, 2021 by <a href="https://www.facebook.com/vietchualanh/"
-                            target="_blank">Mto</a></p>
+                    <p class="blog-post-meta">1 Thg 3, 2021 by <a href="https://www.facebook.com/vietchualanh/" target="_blank">Mto</a></p>
                     <p>Mình đã được hỏi câu này mấy lần, lần nào cũng hứa để em nghĩ xem, xong quên mất luôn vì nói thật
                         mình cũng chưa nghĩ ra câu trả lời cho nó. Tự nhiên hôm nay nhận ra lý do mình chưa nghĩ ra câu
                         trả lời, vì câu hỏi chưa đúng và chưa đủ.</p>
@@ -315,8 +379,7 @@
                 </div>
                 <div class="blog-post p-3">
                     <h2 class="blog-post-title" id="thg2-2021">MỐI QUAN HỆ GIỮA THỜI GIAN VÀ SỰ TRÙ PHÚ</h2>
-                    <p class="blog-post-meta">27 Thg 2, 2021 by <a href="https://www.facebook.com/vietchualanh/"
-                            target="_blank">Mto</a></p>
+                    <p class="blog-post-meta">27 Thg 2, 2021 by <a href="https://www.facebook.com/vietchualanh/" target="_blank">Mto</a></p>
                     <p>Mình lúc nào cũng bảo, nếu muốn giàu thì đơn giản lắm. Bỏ qua level cao hơn là đầu tư từ tiền
                         sinh ra nhiều tiền nhé, thì level đầu tiên mình sẽ vẫn kiếm tiền bằng công sức của mình đúng
                         không. Thế thì công thức cơ bản là thế này:<br>
@@ -383,8 +446,7 @@
                 </div>
                 <div class="blog-post p-3">
                     <h2 class="blog-post-title">cho mình cơ hội nói ra</h2>
-                    <p class="blog-post-meta">6 Thg 2, 2021 by <a href="https://www.facebook.com/stellimicanseyes/"
-                            target="_blank">Mắt Toét</a></p>
+                    <p class="blog-post-meta">6 Thg 2, 2021 by <a href="https://www.facebook.com/stellimicanseyes/" target="_blank">Mắt Toét</a></p>
                     <p>Hồi trước, tớ có một cái tính không-tốt-lắm là khi ai đó lỡ làm mình tổn thương, tớ sẽ ôm hết vào
                         lòng rồi lùi lại, tránh xa khỏi họ, thậm chí là cắt đứt mối quan hệ giữa mình và họ. Hồi đó tớ
                         rất ngại mâu thuẫn, rất ngại cãi nhau, cố gắng chối bỏ cảm xúc tổn thương của mình mà nghĩ “ừ họ
@@ -433,8 +495,7 @@
                 </div>
                 <div class="blog-post p-3">
                     <h2 class="blog-post-title" id="thg1-2021">ta là ai?</h2>
-                    <p class="blog-post-meta">22 Thg 1, 2021 by <a href="https://www.facebook.com/stellimicanseyes/"
-                            target="_blank">Mắt Toét</a></p>
+                    <p class="blog-post-meta">22 Thg 1, 2021 by <a href="https://www.facebook.com/stellimicanseyes/" target="_blank">Mắt Toét</a></p>
                     <p>lâu lâu rồi mới quay lại một câu hỏi như này. bởi vì tối nay vừa đi dự một gặp mặt nơi mình chẳng
                         hề quen một ai, và khi bắt đầu nói chuyện với một ai đó, họ đều giới thiệu theo công thức chung:
                         tên và nơi làm việc hiện tại.</p>
@@ -495,10 +556,8 @@
     </main>
     <div id="back-to-top" class="position-fixed bottom-0 end-0 p-5">
         <button type="button" class="btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
-                class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z">
                 </path>
             </svg>
         </button>
@@ -515,7 +574,7 @@
             </div>
         </div>
     </div>
-    <div class="modal" id="login" tabindex="-1">
+    <div class="modal" id="signin" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -523,17 +582,16 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Địa chỉ email</label>
+                        <input type="email" class="form-control" id="floatingInputSignin" placeholder="name@example.com">
+                        <label for="floatingInputSignin">Địa chỉ email</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                        <label for="floatingPassword">Mật khẩu</label>
+                        <input type="password" class="form-control" id="floatingPasswordSignin" placeholder="Password">
+                        <label for="floatingPasswordSignin">Mật khẩu</label>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-dismiss="modal"
-                        data-bs-target="#notification">Đăng nhập</button>
+                    <button type="submit" class="btn btn-success" data-bs-toggle="modal" id="signin-btn">Đăng nhập</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                 </div>
             </div>
@@ -547,25 +605,24 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Địa chỉ email</label>
+                        <input type="email" class="form-control" id="floatingInputSignup" placeholder="name@example.com">
+                        <label for="floatingInputSignup">Địa chỉ email</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                        <label for="floatingPassword">Mật khẩu</label>
+                        <input type="password" class="form-control" id="floatingPasswordSignup" placeholder="Password">
+                        <label for="floatingPasswordSignup">Mật khẩu</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingReEnterPassword" placeholder="Password">
-                        <label for="floatingReEnterPassword">Nhập lại mật khẩu</label>
+                        <input type="password" class="form-control" id="floatingReEnterPasswordSignup" placeholder="Password">
+                        <label for="floatingReEnterPasswordSignup">Nhập lại mật khẩu</label>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-dismiss="modal"
-                        data-bs-target="#notification">Đăng ký</button>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-dismiss="modal"
-                        data-bs-target="#notification">Quên mật khẩu</button>
+                    <button type="submit" class="btn btn-success" data-bs-toggle="modal" id="signup-btn">Đăng ký</button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#notification">Quên mật khẩu</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                 </div>
+
             </div>
         </div>
     </div>
