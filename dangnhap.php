@@ -11,6 +11,8 @@ if (isset($_POST["email"])) {
     $result = $connect->query($search);
     if ($result->num_rows > 0) {
         $_SESSION["email"] = $_POST["email"];
+        $sql = $result->fetch_assoc();
+        $_SESSION["name"] = $sql["name"];
         echo "Yes";
     } else {
         echo "No";

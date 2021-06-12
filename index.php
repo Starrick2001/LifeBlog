@@ -33,24 +33,52 @@ session_start();
 
             $("#signup-btn").click(function() {
                 var email = $('#floatingInputSignup').val();
-                var password = $('#floatingPasswordSignup').val();
-                var reenterPassword = $('floatingReEnterPasswordSignup').val();
-                $.ajax({
-                    method: "POST",
-                    url: "dangky.php",
-                    data: {
-                        email: email,
-                        password: password
-                    },
-                    success: function(data) {
-                        if (data == "No") {
-                            alert("Email này đã được sử dụng");
-                        } else {
-                            $("#signup").hide();
-                            location.reload();
+                if (email == "")
+                    alert("Email không được bỏ trống");
+                else {
+                    var password = $('#floatingPasswordSignup').val();
+                    var reenterPassword = $('#floatingReEnterPasswordSignup').val();
+                    if (password == "" || reenterPassword == "")
+                        alert("Mật khẩu không được bỏ trống");
+                    else
+                    if (password != reenterPassword)
+                        alert("Mật khẩu không khớp");
+                    else {
+                        var name = $("#floatingNameSignup").val();
+                        if (name == "")
+                            alert("Tên không được bỏ trống.");
+                        else {
+                            var birth = $("#floatingBirthSignup").val();
+                            if (birth == "")
+                                alert("Ngày sinh không được bỏ trống.");
+                            else {
+                                $.ajax({
+                                    method: "POST",
+                                    url: "dangky.php",
+                                    data: {
+                                        email: email,
+                                        name: name,
+                                        birth: birth,
+                                        password: password,
+                                        reEnterPassword: reenterPassword
+                                    },
+                                    success: function(data) {
+                                        switch (data) {
+                                            case "Success":
+                                                $("#signup").hide();
+                                                location.reload();
+                                                break;
+                                            case "Email error":
+                                                alert("Email này đã được sử dụng");
+                                                $("#floatingInputSignup").val() = "";
+                                                break;
+                                        }
+                                    }
+                                })
+                            }
                         }
                     }
-                })
+                }
             });
 
 
@@ -58,22 +86,26 @@ session_start();
             $("#signin-btn").click(function() {
                 var email = $("#floatingInputSignin").val();
                 var password = $("#floatingPasswordSignin").val();
-                $.ajax({
-                    method: "POST",
-                    url: "dangnhap.php",
-                    data: {
-                        email: email,
-                        password: password
-                    },
-                    success: function(data) {
-                        if (data == "No")
-                            alert("Email hoặc mật khẩu không đúng");
-                        else {
-                            $("#signin").hide();
-                            location.reload();
+                if (email != "" && password != "") {
+                    $.ajax({
+                        method: "POST",
+                        url: "dangnhap.php",
+                        data: {
+                            email: email,
+                            password: password
+                        },
+                        success: function(data) {
+                            if (data == "No")
+                                alert("Email hoặc mật khẩu không đúng");
+                            else {
+                                $("#signin").hide();
+                                location.reload();
+                            }
                         }
-                    }
-                })
+                    });
+                } else {
+                    alert("Email hoặc mật khẩu không được bỏ trống.");
+                }
             });
 
             $("#logout-btn").click(function() {
@@ -90,7 +122,7 @@ session_start();
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-        <a class="navbar-brand px-5" href="">
+        <a class="navbar-brand px-2" href="">
             <img src="img/logo/Logo2.png" width="68px" height="68px">
         </a>
         <div class="collapse navbar-collapse">
@@ -113,9 +145,9 @@ session_start();
         <?php
         if (isset($_SESSION["email"])) {
         ?>
-            <div>
-                <p><?php echo $_SESSION["email"]; ?></p>
-                <a class="btn" id="logout-btn">Đăng xuất</a>
+            <div class="m-auto p-2">
+                <h5 ><?php echo "Xin chào ".$_SESSION["name"]; ?></h5>
+                <a class="btn m-auto" id="logout-btn">Đăng xuất</a>
             </div>
         <?php
         } else {
@@ -555,12 +587,12 @@ session_start();
 
     </main>
     <div id="back-to-top" class="position-fixed bottom-0 end-0 p-5">
-        <button type="button" class="btn">
+        <a type="button" class="btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z">
                 </path>
             </svg>
-        </button>
+        </a>
     </div>
     <div class="modal" id="notification" tabindex="-1">
         <div class="modal-dialog">
@@ -607,6 +639,14 @@ session_start();
                     <div class="form-floating">
                         <input type="email" class="form-control" id="floatingInputSignup" placeholder="name@example.com">
                         <label for="floatingInputSignup">Địa chỉ email</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="floatingNameSignup" placeholder="name">
+                        <label for="floatingNameSignup">Tên</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="date" class="form-control" id="floatingBirthSignup">
+                        <label for="floatingBirthSignup">Ngày sinh</label>
                     </div>
                     <div class="form-floating">
                         <input type="password" class="form-control" id="floatingPasswordSignup" placeholder="Password">

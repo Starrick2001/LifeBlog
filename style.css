@@ -28,7 +28,8 @@
   border-bottom-right-radius: 0;
 }
 
-#signup input#floatingPasswordSignup {
+
+#signup input#floatingPasswordSignup, #signup input#floatingNameSignup, #signup input#floatingBirthSignup {
   margin-bottom: -1px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;

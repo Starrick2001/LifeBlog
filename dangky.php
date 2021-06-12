@@ -1,11 +1,14 @@
 <?php
-if (isset($_POST["email"])) {
+if (isset($_POST["email"]) && isset($_POST['name']) && isset($_POST['birth']) && isset($_POST['birth']) && isset($_POST['password'])) {
     include "connect.php";
     $email = $_POST['email'];
+    $name = $_POST['name'];
+    $birth = $_POST['birth'];
     $password = md5($_POST['password']);
-    $addmemeber = "INSERT INTO member (email, password)
-            VALUES ('{$email}', '{$password}')";
+    $reEnterPassword = md5($_POST["reEnterPassword"]);
+    $addmemeber = "INSERT INTO member (email, name, birth, password)
+            VALUES ('{$email}', '{$name}', '{$birth}', '{$password}')";
     if ($connect->query($addmemeber) === TRUE) {
-        echo "Yes";
-    } else echo "No";
+        echo "Success";
+    } else echo "Email error";
 }
