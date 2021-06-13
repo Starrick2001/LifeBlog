@@ -54,7 +54,7 @@ session_start();
                             else {
                                 $.ajax({
                                     method: "POST",
-                                    url: "dangky.php",
+                                    url: "function/dangky.php",
                                     data: {
                                         email: email,
                                         name: name,
@@ -89,7 +89,7 @@ session_start();
                 if (email != "" && password != "") {
                     $.ajax({
                         method: "POST",
-                        url: "dangnhap.php",
+                        url: "function/dangnhap.php",
                         data: {
                             email: email,
                             password: password
@@ -110,7 +110,7 @@ session_start();
 
             $("#logout-btn").click(function() {
                 $.ajax({
-                    url: "dangxuat.php",
+                    url: "function/dangxuat.php",
                     success: function(data) {
                         location.reload();
                     }
@@ -193,7 +193,7 @@ session_start();
                         <p>Mình nghĩ là nhiều người trong chúng ta hơi kém trong việc đối mặt và xử lý các cảm xúc tiêu
                             cực. Mỗi khi chúng ta rơi vào trạng thái đau khổ, buồn bã hoặc cảm thấy khổ sở, ta thường cố
                             gắng vật vã tìm cách nào nhanh nhất có thể để ngắt mình khỏi cảm xúc ấy.</p>
-                        <a class="btn btn-light" data-bs-toggle="modal" data-bs-target="#notification">Xem thêm</a>
+                        <a class="btn btn-light" href="posts/Xuly.php">Xem thêm</a>
                     </div>
                 </div>
                 <div class="carousel-item">
