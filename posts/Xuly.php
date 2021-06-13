@@ -349,7 +349,7 @@ session_start();
                         cơ chế né tránh của ta hoạt động ngày càng mạnh: Ta không chỉ né tránh nói về vấn đề của mình mà còn né những
                         người có vấn đề tương tự, né các loại phim ảnh sách báo truyền thông hay bất cứ cái gì, sự kiện gì, mối quan hệ
                         nào gợi nhắc ta nhớ đến cảm xúc đó. Nhiều khi mình còn né yêu đương, né hẹn hò, né gặp gỡ người khác là vì vậy.
-                        Không phải là mình ghét người đó đâu, mà mình ghét đối diện với vấn đề bên trong mình.</p></br>
+                        Không phải là mình ghét người đó đâu, mà mình ghét đối diện với vấn đề bên trong mình.</p>
                     <p>Cách né tránh cảm xúc kiểu này thì giúp bạn tạm thời không phải chịu đựng cảm xúc ấy ngay bây giờ nhưng tự bạn
                         thừa biết là nó vẫn lù lù ở đấy. Rồi đến khi nó phình to quá mức rồi và vô tình bị chạm vào, nó sẽ nổ tung toé tanh
                         bành. Be bét luôn.</p>
