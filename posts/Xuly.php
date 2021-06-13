@@ -308,7 +308,7 @@ session_start();
 
 
     <!-- sử dụng main bao hết nội dung web lại -->
-    <main class="container">
+    <main class="container mt-3">
 
         <!-- bao phần nội dung chính -->
         <div class="row">
