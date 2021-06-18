@@ -10,214 +10,10 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../function/signin-signout.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/logo/Logo1.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="../style.css">
-   
-    <script>
-        $(document).ready(function() {
-            $(window).scroll(function() {
-                if ($(this).scrollTop != 0) {
-                    $("#back-to-top").fadeIn();
-                } else {
-                    $("#back-to-top").fadeOut();
-                }
-                $("#back-to-top").click(function() {
-                    $("body,html").animate({
-                        scrollTop: 0
-                    }, 0);
-                });
-            });
-
-            $("#signup-btn").click(function() {
-                var email = $('#floatingInputSignup').val();
-                if (email == "")
-                    alert("Email không được bỏ trống");
-                else {
-                    var password = $('#floatingPasswordSignup').val();
-                    var reenterPassword = $('#floatingReEnterPasswordSignup').val();
-                    if (password == "" || reenterPassword == "")
-                        alert("Mật khẩu không được bỏ trống");
-                    else
-                    if (password != reenterPassword)
-                        alert("Mật khẩu không khớp");
-                    else {
-                        var name = $("#floatingNameSignup").val();
-                        if (name == "")
-                            alert("Tên không được bỏ trống.");
-                        else {
-                            var birth = $("#floatingBirthSignup").val();
-                            if (birth == "")
-                                alert("Ngày sinh không được bỏ trống.");
-                            else {
-                                $.ajax({
-                                    method: "POST",
-                                    url: "../function/dangky.php",
-                                    data: {
-                                        email: email,
-                                        name: name,
-                                        birth: birth,
-                                        password: password,
-                                        reEnterPassword: reenterPassword
-                                    },
-                                    success: function(data) {
-                                        switch (data) {
-                                            case "Success":
-                                                $("#signup").hide();
-                                                location.reload();
-                                                break;
-                                            case "Email error":
-                                                alert("Email này đã được sử dụng");
-                                                $("#floatingInputSignup").val() = "";
-                                                break;
-                                        }
-                                    }
-                                })
-                            }
-                        }
-                    }
-                }
-            });
-
-
-
-            $("#signin-btn").click(function() {
-                var email = $("#floatingInputSignin").val();
-                var password = $("#floatingPasswordSignin").val();
-                if (email != "" && password != "") {
-                    $.ajax({
-                        method: "POST",
-                        url: "../function/dangnhap.php",
-                        data: {
-                            email: email,
-                            password: password
-                        },
-                        success: function(data) {
-                            if (data == "No")
-                                alert("Email hoặc mật khẩu không đúng");
-                            else {
-                                $("#signin").hide();
-                                location.reload();
-                            }
-                        }
-                    });
-                } else {
-                    alert("Email hoặc mật khẩu không được bỏ trống.");
-                }
-            });
-
-            $("#logout-btn").click(function() {
-                $.ajax({
-                    url: "../function/dangxuat.php",
-                    success: function(data) {
-                        location.reload();
-                    }
-                })
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $(window).scroll(function() {
-                if ($(this).scrollTop != 0) {
-                    $("#back-to-top").fadeIn();
-                } else {
-                    $("#back-to-top").fadeOut();
-                }
-                $("#back-to-top").click(function() {
-                    $("body,html").animate({
-                        scrollTop: 0
-                    }, 0);
-                });
-            });
-
-            $("#signup-btn").click(function() {
-                var email = $('#floatingInputSignup').val();
-                if (email == "")
-                    alert("Email không được bỏ trống");
-                else {
-                    var password = $('#floatingPasswordSignup').val();
-                    var reenterPassword = $('#floatingReEnterPasswordSignup').val();
-                    if (password == "" || reenterPassword == "")
-                        alert("Mật khẩu không được bỏ trống");
-                    else
-                    if (password != reenterPassword)
-                        alert("Mật khẩu không khớp");
-                    else {
-                        var name = $("#floatingNameSignup").val();
-                        if (name == "")
-                            alert("Tên không được bỏ trống.");
-                        else {
-                            var birth = $("#floatingBirthSignup").val();
-                            if (birth == "")
-                                alert("Ngày sinh không được bỏ trống.");
-                            else {
-                                $.ajax({
-                                    method: "POST",
-                                    url: "function/dangky.php",
-                                    data: {
-                                        email: email,
-                                        name: name,
-                                        birth: birth,
-                                        password: password,
-                                        reEnterPassword: reenterPassword
-                                    },
-                                    success: function(data) {
-                                        switch (data) {
-                                            case "Success":
-                                                $("#signup").hide();
-                                                location.reload();
-                                                break;
-                                            case "Email error":
-                                                alert("Email này đã được sử dụng");
-                                                $("#floatingInputSignup").val() = "";
-                                                break;
-                                        }
-                                    }
-                                })
-                            }
-                        }
-                    }
-                }
-            });
-
-
-
-            $("#signin-btn").click(function() {
-                var email = $("#floatingInputSignin").val();
-                var password = $("#floatingPasswordSignin").val();
-                if (email != "" && password != "") {
-                    $.ajax({
-                        method: "POST",
-                        url: "function/dangnhap.php",
-                        data: {
-                            email: email,
-                            password: password
-                        },
-                        success: function(data) {
-                            if (data == "No")
-                                alert("Email hoặc mật khẩu không đúng");
-                            else {
-                                $("#signin").hide();
-                                location.reload();
-                            }
-                        }
-                    });
-                } else {
-                    alert("Email hoặc mật khẩu không được bỏ trống.");
-                }
-            });
-
-            $("#logout-btn").click(function() {
-                $.ajax({
-                    url: "function/dangxuat.php",
-                    success: function(data) {
-                        location.reload();
-                    }
-                })
-            });
-        });
-    </script>
 </head>
 
 <body>
@@ -359,7 +155,7 @@ session_start();
         <!-- kết thúc nội dung chính -->
     </main>
     <!-- sử dụng main bao hết nội dung web lại -->
-    <div id="back-to-top" class="position-fixed bottom-0 end-0 p-5">
+    <div id="back-to-top" class="position-fixed bottom-0 end-0 p-2">
         <a type="button" class="btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z">
@@ -367,75 +163,77 @@ session_start();
             </svg>
         </a>
     </div>
-    <div class="modal" id="notification" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <p class="text-secondary">Tính năng này hiện đang trong giai đoạn phát triển</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+    <div id="modal">
+        <div class="modal" id="notification" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p class="text-secondary">Tính năng này hiện đang trong giai đoạn phát triển</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal" id="signin" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Đăng nhập</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInputSignin" placeholder="name@example.com">
-                        <label for="floatingInputSignin">Địa chỉ email</label>
+        <div class="modal" id="signin" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Đăng nhập</h5>
                     </div>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPasswordSignin" placeholder="Password">
-                        <label for="floatingPasswordSignin">Mật khẩu</label>
+                    <div class="modal-body">
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="floatingInputSignin" placeholder="name@example.com">
+                            <label for="floatingInputSignin">Địa chỉ email</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingPasswordSignin" placeholder="Password">
+                            <label for="floatingPasswordSignin">Mật khẩu</label>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" data-bs-toggle="modal" id="signin-btn">Đăng nhập</button>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#notification">Quên mật khẩu</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" data-bs-toggle="modal" id="signin-btn">Đăng nhập</button>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#notification">Quên mật khẩu</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal" id="signup" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Đăng ký</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInputSignup" placeholder="name@example.com">
-                        <label for="floatingInputSignup">Địa chỉ email</label>
+        <div class="modal" id="signup" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Đăng ký</h5>
                     </div>
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingNameSignup" placeholder="name">
-                        <label for="floatingNameSignup">Tên</label>
+                    <div class="modal-body">
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="floatingInputSignup" placeholder="name@example.com">
+                            <label for="floatingInputSignup">Địa chỉ email</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingNameSignup" placeholder="name">
+                            <label for="floatingNameSignup">Tên</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="date" class="form-control" id="floatingBirthSignup">
+                            <label for="floatingBirthSignup">Ngày sinh</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingPasswordSignup" placeholder="Password">
+                            <label for="floatingPasswordSignup">Mật khẩu</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingReEnterPasswordSignup" placeholder="Password">
+                            <label for="floatingReEnterPasswordSignup">Nhập lại mật khẩu</label>
+                        </div>
                     </div>
-                    <div class="form-floating">
-                        <input type="date" class="form-control" id="floatingBirthSignup">
-                        <label for="floatingBirthSignup">Ngày sinh</label>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" data-bs-toggle="modal" id="signup-btn">Đăng ký</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                     </div>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPasswordSignup" placeholder="Password">
-                        <label for="floatingPasswordSignup">Mật khẩu</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingReEnterPasswordSignup" placeholder="Password">
-                        <label for="floatingReEnterPasswordSignup">Nhập lại mật khẩu</label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" data-bs-toggle="modal" id="signup-btn">Đăng ký</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>

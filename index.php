@@ -15,7 +15,6 @@ session_start();
     <link rel="icon" href="img/logo/Logo1.png" sizes="16x16" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         $(document).ready(function() {
             $(window).scroll(function() {
@@ -118,47 +117,52 @@ session_start();
             });
         });
     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-        <a class="navbar-brand px-2" href="">
-            <img src="img/logo/Logo2.png" width="68px" height="68px">
-        </a>
-        <div class="collapse navbar-collapse">
-            <!-- <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="">Trang chủ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn" data-bs-toggle="modal" data-bs-target="#login">Đăng nhập</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn" data-bs-toggle="modal" data-bs-target="#signup">Đăng ký</a>
-                    </li>
-                </ul> -->
-
+        <div class="container-fluid">
+            <a class="navbar-brand px-2 py-0" href="">
+                <img src="img/logo/Logo2.png" width="56px" height="56px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-content">
+                <ul class="navbar-nav">
+                    <?php
+                    if (isset($_SESSION["email"])) {
+                    ?>
+                        <li class="nav-item m-auto">
+                            <a class="btn"><?php echo "Xin chào " . $_SESSION["name"]; ?></a>
+                        </li>
+                        <li class="nav-item m-auto">
+                            <a class="btn" href="function/create-post.php">Thêm bài viết</a>
+                        </li>
+                        <li class="nav-item m-auto">
+                            <a class="btn" id="logout-btn">Đăng xuất</a>
+                        </li>
+                    <?php
+                    } else {
+                    ?>
+                        <li class="nav-item m-auto">
+                            <a class="btn" data-bs-toggle="modal" data-bs-target="#signin">Đăng nhập</a>
+                        </li>
+                        <li class="nav-item m-auto">
+                            <a class="btn" data-bs-toggle="modal" data-bs-target="#signup">Đăng ký</a>
+                        </li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2 w-50" type="text" placeholder="Tìm kiếm">
+                    <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                </form>
+            </div>
         </div>
-        <form class="">
-            <input class="form-control" type="text" label="Tìm kiếm" placeholder="Tìm kiếm">
-        </form>
-        <?php
-        if (isset($_SESSION["email"])) {
-        ?>
-            <div class="m-auto p-2">
-                <h5 ><?php echo "Xin chào ".$_SESSION["name"]; ?></h5>
-                <a class="btn m-auto" id="logout-btn">Đăng xuất</a>
-            </div>
-        <?php
-        } else {
-        ?>
-            <div>
-                <a class="btn" data-bs-toggle="modal" data-bs-target="#signin">Đăng nhập</a>
-                <a class="btn" data-bs-toggle="modal" data-bs-target="#signup">Đăng ký</a>
-            </div>
-        <?php
-        }
-        ?>
     </nav>
     <main class="container">
         <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-touch="true">
@@ -284,7 +288,7 @@ session_start();
             </div>
         </div>
         <hr>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-9">
                 <div class="blog-post p-3">
                     <h2 class="blog-post-title" id="thg3-2021"> ăn trông nồi, ngồi trông hướng</h2>
@@ -583,10 +587,60 @@ session_start();
                     <a href="#thg2-2021">Tháng 2, 2021</a> <br>
                     <a href="#thg1-2021">Tháng 1, 2021</a> <br>
                 </p>
-            </div>
+            </div> 
 
+
+        </div> -->
+        <?php
+        include_once "function/connect.php";
+        $query = "SELECT title, imgUrl, content, author FROM posts";
+        $result = mysqli_query($connect, $query);
+        ?>
+
+        <!-- Khởi tạo row -->
+        <div class="row mb-2">
+            <?php
+            $tmp = 0;
+            while ($post = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            ?>
+                <?php
+                // Cứ 2 bài post sẽ kết thúc row và tạo row mới
+                if ($tmp == 2) {
+                    $tmp = 1;
+                ?>
+        </div>
+        <div class="row mb-2">
+        <?php
+                } else {
+                    $tmp += 1;
+                }
+        ?>
+        <div class="col-6">
+            <div class="row shadow rounded m-3 p-2">
+                <div class="col-md-4">
+                    <img src="<?php echo $post["imgUrl"]; ?>" class="w-100" alt="" />
+                </div>
+                <div class="col-md-8">
+                    <!--                            Content-->
+                    <h6 class="pt-2"><?php echo $post["title"]; ?></h6>
+                    <p class="content">
+                        <?php echo $post["content"]; ?>
+                    </p>
+                    <p class="text-end">
+                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#notification">Xem
+                            thêm</a>
+                    </p>
+                </div>
+                <p class="author text-end">
+                    <?php echo "Người viết: " . $post["author"]; ?>
+                </p>
+            </div>
+        </div>
+    <?php
+            }
+    ?>
     </main>
-    <div id="back-to-top" class="position-fixed bottom-0 end-0 p-5">
+    <div id="back-to-top" class="position-fixed bottom-0 end-0 p-2">
         <a type="button" class="btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z">
@@ -594,75 +648,77 @@ session_start();
             </svg>
         </a>
     </div>
-    <div class="modal" id="notification" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <p class="text-secondary">Tính năng này hiện đang trong giai đoạn phát triển</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+    <div id="modal">
+        <div class="modal" id="notification" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p class="text-secondary">Tính năng này hiện đang trong giai đoạn phát triển</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal" id="signin" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Đăng nhập</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInputSignin" placeholder="name@example.com">
-                        <label for="floatingInputSignin">Địa chỉ email</label>
+        <div class="modal" id="signin" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Đăng nhập</h5>
                     </div>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPasswordSignin" placeholder="Password">
-                        <label for="floatingPasswordSignin">Mật khẩu</label>
+                    <div class="modal-body">
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="floatingInputSignin" placeholder="name@example.com">
+                            <label for="floatingInputSignin">Địa chỉ email</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingPasswordSignin" placeholder="Password">
+                            <label for="floatingPasswordSignin">Mật khẩu</label>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" data-bs-toggle="modal" id="signin-btn">Đăng nhập</button>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#notification">Quên mật khẩu</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" data-bs-toggle="modal" id="signin-btn">Đăng nhập</button>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#notification">Quên mật khẩu</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal" id="signup" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Đăng ký</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInputSignup" placeholder="name@example.com">
-                        <label for="floatingInputSignup">Địa chỉ email</label>
+        <div class="modal" id="signup" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Đăng ký</h5>
                     </div>
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingNameSignup" placeholder="name">
-                        <label for="floatingNameSignup">Tên</label>
+                    <div class="modal-body">
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="floatingInputSignup" placeholder="name@example.com">
+                            <label for="floatingInputSignup">Địa chỉ email</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingNameSignup" placeholder="name">
+                            <label for="floatingNameSignup">Tên</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="date" class="form-control" id="floatingBirthSignup">
+                            <label for="floatingBirthSignup">Ngày sinh</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingPasswordSignup" placeholder="Password">
+                            <label for="floatingPasswordSignup">Mật khẩu</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingReEnterPasswordSignup" placeholder="Password">
+                            <label for="floatingReEnterPasswordSignup">Nhập lại mật khẩu</label>
+                        </div>
                     </div>
-                    <div class="form-floating">
-                        <input type="date" class="form-control" id="floatingBirthSignup">
-                        <label for="floatingBirthSignup">Ngày sinh</label>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" data-bs-toggle="modal" id="signup-btn">Đăng ký</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                     </div>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPasswordSignup" placeholder="Password">
-                        <label for="floatingPasswordSignup">Mật khẩu</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingReEnterPasswordSignup" placeholder="Password">
-                        <label for="floatingReEnterPasswordSignup">Nhập lại mật khẩu</label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" data-bs-toggle="modal" id="signup-btn">Đăng ký</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>

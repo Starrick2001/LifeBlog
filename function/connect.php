@@ -12,4 +12,4 @@ $connect = new mysqli($servername, $username, $password, $database);
 if ($connect->connect_error) {
     die("Failed");
 }
-header('Content-Type: text/html; charset=UTF-8');
+$connect->set_charset('utf8');
