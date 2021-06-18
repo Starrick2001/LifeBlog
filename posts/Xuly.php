@@ -13,48 +13,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/logo/Logo1.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="../style.css">
-    <style>
-        .wrap {
-            width: 990px;
-            /* kích thước chiều rộng trang web */
-            float: left;
-            /* canh div từ trái sang */
-            border: 1px solid #AAA;
-            box-shadow: -10px -10px 5px -5px #888888, 10px 10px 5px 5px #888888;
-        }
-
-
-        .main {
-            width: 990px;
-            /* kích thước chiều rộng trang web */
-            float: left;
-            /* canh div từ trái sang */
-        }
-
-        /* chiều rộng của 2 vùng div "nav" và "content" phải bằng tổng độ rộng của trang */
-        /* chú ý padding, border, margin có thể ảnh hưởng đến độ rộng của trang web */
-        .nav {
-            width: 277px;
-            /* kích thước chiều rộng của vùng thanh bên */
-            float: left;
-            /* canh div từ trái sang */
-            border-right: 1px solid #999;
-            /* tạo viền bên phải */
-        }
-
-
-        #footer {
-            width: 980px;
-            /* kích thước chiều rộng của vùng nội dung */
-            float: left;
-            /* canh div từ trái sang */
-            border-top: 1px dashed #AAA;
-        }
-
-        p {
-            text-indent: 50px;
-        }
-    </style>
+   
     <script>
         $(document).ready(function() {
             $(window).scroll(function() {
