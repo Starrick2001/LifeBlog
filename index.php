@@ -600,9 +600,30 @@ session_start();
         <!-- Khởi tạo row -->
         <div class="row mb-2">
             <?php
-            $tmp = 0;
+            $tmp = 1;
             while ($post = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             ?>
+                <div class="col-6">
+                    <div class="row shadow rounded m-3 p-2">
+                        <div class="col-md-4">
+                            <img src="<?php echo $post["imgUrl"]; ?>" class="w-100" alt="" />
+                        </div>
+                        <div class="col-md-8">
+                            <!--                            Content-->
+                            <h6 class="pt-2"><?php echo $post["title"]; ?></h6>
+                            <p class="content">
+                                <?php echo $post["content"]; ?>
+                            </p>
+                            <p class="text-end">
+                                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#notification">Xem
+                                    thêm</a>
+                            </p>
+                        </div>
+                        <p class="author text-end">
+                            <?php echo "Người viết: " . $post["author"]; ?>
+                        </p>
+                    </div>
+                </div>
                 <?php
                 // Cứ 2 bài post sẽ kết thúc row và tạo row mới
                 if ($tmp == 2) {
@@ -610,33 +631,10 @@ session_start();
                 ?>
         </div>
         <div class="row mb-2">
-        <?php
+    <?php
                 } else {
                     $tmp += 1;
                 }
-        ?>
-        <div class="col-6">
-            <div class="row shadow rounded m-3 p-2">
-                <div class="col-md-4">
-                    <img src="<?php echo $post["imgUrl"]; ?>" class="w-100" alt="" />
-                </div>
-                <div class="col-md-8">
-                    <!--                            Content-->
-                    <h6 class="pt-2"><?php echo $post["title"]; ?></h6>
-                    <p class="content">
-                        <?php echo $post["content"]; ?>
-                    </p>
-                    <p class="text-end">
-                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#notification">Xem
-                            thêm</a>
-                    </p>
-                </div>
-                <p class="author text-end">
-                    <?php echo "Người viết: " . $post["author"]; ?>
-                </p>
-            </div>
-        </div>
-    <?php
             }
     ?>
     </main>
