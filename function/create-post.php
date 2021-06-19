@@ -37,7 +37,7 @@ session_start();
                 <input type="text" class="form-control" placeholder="Tiêu đề" name="title" required>
             </div>
             <div class="input-group mb-3">
-                <textarea type="text" class="form-control" id="editor" rows="5" placeholder="Nội dung bài viết" name="content" required></textarea>
+                <textarea type="text" class="form-control" id="editor" rows="5" placeholder="Nội dung bài viết" name="content" required>Nội dung</textarea>
             </div>
             <div class="mb-3">
                 <input class="form-control" type="file" name="thumbnail">
@@ -82,21 +82,6 @@ session_start();
     <script>
         ClassicEditor.create(document.querySelector("#editor"), {
                 toolbar: {
-                    items: [
-                        'heading', '|',
-                        'alignment', '|',
-                        'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
-                        'link', '|',
-                        'bulletedList', 'numberedList', 'todoList',
-                        // '-', // break point
-                        'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor', '|',
-                        'code', 'codeBlock', '|',
-                        'insertTable', '|',
-                        'outdent', 'indent', '|',
-                        'uploadImage', 'blockQuote', '|',
-                        'undo', 'redo'
-                    ],
-
                     shouldNotGroupWhenFull: true
                 }
             })
@@ -104,9 +89,6 @@ session_start();
             .catch(error => {
                 console.error(error);
             });
-        CKEDITOR.replace("#editor", {
-            width: "100%"
-        })
     </script>
 </body>
 
