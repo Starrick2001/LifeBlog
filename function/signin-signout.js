@@ -36,7 +36,7 @@
                             else {
                                 $.ajax({
                                     method: "POST",
-                                    url: "../function/dangky.php",
+                                    url: url + "function/dangky.php",
                                     data: {
                                         email: email,
                                         name: name,
@@ -71,7 +71,7 @@
                 if (email != "" && password != "") {
                     $.ajax({
                         method: "POST",
-                        url: "../function/dangnhap.php",
+                        url: url + "function/dangnhap.php",
                         data: {
                             email: email,
                             password: password
@@ -92,10 +92,11 @@
 
             $("#logout-btn").click(function() {
                 $.ajax({
-                    url: "../function/dangxuat.php",
+                    url: url + "function/dangxuat.php",
                     success: function(data) {
-                        location.reload();
+                        
                     }
-                })
+                });
+                window.location.href = url;
             });
         });
