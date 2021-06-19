@@ -53,7 +53,7 @@ session_start();
                         <p>Ai trong chúng ta cũng có những nhu cầu riêng cho bản thân dù trong bất kỳ khía cạnh nào
                             trong cuộc sống: công việc, gia đình, mối quan hệ, hay chỉ đơn giản là nhu cầu ăn uống, vui
                             chơi, nghỉ ngơi.</p>
-                        <a class="btn btn-light" data-bs-toggle="modal" data-bs-target="#notification">Xem thêm</a>
+                        <a class="btn btn-light" href="posts/Chamsoc.php">Xem thêm</a>
                     </div>
                 </div>
                 <div class="carousel-item ">
@@ -73,7 +73,7 @@ session_start();
                         <h5>ĐỪNG BỎ QUA NHỮNG NỖI ĐAU NHỎ </h5>
                         <p>Đã bao giờ bạn tự nhiên cảm thấy rất đau, sợ hãi, lo lắng, buồn, khổ sở mà không hề có lý do
                             cụ thể không?</p>
-                        <a class="btn btn-light" data-bs-toggle="modal" data-bs-target="#notification">Xem thêm</a>
+                        <a class="btn btn-light" href="posts/Dungboqua.php">Xem thêm</a>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -85,7 +85,7 @@ session_start();
                             chia tay mối tình bình yên một cách văn minh. Rồi 30 tuổi, tôi bắt đầu hành trình đi sâu vào
                             trong mình qua những khóa học phát triển bản thân.
                             Năm 30 tuổi ấy, tôi đổi nghề.</p>
-                        <a class="btn btn-light" data-bs-toggle="modal" data-bs-target="#notification">Xem thêm</a>
+                        <a class="btn btn-light" href="posts/Dinguoc.php">Xem thêm</a>
                     </div>
                 </div>
             </div>
