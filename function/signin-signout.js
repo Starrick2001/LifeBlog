@@ -92,10 +92,7 @@
 
             $("#logout-btn").click(function() {
                 $.ajax({
-                    url: url + "function/dangxuat.php",
-                    success: function(data) {
-                        
-                    }
+                    url: url + "function/dangxuat.php"
                 });
                 window.location.href = url;
             });

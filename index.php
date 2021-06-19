@@ -460,7 +460,7 @@ session_start();
         </div> -->
         <?php
         include_once "function/connect.php";
-        $query = "SELECT title, imgUrl, content, author FROM posts";
+        $query = "SELECT * FROM posts";
         $result = mysqli_query($connect, $query);
         ?>
 
@@ -482,7 +482,7 @@ session_start();
                                 <?php echo $post["content"]; ?>
                             </p>
                             <p class="text-end">
-                                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#notification">Xem thêm</a>
+                                <a class="btn btn-primary" href=<?php echo $url . "function/post.php?post_id=" . $post["post_id"];?>>Xem thêm</a>
                             </p>
                         </div>
                         <p class="author text-end">

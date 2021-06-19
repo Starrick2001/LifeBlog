@@ -19,7 +19,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="floatingInputSignin" placeholder="name@example.com">
+                            <input type="email" class="form-control" id="floatingInputSignin" placeholder="name@example.com" name="email">
                             <label for="floatingInputSignin">Địa chỉ email</label>
                         </div>
                         <div class="form-floating">
@@ -43,11 +43,11 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="floatingInputSignup" placeholder="name@example.com">
+                            <input type="email" class="form-control" id="floatingInputSignup" placeholder="name@example.com" name="email">
                             <label for="floatingInputSignup">Địa chỉ email</label>
                         </div>
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingNameSignup" placeholder="name">
+                            <input type="text" class="form-control" id="floatingNameSignup" placeholder="name" name="name">
                             <label for="floatingNameSignup">Tên</label>
                         </div>
                         <div class="form-floating">
