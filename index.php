@@ -470,7 +470,7 @@ session_start();
             $tmp = 1;
             while ($post = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             ?>
-                <div class="col-6">
+                <div class="col-md">
                     <div class="row shadow rounded m-3 p-2">
                         <div class="col-md-4">
                             <img src="<?php echo $post["imgUrl"]; ?>" class="w-100" alt="" />
@@ -479,7 +479,7 @@ session_start();
                             <!--                            Content-->
                             <h6 class="pt-2"><?php echo $post["title"]; ?></h6>
                             <p class="content">
-                                <?php echo $post["content"]; ?>
+                                <?php echo substr($post["content"], 0, 200) . "..."; ?>
                             </p>
                             <p class="text-end">
                                 <a class="btn btn-primary" href=<?php echo $url . "function/post.php?post_id=" . $post["post_id"];?>>Xem thêm</a>

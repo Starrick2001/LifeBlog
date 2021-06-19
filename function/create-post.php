@@ -37,7 +37,7 @@ session_start();
                 <input type="text" class="form-control" placeholder="Tiêu đề" name="title" required>
             </div>
             <div class="input-group mb-3">
-                <textarea type="text" class="form-control" id="editor" rows="5" placeholder="Nội dung bài viết" name="content" required>Nội dung</textarea>
+                <textarea type="text" class="form-control" id="editor" rows="5" placeholder="Nội dung bài viết" name="content" required> </textarea>
             </div>
             <div class="mb-3">
                 <input class="form-control" type="file" name="thumbnail">
@@ -70,8 +70,11 @@ session_start();
                     move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_file);
                     $flag = true;
                 } else echo "<script> alert('Kích thước ảnh quá lớn');</script>";
-            } else
-                echo "<script> alert('Chỉ hỗ trợ định dạng JPEG, PNG, JPG.');</script>";
+            } else {
+                $flag = true;
+                if ($imgFileType != "")
+                    echo "<script> alert('Chỉ hỗ trợ định dạng JPEG, PNG, JPG.');</script>";
+            }
             if (!$flag) {
                 $sql = "INSERT INTO posts (title, content, author) VALUES ('{$title}', '{$content}', '{$author}')";
                 mysqli_query($connect, $sql);
