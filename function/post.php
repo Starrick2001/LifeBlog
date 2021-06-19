@@ -51,7 +51,7 @@ else {
                 <div class="shadow rounded p-3">
                     <h2 class="text-center"><?php echo $data_post["title"]; ?></h2>
                     </br>
-                    <p class="content"><?php echo $data_post["content"]; ?></p>
+                    <?php echo $data_post["content"]; ?>
                 </div>
             </div>
         </div>

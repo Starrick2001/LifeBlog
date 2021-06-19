@@ -7,6 +7,7 @@ session_start();
     <title>Thêm bài viết</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         var url = "../";
@@ -15,7 +16,11 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/logo/Logo1.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="../style.css">
-
+    <style>
+        .ck-editor {
+            min-width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,7 +37,7 @@ session_start();
                 <input type="text" class="form-control" placeholder="Tiêu đề" name="title" required>
             </div>
             <div class="input-group mb-3">
-                <textarea type="text" class="form-control" rows="5" placeholder="Nội dung bài viết" name="content" required></textarea>
+                <textarea type="text" class="form-control" id="editor" rows="5" placeholder="Nội dung bài viết" name="content" required></textarea>
             </div>
             <div class="mb-3">
                 <input class="form-control" type="file" name="thumbnail">
@@ -74,6 +79,35 @@ session_start();
         }
     }
     ?>
+    <script>
+        ClassicEditor.create(document.querySelector("#editor"), {
+                toolbar: {
+                    items: [
+                        'heading', '|',
+                        'alignment', '|',
+                        'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
+                        'link', '|',
+                        'bulletedList', 'numberedList', 'todoList',
+                        // '-', // break point
+                        'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor', '|',
+                        'code', 'codeBlock', '|',
+                        'insertTable', '|',
+                        'outdent', 'indent', '|',
+                        'uploadImage', 'blockQuote', '|',
+                        'undo', 'redo'
+                    ],
+
+                    shouldNotGroupWhenFull: true
+                }
+            })
+
+            .catch(error => {
+                console.error(error);
+            });
+        CKEDITOR.replace("#editor", {
+            width: "100%"
+        })
+    </script>
 </body>
 
 </html>
