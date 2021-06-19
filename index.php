@@ -26,7 +26,7 @@ session_start();
 <body>
     <!-- Navbar -->
     <?php
-    $url ="";
+    $url = "";
     $setVisibleCreatePostBtn = true;
     include $url . "themes/navbar.php";
     ?>
@@ -482,8 +482,7 @@ session_start();
                                 <?php echo $post["content"]; ?>
                             </p>
                             <p class="text-end">
-                                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#notification">Xem
-                                    thêm</a>
+                                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#notification">Xem thêm</a>
                             </p>
                         </div>
                         <p class="author text-end">
