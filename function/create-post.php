@@ -57,28 +57,24 @@ session_start();
         $title = $_POST["title"];
         $content = $_POST["content"];
         $author = $_SESSION["name"] . " - " . $_SESSION["email"];
-        if (isset($_FILES["thumbnail"]["tmp_name"])) {
-            $target_dir = "../img/";
-            $target_file = $target_dir . basename($_FILES["thumbnail"]["name"]);
-            $imgFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-            $flag = false;
-            if ($imgFileType == "jpg" || $imgFileType == "png" || $imgFileType == "jpeg") {
-                if ($_FILES["thumbnail"]["size"] < 500000) {
-                    $imgUrl = "img/" . basename($_FILES["thumbnail"]["name"]);
-                    $sql = "INSERT INTO posts (title, imgUrl,content, author) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author}')";
-                    mysqli_query($connect, $sql);
-                    move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_file);
-                    $flag = true;
-                } else echo "<script> alert('Kích thước ảnh quá lớn');</script>";
-            } else {
-                $flag = true;
-                if ($imgFileType != "")
-                    echo "<script> alert('Chỉ hỗ trợ định dạng JPEG, PNG, JPG.');</script>";
-            }
-            if (!$flag) {
-                $sql = "INSERT INTO posts (title, content, author) VALUES ('{$title}', '{$content}', '{$author}')";
+        $target_dir = "../img/";
+        $target_file = $target_dir . basename($_FILES["thumbnail"]["name"]);
+        $imgFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        
+        if ($imgFileType == "jpg" || $imgFileType == "png" || $imgFileType == "jpeg") {
+            if ($_FILES["thumbnail"]["size"] < 500000) {
+                $imgUrl = "img/" . basename($_FILES["thumbnail"]["name"]);
+                $sql = "INSERT INTO posts (title, imgUrl,content, author) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author}')";
                 mysqli_query($connect, $sql);
-            }
+                move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_file);
+                
+            } else echo "<script> alert('Kích thước ảnh quá lớn');</script>";
+        } else {
+            $imgUrl = "img/logo/Logo2.png";
+            $sql = "INSERT INTO posts (title, imgUrl,content, author) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author}')";
+                mysqli_query($connect, $sql);
+            if ($imgFileType != "")
+                echo "<script> alert('Chỉ hỗ trợ định dạng JPEG, PNG, JPG.');</script>";
         }
     }
     ?>

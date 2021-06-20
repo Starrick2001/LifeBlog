@@ -94,6 +94,6 @@
                 $.ajax({
                     url: url + "function/dangxuat.php"
                 });
-                window.location.href = url;
+                window.location.href = "";
             });
         });

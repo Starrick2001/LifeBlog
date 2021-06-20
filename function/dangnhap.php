@@ -4,7 +4,7 @@ include "connect.php";
 if (isset($_POST["email"])) {
 
     $search = "
-        SELECT * FROM member
+        SELECT email, password, name FROM member
         WHERE email = '" . $_POST["email"] . "'
         AND password = '" . md5($_POST["password"]) . "'
         ";

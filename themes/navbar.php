@@ -17,7 +17,7 @@
                 if (isset($_SESSION["email"])) {
                 ?>
                     <li class="nav-item m-auto">
-                        <a class="btn"><?php echo "Xin chào " . $_SESSION["name"]; ?></a>
+                        <a class="btn" href="<?php echo $url . "function/profile.php?profile_email=" . $_SESSION["email"]; ?>"><?php echo "Xin chào " . $_SESSION["name"]; ?></a>
                     </li>
                     <?php
                     if ($setVisibleCreatePostBtn) {?>

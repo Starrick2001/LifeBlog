@@ -1,11 +1,13 @@
 <?php
 session_start();
-include "connect.php";
+include_once "connect.php";
+$url = "../";
 $post_id = $_GET["post_id"];
 $sql_get_data_post = "SELECT * FROM posts WHERE post_id = $post_id";
 $result = $connect->query($sql_get_data_post);
-if ($result->num_rows > 0) 
+if ($result->num_rows > 0) {
     $data_post = $result->fetch_assoc();
+}
 else {
     echo "404 Không tồn tại";
     exit;
@@ -32,7 +34,6 @@ else {
 
     <!-- navbar -->
     <?php
-    $url = "../";
     $setVisibleCreatePostBtn = true;
     include $url . "themes/navbar.php";
     ?>
@@ -56,20 +57,12 @@ else {
             </div>
         </div>
         <!-- Bình luận -->
-        <div id="cmt p-2">
-            <h3>Bình luận</h3>
-            <form method="post">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="cmt-content" placeholder="Nhập bình luận" required>
-                    <button type="submit" class="btn btn-primary" id="cmt-btn">Bình luận</button>
-                </div>
-            </form>
-        </div>
+        <?php include_once $url . "themes/comment.php";?>
         <!-- kết thúc nội dung chính -->
     </main>
     <!-- sử dụng main bao hết nội dung web lại -->
     <?php
-    include $url . "themes/backtotopbtn.php";
-    include $url . "themes/modal.php";
+    include_once $url . "themes/backtotopbtn.php";
+    include_once $url . "themes/modal.php";
     ?>
 </body>
