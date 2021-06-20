@@ -481,7 +481,7 @@ session_start();
                             <p class="content">
                                 <?php
                                 if (strlen($post["content"]) > 300)
-                                    $content =  substr($post["content"], 0, 300) . "...";
+                                    $content =  mb_substr($post["content"], 0, 300, "utf-8") . "...";
                                 else $content = $post["content"];
                                 echo $content;
                                 ?>
