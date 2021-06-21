@@ -14,6 +14,9 @@ include_once $url . "function/show-cmt.php";
 if (isset($_POST["submit"])) {
     if (isset($_SESSION["email"])) {
         include $url . "function/add-comment.php";
-    } else echo "<script>alert('Bạn chưa đăng nhập tài khoản.');</script>";
+    } else {
+        echo "<script>alert('Bạn chưa đăng nhập tài khoản.');</script>";
+        echo "<script>window.location.href = '';</script>";
+    }
 }
 ?>

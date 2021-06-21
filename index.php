@@ -488,10 +488,15 @@ session_start();
                                 ?>
                             </p>
                             <p class="text-end">
+                                <?php
+                                if (isset($_SESSION["email"]) && $post["author"] == $_SESSION["name"] . " - " . $_SESSION["email"]) {
+                                    include $url . "themes/edit-delete.php";
+                                }
+                                ?>
                                 <a class="btn btn-primary" href=<?php echo $url . "function/post.php?post_id=" . $post["post_id"]; ?>>Xem thêm</a>
                             </p>
                         </div>
-                        <p class="author text-end">
+                        <p class="author text-end mt-2">
                             <?php echo "Người viết: " . $post["author"]; ?>
                         </p>
                     </div>

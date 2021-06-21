@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION["email"])) {
+    echo "Bạn chưa đăng nhập tài khoản.";
+    exit;
+}
 ?>
 <html>
 
@@ -39,7 +43,7 @@ session_start();
             <div class="input-group mb-3">
                 <textarea type="text" class="form-control" id="editor" rows="5" placeholder="Nội dung bài viết" name="content" required> </textarea>
             </div>
-            <div class="mb-3">
+            <div class="input-group mb-3">
                 <input class="form-control" type="file" name="thumbnail">
             </div>
             <div class="mb-3">

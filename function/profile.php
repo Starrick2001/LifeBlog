@@ -157,26 +157,24 @@ else {
     <main class="container pt-2">
         <!-- bao phần nội dung chính -->
         <div class="row shadow m-3 p-2">
-            <div class="col-md-2 position-relative">
+            <div class="col-md-2 position-relative my-3">
                 <img src="<?php echo $url . $profile_data["avatarUrl"] ?>" class="w-100">
-                <div class="position-absolute top-0 ">
-                    <form method="POST" enctype="multipart/form-data">
-                        <label for="avatar" class="btn-outline-secondary btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-card-image" viewBox="0 0 16 16">
-                                <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
-                                <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"></path>
-                            </svg>
-                        </label>
-                        <input type="file" name="avatar" onchange="form.submit()" id="avatar" class="d-none" />
-                    </form>
-                </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10 my-3">
                 <h2 class="mt-3"><?php echo $profile_data["name"]; ?></h2>
                 <h5>Địa chỉ email: <?php echo $profile_data["email"]; ?> </h5>
-                <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editInformation">Sửa thông tin</a>
-                <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#changePassword">Đổi mật khẩu</a>
-
+                <?php
+                if (isset($_SESSION["email"]) && $email == $_SESSION["email"]) {
+                ?>
+                    <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editInformation">Sửa thông tin</a>
+                    <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#changePassword">Đổi mật khẩu</a>
+                    <label for="avatar" class="btn-outline-primary btn"> Sửa ảnh đại diện</label>
+                    <form method="POST" enctype="multipart/form-data" class="">
+                        <input type="file" name="avatar" onchange="form.submit()" id="avatar" class="d-none" />
+                    </form>
+                <?php
+                }
+                ?>
                 <?php
                 if (isset($_FILES["avatar"]["name"])) {
                     include_once "connect.php";
@@ -229,10 +227,15 @@ else {
                                 ?>
                             </p>
                             <p class="text-end">
+                                <?php
+                                if (isset($_SESSION["email"]) && $email == $_SESSION["email"]) {
+                                    include $url . "themes/edit-delete.php";
+                                }
+                                ?>
                                 <a class="btn btn-primary" href="<?php echo $url . "function/post.php?post_id=" . $post["post_id"]; ?>">Xem thêm</a>
                             </p>
                         </div>
-                        <p class="author text-end">
+                        <p class="author text-end mt-2">
                             <?php echo "Người viết: " . $post["author"]; ?>
                         </p>
                     </div>
