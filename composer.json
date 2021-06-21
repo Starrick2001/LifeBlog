@@ -1,0 +1,7 @@
+{
+    "require": {
+        "php": "^8.0",
+        "ext-mbstring": "*",
+        "aws/aws-sdk-php": "~3.0"
+    }
+}
