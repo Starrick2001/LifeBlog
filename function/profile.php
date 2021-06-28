@@ -208,21 +208,21 @@ else {
         <div class="row mb-2">
             <?php
             $tmp = 1;
-            while ($post = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            while ($data_post = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             ?>
                 <div class="col-lg">
                     <div class="row shadow rounded m-3 p-2">
                         <div class="col-md-4">
-                            <img src="<?php echo $url . $post["imgUrl"]; ?>" class="w-100 align-middle" alt="" />
+                            <img src="<?php echo $url . $data_post["imgUrl"]; ?>" class="w-100 align-middle" alt="" />
                         </div>
                         <div class="col-md-8">
                             <!--                            Content-->
-                            <h6 class="pt-2"><?php echo $post["title"]; ?></h6>
+                            <h6 class="pt-2"><?php echo $data_post["title"]; ?></h6>
                             <p class="content">
                                 <?php
-                                if (strlen($post["content"]) > 300)
-                                    $content =  mb_substr($post["content"], 0, 300) . "...";
-                                else $content = $post["content"];
+                                if (strlen($data_post["content"]) > 300)
+                                    $content =  mb_substr($data_post["content"], 0, 300) . "...";
+                                else $content = $data_post["content"];
                                 echo $content;
                                 ?>
                             </p>
@@ -232,11 +232,11 @@ else {
                                     include $url . "themes/edit-delete.php";
                                 }
                                 ?>
-                                <a class="btn btn-primary" href="<?php echo $url . "function/post.php?post_id=" . $post["post_id"]; ?>">Xem thêm</a>
+                                <a class="btn btn-primary" href="<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>">Xem thêm</a>
                             </p>
                         </div>
                         <p class="author text-end mt-2">
-                            <?php echo "Người viết: " . $post["author"]; ?>
+                            <?php echo "Người viết: " . $data_post["author"]; ?>
                         </p>
                     </div>
                 </div>

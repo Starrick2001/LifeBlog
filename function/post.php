@@ -34,7 +34,7 @@ if ($result->num_rows > 0) {
                 $("#show-comment").load(url + "function/show-cmt.php?post_id=<?php echo $post_id; ?>");
             });
 
-            
+
             $("#like-btn").click(function() {
                 $.ajax({
                     method: "GET",
@@ -134,7 +134,11 @@ if ($result->num_rows > 0) {
             </svg>
             Bình luận
         </button>
-
+        <?php
+        if (isset($_SESSION["email"]) && $data_post["author"] == $_SESSION["name"] . " - " . $_SESSION["email"]) {
+            include $url . "themes/edit-delete.php";
+        }
+        ?>
 
         <!-- Bình luận -->
         <div id="input-comment" class="py-3"></div>
