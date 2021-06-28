@@ -8,8 +8,8 @@
     </form>
 </div>
 <?php
-global $post_id;
-global $url;
+$post_id = $_GET["post_id"];
+$url = "../";
 include_once $url . "function/show-cmt.php";
 if (isset($_POST["submit"])) {
     if (isset($_SESSION["email"])) {

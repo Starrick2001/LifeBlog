@@ -56,7 +56,7 @@ if (!isset($_SESSION["email"])) {
     include $url . "themes/modal.php";
     ?>
     <?php
-    include "connect.php";
+    include_once "connect.php";
     if (isset($_POST["title"]) && isset($_POST["content"])) {
         $title = $_POST["title"];
         $content = $_POST["content"];

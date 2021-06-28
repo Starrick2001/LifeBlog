@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST["email"]) && isset($_POST['name']) && isset($_POST['birth']) && isset($_POST['birth']) && isset($_POST['password'])) {
-    include "connect.php";
+    include_once "connect.php";
     $email = $_POST['email'];
     $name = $_POST['name'];
     $birth = $_POST['birth'];

@@ -8,7 +8,7 @@ while ($comment = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 ?>
     <div class="row pb-2">
         <div class="col-1 p-0">
-            <img src="<?php echo $url . $comment["avatarUrl"] ?>" class="w-100">
+            <a href="<?php echo $url . "function/profile.php?profile_email=" . $comment["author"] ?>"><img src="<?php echo $url . $comment["avatarUrl"] ?>" class="w-100"></a>
         </div>
         <div class="col-11">
             <a href="<?php echo $url . "function/profile.php?profile_email=" . $comment["author"] ?>"><?php echo $comment["name"] . " - " . $comment["author"] ?></a>
