@@ -5,3 +5,6 @@ if (isset($_SESSION["email"])) {
     unset($_SESSION["name"]);
 }
 ?>
+<script>
+    window.location.href = "";
+</script>

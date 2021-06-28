@@ -1,3 +1,15 @@
+<div class="modal" id="signin-notification" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="text-secondary">Bạn chưa đăng nhập tài khoản</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal" id="notification" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -58,7 +70,7 @@
                     <label for="floatingPasswordSignup">Mật khẩu</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingReEnterPasswordSignup" placeholder="Password">
+                    <input type="password" class="form-control" id="floatingReEnterPasswordSignup" placeholder="Password" autocomplete="off">
                     <label for="floatingReEnterPasswordSignup">Nhập lại mật khẩu</label>
                 </div>
             </div>

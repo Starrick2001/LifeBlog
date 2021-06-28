@@ -1,7 +1,7 @@
 <?php
 include_once "connect.php";
-global $url;
-global $post_id;
+$url = "../";
+$post_id = $_GET["post_id"];
 $sql_get_data_cmt = "SELECT * FROM comments, member WHERE comments.author = member.email AND post_id = {$post_id}";
 $result = $connect->query($sql_get_data_cmt);
 while ($comment = mysqli_fetch_array($result, MYSQLI_ASSOC)) {

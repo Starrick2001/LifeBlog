@@ -38,7 +38,7 @@ if (!isset($_SESSION["email"])) {
     <main class="form-create-post container py-3">
         <form method="POST" enctype="multipart/form-data">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Tiêu đề" name="title" required>
+                <input type="text" class="form-control" placeholder="Tiêu đề" name="title" required autocomplete="off">
             </div>
             <div class="input-group mb-3">
                 <textarea type="text" class="form-control" id="editor" rows="5" placeholder="Nội dung bài viết" name="content" required> </textarea>
