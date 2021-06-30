@@ -1,4 +1,4 @@
-<div class="modal" id="signin-notification" tabindex="-1">
+<div class="modal fade" id="signin-notification" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
@@ -10,7 +10,7 @@
         </div>
     </div>
 </div>
-<div class="modal" id="notification" tabindex="-1">
+<div class="modal fade" id="notification" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
@@ -22,7 +22,7 @@
         </div>
     </div>
 </div>
-<div class="modal" id="signin" tabindex="-1">
+<div class="modal fade" id="signin" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -46,7 +46,7 @@
         </div>
     </div>
 </div>
-<div class="modal" id="signup" tabindex="-1">
+<div class="modal fade" id="signup" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

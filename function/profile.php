@@ -255,7 +255,7 @@ else {
     ?>
     <!-- Bài viết -->
     <!-- kết thúc nội dung chính -->
-    <div class="modal" id="editInformation">
+    <div class="modal fade" id="editInformation">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -283,7 +283,7 @@ else {
             </div>
         </div>
     </div>
-    <div class="modal" id="changePassword">
+    <div class="modal fade" id="changePassword">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
