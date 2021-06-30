@@ -1,6 +1,14 @@
 <?php
 session_start();
-// require("vendor/autoload.php");
+include_once "function/connect.php";
+$query = "  SELECT posts.post_id, content, imgUrl, author, title, COUNT(email) as 'Like'
+                    FROM posts 
+                    LEFT JOIN post_like ON post_like.post_id = posts.post_id
+                    GROUP BY posts.post_id
+                    ORDER BY COUNT(email)
+                    DESC
+        ";
+$result = $connect->query($query);
 ?>
 <!DOCTYPE html>
 
@@ -45,48 +53,69 @@ session_start();
             </div>
 
             <!-- main carousel -->
-
+            <?php $data_post = $result->fetch_assoc(); ?>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="img/159414778_505907824146012_4802705699852904088_n.png" class="d-block w-100">
+                    <img src="<?php echo $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px">
                     <div class="carousel-caption d-none d-md-block bg-text">
-                        <h5>CHĂM SÓC BẢN THÂN (SELF-CARE) HAY LÀ ÍCH KỶ (SELFISH)? </h5>
-                        <p>Ai trong chúng ta cũng có những nhu cầu riêng cho bản thân dù trong bất kỳ khía cạnh nào
-                            trong cuộc sống: công việc, gia đình, mối quan hệ, hay chỉ đơn giản là nhu cầu ăn uống, vui
-                            chơi, nghỉ ngơi.</p>
-                        <a class="btn btn-light" href="posts/Chamsoc.php">Xem thêm</a>
+                        <h5><?php echo $data_post["title"]; ?></h5>
+                        <p>
+                            <?php
+                            if (strlen($data_post["content"]) > 300)
+                                $content =  mb_substr($data_post["content"], 0, 300, "utf-8") . "...";
+                            else $content = $data_post["content"];
+                            echo $content;
+                            ?>
+                        </p>
+                        <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
                 </div>
+                <?php $data_post = $result->fetch_assoc(); ?>
                 <div class="carousel-item ">
-                    <img src="img/161172302_506101420793319_50094516776462664_n.png" class="d-block w-100">
+                    <img src="<?php echo $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px">
                     <div class="carousel-caption d-none d-md-block bg-text">
-                        <h5>XỬ LÝ CÁC CẢM XÚC TIÊU CỰC
-                        </h5>
-                        <p>Mình nghĩ là nhiều người trong chúng ta hơi kém trong việc đối mặt và xử lý các cảm xúc tiêu
-                            cực. Mỗi khi chúng ta rơi vào trạng thái đau khổ, buồn bã hoặc cảm thấy khổ sở, ta thường cố
-                            gắng vật vã tìm cách nào nhanh nhất có thể để ngắt mình khỏi cảm xúc ấy.</p>
-                        <a class="btn btn-light" href="posts/Xuly.php">Xem thêm</a>
+                        <h5><?php echo $data_post["title"]; ?></h5>
+                        <p>
+                            <?php
+                            if (strlen($data_post["content"]) > 300)
+                                $content =  mb_substr($data_post["content"], 0, 300, "utf-8") . "...";
+                            else $content = $data_post["content"];
+                            echo $content;
+                            ?>
+                        </p>
+                        <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
                 </div>
+                <?php $data_post = $result->fetch_assoc(); ?>
                 <div class="carousel-item">
-                    <img src="img/162535409_509034327166695_2726708296117186477_n.jpg" class="d-block w-100">
+                    <img src="<?php echo $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px">
                     <div class="carousel-caption d-none d-md-block bg-text">
-                        <h5>ĐỪNG BỎ QUA NHỮNG NỖI ĐAU NHỎ </h5>
-                        <p>Đã bao giờ bạn tự nhiên cảm thấy rất đau, sợ hãi, lo lắng, buồn, khổ sở mà không hề có lý do
-                            cụ thể không?</p>
-                        <a class="btn btn-light" href="posts/Dungboqua.php">Xem thêm</a>
+                        <h5><?php echo $data_post["title"]; ?></h5>
+                        <p>
+                            <?php
+                            if (strlen($data_post["content"]) > 300)
+                                $content =  mb_substr($data_post["content"], 0, 300, "utf-8") . "...";
+                            else $content = $data_post["content"];
+                            echo $content;
+                            ?>
+                        </p>
+                        <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
                 </div>
+                <?php $data_post = $result->fetch_assoc(); ?>
                 <div class="carousel-item">
-                    <img src="img/162809020_511778586892269_3687806669231235166_n.png" class="d-block w-100">
+                    <img src="<?php echo $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px">
                     <div class="carousel-caption d-none d-md-block bg-text">
-                        <h5>ĐI NGƯỢC LẠI VỚI ĐỊNH NGHĨA "THÀNH CÔNG"?</h5>
-                        <p>Tôi ngày càng trở nên dễ tâm giao với các bạn trẻ gần tới 30, liệu chăng là luật hấp dẫn, hay
-                            vì 1 lí do gì khác, tôi cũng không biết nữa. Tôi vẫn nhớ hoài năm tôi 29 tuổi, chính thức
-                            chia tay mối tình bình yên một cách văn minh. Rồi 30 tuổi, tôi bắt đầu hành trình đi sâu vào
-                            trong mình qua những khóa học phát triển bản thân.
-                            Năm 30 tuổi ấy, tôi đổi nghề.</p>
-                        <a class="btn btn-light" href="posts/Dinguoc.php">Xem thêm</a>
+                        <h5><?php echo $data_post["title"]; ?></h5>
+                        <p>
+                            <?php
+                            if (strlen($data_post["content"]) > 300)
+                                $content =  mb_substr($data_post["content"], 0, 300, "utf-8") . "...";
+                            else $content = $data_post["content"];
+                            echo $content;
+                            ?>
+                        </p>
+                        <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
                 </div>
             </div>
@@ -106,23 +135,13 @@ session_start();
         </div>
 
 
-        <?php
-        include_once "function/connect.php";
-        $query = "  SELECT posts.post_id, content, imgUrl, author, title, COUNT(email) as 'Like'
-                    FROM posts 
-                    LEFT JOIN post_like ON post_like.post_id = posts.post_id
-                    GROUP BY posts.post_id
-                    ORDER BY COUNT(email)
-                    DESC
-        ";
-        $result = mysqli_query($connect, $query);
-        ?>
+
 
         <!-- Khởi tạo row -->
         <div class="row mb-2">
             <?php
             $tmp = 1;
-            while ($data_post = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            while ($data_post = $result->fetch_assoc()) {
             ?>
                 <div class="col-lg">
                     <div class="row shadow rounded m-3 p-2">
