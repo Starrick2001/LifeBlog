@@ -66,7 +66,7 @@ if (!isset($_SESSION["email"])) {
         $imgFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         
         if ($imgFileType == "jpg" || $imgFileType == "png" || $imgFileType == "jpeg") {
-            if ($_FILES["thumbnail"]["size"] < 500000) {
+            if ($_FILES["thumbnail"]["size"] < 600000) {
                 $imgUrl = "img/" . basename($_FILES["thumbnail"]["name"]);
                 $sql = "INSERT INTO posts (title, imgUrl,content, author) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author}')";
                 mysqli_query($connect, $sql);
@@ -83,16 +83,29 @@ if (!isset($_SESSION["email"])) {
     }
     ?>
     <script>
-        ClassicEditor.create(document.querySelector("#editor"), {
-                toolbar: {
-                    shouldNotGroupWhenFull: true
-                }
-            })
+                ClassicEditor
+                    .create(document.querySelector("#editor"), {
+                        toolbar: {
+                            items: [
+                                'heading', '|',
+                                'bold', 'italic', '|',
+                                'link', '|',
+                                'outdent', 'indent', '|',
+                                'bulletedList', 'numberedList', '|',
+                                'insertTable', '|',
+                                'blockQuote', '|',
+                                'undo', 'redo'
+                            ],
+                            shouldNotGroupWhenFull: true
+                        },
+                    })
 
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
+
+
+                    .catch(error => {
+                        console.error(error);
+                    });
+            </script>
 </body>
 
 </html>

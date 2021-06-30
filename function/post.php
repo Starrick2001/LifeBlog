@@ -38,7 +38,7 @@ if ($result->num_rows > 0) {
             $("#like-btn").click(function() {
                 $.ajax({
                     method: "GET",
-                    url: url + "function/modify-like.php",
+                    url: url + "function/modify-post-like.php",
                     data: {
                         post_id: <?php echo $post_id; ?>,
                         email: "<?php if (isset($_SESSION["email"])) echo $_SESSION["email"]; ?>"
@@ -51,10 +51,11 @@ if ($result->num_rows > 0) {
                             $("#like-btn").removeClass("btn-primary");
                             $("#like-btn").addClass("btn-secondary");
                         }
-                        $("#like_count").load("count-like.php?post_id=<?php echo $post_id; ?>");
+                        $("#like_count").load("count-post-like.php?post_id=<?php echo $post_id; ?>");
                     }
                 });
             });
+
         });
     </script>
     <script src="signin-signout.js"></script>

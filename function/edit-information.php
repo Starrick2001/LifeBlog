@@ -15,8 +15,14 @@ if ($result_search->num_rows > 0) {
                             UPDATE member 
                             SET name = '" . $name . "', birth = '" . $birth . "'
                             WHERE email = '" . $_SESSION["email"] . "'";
-    $_SESSION["name"] = $name;
+    $sql_edit_author_posts = "
+                            UPDATE posts
+                            SET author = '" . $name . " - " . $_SESSION["email"] . "'
+                            WHERE author = '" . $_SESSION["name"] . " - " . $_SESSION["email"] . "'
+    ";
     $connect->query($sql_edit_information);
+    $connect->query($sql_edit_author_posts);
+    $_SESSION["name"] = $name;    
     echo "Yes";
 }
 else {

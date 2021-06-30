@@ -52,11 +52,12 @@ if ($result_search->num_rows > 0) {
                     <div class="input-group mb-3">
                         <textarea type="text" class="form-control" id="editor" rows="5" placeholder="Nội dung bài viết" name="content" required><?php echo $post_data["content"]; ?> </textarea>
                     </div>
+                    <div id="word-count"></div>
                     <div class="input-group mb-3 row">
                         <img class="col-md-4" src="<?php echo $url . $post_data["imgUrl"]; ?>">
 
                         <div class="col-md m-auto input-group">
-                            <!-- <label for="thumbnail" > Sửa ảnh đại diện</label> --><label class="input-group-text" for="thumbnail">Sửa ảnh đại diện</label>
+                            <label class="input-group-text" for="thumbnail">Sửa ảnh đại diện</label>
                             <input class="form-control" type="file" name="thumbnail" id="thumbnail" />
 
                         </div>
@@ -94,15 +95,28 @@ if ($result_search->num_rows > 0) {
                         mysqli_query($connect, $sql);
                     }
                 }
-                echo "<script>window.location.href = ''</script>";
+                echo "<script>window.history.go(-2); ''</script>";
             }
             ?>
             <script>
-                ClassicEditor.create(document.querySelector("#editor"), {
+                ClassicEditor
+                    .create(document.querySelector("#editor"), {
                         toolbar: {
+                            items: [
+                                'heading', '|',
+                                'bold', 'italic', '|',
+                                'link', '|',
+                                'outdent', 'indent', '|',
+                                'bulletedList', 'numberedList', '|',
+                                'insertTable', '|',
+                                'blockQuote', '|',
+                                'undo', 'redo'
+                            ],
                             shouldNotGroupWhenFull: true
-                        }
+                        },
                     })
+
+
 
                     .catch(error => {
                         console.error(error);
