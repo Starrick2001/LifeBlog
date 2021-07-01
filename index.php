@@ -148,7 +148,7 @@ $result = $connect->query($query);
                 <div class="col-lg">
                     <div class="row shadow rounded m-3 p-2">
                         <div class="col-md-4">
-                            <img src="<?php echo $data_post["imgUrl"]; ?>" class="w-100"/>
+                            <img src="<?php echo $data_post["imgUrl"]; ?>" class="w-100" />
                         </div>
                         <div class="col-md-8">
                             <!--                            Content-->

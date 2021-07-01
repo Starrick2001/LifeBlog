@@ -1,5 +1,9 @@
 <?php
 session_start();
+require_once "connect.php";
+$url = "../";
+$post_id = $_GET["post_id"];
+$cmt_parent = $_GET["cmt_parent"];
 ?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -24,16 +28,28 @@ session_start();
             }
         });
     });
+
+    $(".cmt-btn-show[status='false']").click(function() {
+        var cmt_id = $(this).attr("cmt_id");
+        $(".cmt-btn-show[cmt_id=" + cmt_id + "]").removeClass("btn-secondary");
+        $(".cmt-btn-show[cmt_id=" + cmt_id + "]").addClass("btn-primary");
+        $(".type-cmt[cmt_id=" + cmt_id + "]").load("../themes/comment.php?post_id=<?php echo $post_id ?>&cmt_parent=" + cmt_id);
+        $(this).attr("status", "true");
+    });
+    // $(".cmt-btn-show[status='false']").click(function() {
+    //     var cmt_id = $(this).attr("cmt_id");
+    //     // $(".cmt-btn-show[cmt_id=" + cmt_id + "]").removeClass("btn-primary");
+    //     // $(".cmt-btn-show[cmt_id=" + cmt_id + "]").addClass("btn-secondary");
+    //     // $(".type-cmt[cmt_id=" + cmt_id + "]").remove();
+    //     $(this).attr("status", "false");
+    // });
 </script>
 <?php
-require_once "connect.php";
-$url = "../";
-$post_id = $_GET["post_id"];
-$sql_get_data_cmt = "SELECT * FROM comments, member WHERE comments.author = member.email AND post_id = {$post_id} ORDER BY date_time ASC";
+$sql_get_data_cmt = "SELECT * FROM comments, member WHERE comments.author = member.email AND post_id = {$post_id} AND cmt_parent = {$cmt_parent} ORDER BY date_time ASC";
 $result = $connect->query($sql_get_data_cmt);
 while ($comment = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 ?>
-    <div class="row pb-2">
+    <div class="row pb-2 m-2">
         <div class="col-1 p-0">
             <a href="<?php echo $url . "function/profile.php?profile_email=" . $comment["author"] ?>"><img src="<?php echo $url . $comment["avatarUrl"] ?>" class="w-100"></a>
         </div>
@@ -60,7 +76,6 @@ while ($comment = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                         <?php
                     }
                         ?>
-
                     <?php
                 } else {
                     ?>
@@ -78,9 +93,35 @@ while ($comment = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                         </svg>
                         <span class="cmt-like-count" cmt_id=<?php echo $comment["cmt_id"]; ?>>Thích <?php echo $data_cmt_like["COUNT(email)"]; ?></span>
                         </button>
+                        <!-- Trả lời -->
+                        <?php
+                        if (isset($_SESSION["email"])) {
+                        ?>
+                            <button type="button" class="btn btn-secondary cmt-btn-show" cmt_id=<?php echo $comment["cmt_id"]; ?> status="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-text" viewBox="0 0 16 16">
+                                    <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"></path>
+                                    <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"></path>
+                                </svg>
+                                Trả lời
+                            </button>
+                            <div class="type-cmt" cmt_id=<?php echo $comment["cmt_id"]; ?>></div>
+                        <?php
+                        }
+                        ?>
+                        <?php
+                        $sql_get_cmt_child = "SELECT * FROM comments, member WHERE comments.author = member.email AND post_id = {$post_id} AND cmt_parent = '" . $comment["cmt_id"] . "'";
+                        $result_get_cmt_child = $connect->query($sql_get_cmt_child);
+                        if ($result_get_cmt_child->num_rows > 0) {
+                        ?>
+                            <div class="cmt_child" cmt_parent="<?php echo $comment["cmt_id"]; ?>"></div>
+                            <script>
+                                $(".cmt_child[cmt_parent=" + <?php echo $comment["cmt_id"]; ?> + "]").load("show-cmt.php?post_id=<?php echo $post_id; ?>&cmt_parent=<?php echo $comment["cmt_id"]; ?>");
+                            </script>
+                        <?php
+                        }
+                        ?>
         </div>
     </div>
-    <br>
 <?php
 }
 ?>
