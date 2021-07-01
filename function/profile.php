@@ -200,7 +200,7 @@ else {
         <?php
         include_once $url . "function/connect.php";
         $name = $profile_data["name"];
-        $query = "SELECT * FROM posts WHERE author = '" . $name . " - " . $email . "'";
+        $query = "SELECT * FROM posts WHERE author = '" . $name . " - " . $email . "' ORDER BY date_time DESC";
         $result = mysqli_query($connect, $query);
         ?>
 
@@ -218,6 +218,7 @@ else {
                         <div class="col-md-8">
                             <!--                            Content-->
                             <h6 class="pt-2"><?php echo $data_post["title"]; ?></h6>
+                            <div class="text-muted"><?php echo $data_post["date_time"] ?></div>
                             <p class="content">
                                 <?php
                                 if (strlen($data_post["content"]) > 300)

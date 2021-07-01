@@ -64,48 +64,48 @@ if (!isset($_SESSION["email"])) {
         $target_dir = "../img/";
         $target_file = $target_dir . basename($_FILES["thumbnail"]["name"]);
         $imgFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $date = date("Y-m-d G:i:s");
         if ($imgFileType == "jpg" || $imgFileType == "png" || $imgFileType == "jpeg") {
             if ($_FILES["thumbnail"]["size"] < 600000) {
                 $imgUrl = "img/" . basename($_FILES["thumbnail"]["name"]);
-                $sql = "INSERT INTO posts (title, imgUrl,content, author) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author}')";
+                $sql = "INSERT INTO posts (title, imgUrl,content, author, date_time) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author}','{$date}')";
                 mysqli_query($connect, $sql);
                 move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_file);
-                
             } else echo "<script> alert('Kích thước ảnh quá lớn');</script>";
         } else {
             $imgUrl = "img/logo/Logo2.png";
-            $sql = "INSERT INTO posts (title, imgUrl,content, author) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author}')";
-                mysqli_query($connect, $sql);
+            $sql = "INSERT INTO posts (title, imgUrl,content, author, date_time) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author}','{$date}')";
+            mysqli_query($connect, $sql);
             if ($imgFileType != "")
                 echo "<script> alert('Chỉ hỗ trợ định dạng JPEG, PNG, JPG.');</script>";
         }
     }
     ?>
     <script>
-                ClassicEditor
-                    .create(document.querySelector("#editor"), {
-                        toolbar: {
-                            items: [
-                                'heading', '|',
-                                'bold', 'italic', '|',
-                                'link', '|',
-                                'outdent', 'indent', '|',
-                                'bulletedList', 'numberedList', '|',
-                                'insertTable', '|',
-                                'blockQuote', '|',
-                                'undo', 'redo'
-                            ],
-                            shouldNotGroupWhenFull: true
-                        },
-                    })
+        ClassicEditor
+            .create(document.querySelector("#editor"), {
+                toolbar: {
+                    items: [
+                        'heading', '|',
+                        'bold', 'italic', '|',
+                        'link', '|',
+                        'outdent', 'indent', '|',
+                        'bulletedList', 'numberedList', '|',
+                        'insertTable', '|',
+                        'blockQuote', '|',
+                        'undo', 'redo'
+                    ],
+                    shouldNotGroupWhenFull: true
+                },
+            })
 
 
 
-                    .catch(error => {
-                        console.error(error);
-                    });
-            </script>
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </body>
 
 </html>

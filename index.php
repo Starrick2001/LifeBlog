@@ -1,11 +1,13 @@
 <?php
 session_start();
 include_once "function/connect.php";
-$query = "  SELECT posts.post_id, content, imgUrl, author, title, COUNT(email) as 'Like'
+$query = "  SELECT posts.post_id, content, imgUrl, author, title, date_time, COUNT(email) as 'Like'
                     FROM posts 
                     LEFT JOIN post_like ON post_like.post_id = posts.post_id
                     GROUP BY posts.post_id
                     ORDER BY COUNT(email)
+                    DESC
+                            , date_time
                     DESC
         ";
 $result = $connect->query($query);
@@ -151,6 +153,7 @@ $result = $connect->query($query);
                         <div class="col-md-8">
                             <!--                            Content-->
                             <h6 class="pt-2"><?php echo $data_post["title"]; ?></h6>
+                            <div class="text-muted"><?php echo $data_post["date_time"] ?></div>
                             <p class="content">
                                 <?php
                                 if (strlen($data_post["content"]) > 300)
