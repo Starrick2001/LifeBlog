@@ -25,7 +25,7 @@ else {
     <script src="signin-signout.js"></script>
     <script src="comment.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/logo/Logo1.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="https://lifeblog.s3.ap-southeast-1.amazonaws.com/img/logo/Logo1.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="../style.css">
     <style>
         #editInformation .form-floating:focus-within {
@@ -158,7 +158,7 @@ else {
         <!-- bao phần nội dung chính -->
         <div class="row shadow m-3 p-2">
             <div class="col-md-2 position-relative my-3">
-                <img src="<?php echo $url . $profile_data["avatarUrl"] ?>" class="w-100">
+                <img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $profile_data["avatarUrl"] ?>" class="w-100">
             </div>
             <div class="col-md-10 my-3">
                 <h2 class="mt-3"><?php echo $profile_data["name"]; ?></h2>
@@ -183,10 +183,41 @@ else {
                     $imgFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
                     if ($imgFileType == "jpg" || $imgFileType == "png" || $imgFileType == "jpeg") {
                         if ($_FILES["avatar"]["size"] < 500000) {
-                            $imgUrl = "img/avatar/" . basename($_FILES["avatar"]["name"]);
+                            $imgUrl = "img/avatar/" . $_SESSION["email"] . "." . $imgFileType;
                             $sql = "UPDATE member SET avatarUrl = '" . $imgUrl . "' WHERE email = '" . $_SESSION["email"] . "'";
                             mysqli_query($connect, $sql);
-                            move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+                            // move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+                            require '../vendor/autoload.php';
+
+                            /** AWS S3 Bucket Name */
+                            $bucket_name = 'lifeblog';
+
+
+                            /** AWS S3 Bucket Access Key ID */
+                            $access_key_id = 'AKIAWCMJXPOBLPCSUZVF';
+
+
+                            /** AWS S3 Bucket Secret Access Key */
+                            $secret = 'J6PScH/RMWYHIJIMgDKXqfJDazTMa40w1bTZESdt';
+
+
+                            $file_name = $_SESSION["email"] . "." . $imgFileType;
+                            $temp_file_location = $_FILES['avatar']['tmp_name'];
+                            $s3 = new Aws\S3\S3Client([
+                                'region'  => 'ap-southeast-1',
+                                'version' => 'latest',
+                                'credentials' => [
+                                    'key'    => $access_key_id,
+                                    'secret' => $secret
+                                ]
+                            ]);
+
+                            $result = $s3->putObject([
+                                'Bucket' => $bucket_name,
+                                'Key'    => 'img/avatar/' . $file_name,
+                                'SourceFile' => $temp_file_location,
+                                'ACL' => 'public-read'
+                            ]);
                         } else echo "<script> alert('Kích thước ảnh quá lớn');</script>";
                     } else
                         echo "<script> alert('Chỉ hỗ trợ định dạng JPEG, PNG, JPG.');</script>";
@@ -213,7 +244,7 @@ else {
                 <div class="col-lg">
                     <div class="row shadow rounded m-3 p-2">
                         <div class="col-md-4">
-                            <img src="<?php echo $url . $data_post["imgUrl"]; ?>" class="w-100 align-middle" alt="" />
+                            <img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="w-100 align-middle" alt="" />
                         </div>
                         <div class="col-md-8">
                             <!--                            Content-->

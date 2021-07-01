@@ -61,7 +61,7 @@ if ($result->num_rows > 0) {
     <script src="signin-signout.js"></script>
     <script src="comment.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/logo/Logo1.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="https://lifeblog.s3.ap-southeast-1.amazonaws.com/img/logo/Logo1.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="../style.css">
 </head>
 
@@ -81,7 +81,7 @@ if ($result->num_rows > 0) {
         <!-- bao phần nội dung chính -->
         <div class="row py-3">
             <div class="col-4">
-                <img src=<?php echo $url . $data_post["imgUrl"]; ?> class="w-100">
+                <img src=<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?> class="w-100">
             </div>
             <div class="col-8">
                 <div class="shadow rounded p-3">

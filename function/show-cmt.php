@@ -51,7 +51,7 @@ while ($comment = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 ?>
     <div class="row pb-2 m-2">
         <div class="col-1 p-0">
-            <a href="<?php echo $url . "function/profile.php?profile_email=" . $comment["author"] ?>"><img src="<?php echo $url . $comment["avatarUrl"] ?>" class="w-100"></a>
+            <a href="<?php echo $url . "function/profile.php?profile_email=" . $comment["author"] ?>"><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $comment["avatarUrl"] ?>" class="w-100"></a>
         </div>
         <div class="col-11">
             <div class="row">

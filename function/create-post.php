@@ -71,7 +71,38 @@ if (!isset($_SESSION["email"])) {
                 $imgUrl = "img/" . basename($_FILES["thumbnail"]["name"]);
                 $sql = "INSERT INTO posts (title, imgUrl,content, author, date_time) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author}','{$date}')";
                 mysqli_query($connect, $sql);
-                move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_file);
+                // move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_file);
+                require '../vendor/autoload.php';
+
+                /** AWS S3 Bucket Name */
+                $bucket_name = 'lifeblog';
+
+
+                /** AWS S3 Bucket Access Key ID */
+                $access_key_id = 'AKIAWCMJXPOBLPCSUZVF';
+
+
+                /** AWS S3 Bucket Secret Access Key */
+                $secret = 'J6PScH/RMWYHIJIMgDKXqfJDazTMa40w1bTZESdt';
+
+
+                $file_name = $_FILES['thumbnail']['name'];
+                $temp_file_location = $_FILES['thumbnail']['tmp_name'];
+                $s3 = new Aws\S3\S3Client([
+                    'region'  => 'ap-southeast-1',
+                    'version' => 'latest',
+                    'credentials' => [
+                        'key'    => $access_key_id,
+                        'secret' => $secret
+                    ]
+                ]);
+
+                $result = $s3->putObject([
+                    'Bucket' => $bucket_name,
+                    'Key'    => 'img/' . $file_name,
+                    'SourceFile' => $temp_file_location,
+                    'ACL' => 'public-read'
+                ]);
             } else echo "<script> alert('Kích thước ảnh quá lớn');</script>";
         } else {
             $imgUrl = "img/logo/Logo2.png";
