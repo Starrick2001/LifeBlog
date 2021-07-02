@@ -58,7 +58,7 @@ if ($result_search->num_rows > 0) {
 
                         <div class="col-md m-auto input-group">
                             <label class="input-group-text" for="thumbnail">Sửa ảnh đại diện</label>
-                            <input class="form-control" type="file" name="thumbnail" id="thumbnail" accept="image/png, image/jpeg, image/jpg">
+                            <input class="form-control" type="file" name="thumbnail" id="thumbnail" accept="image/*">
 
                         </div>
                     </div>

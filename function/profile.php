@@ -170,7 +170,7 @@ else {
                     <a class="btn btn-outline-primary m-1" data-bs-toggle="modal" data-bs-target="#changePassword">Đổi mật khẩu</a>
                     <label for="avatar" class="btn-outline-primary btn m-1"> Sửa ảnh đại diện</label>
                     <form method="POST" enctype="multipart/form-data" class="">
-                        <input type="file" name="avatar" onchange="form.submit()" id="avatar" class="d-none" accept="image/png, image/jpeg, image/jpg">
+                        <input type="file" name="avatar" onchange="form.submit()" id="avatar" class="d-none" accept="image/*">
                     </form>
                 <?php
                 }
