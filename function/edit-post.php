@@ -54,7 +54,7 @@ if ($result_search->num_rows > 0) {
                     </div>
                     <div id="word-count"></div>
                     <div class="input-group mb-3 row">
-                        <img class="col-md-4" src="<?php echo $url . $post_data["imgUrl"]; ?>">
+                        <img class="col-md-4" src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $post_data["imgUrl"]; ?>">
 
                         <div class="col-md m-auto input-group">
                             <label class="input-group-text" for="thumbnail">Sửa ảnh đại diện</label>
@@ -85,7 +85,26 @@ if ($result_search->num_rows > 0) {
                         $imgUrl = "img/" . basename($_FILES["thumbnail"]["name"]);
                         $sql = "UPDATE posts  SET title ='" . $title . "', imgUrl = '" . $imgUrl . "', content = '" . $content . "' WHERE post_id = '" . $post_id . "'";
                         mysqli_query($connect, $sql);
-                        move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_file);
+                        // move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_file);
+                        require '../vendor/autoload.php';
+
+                        $file_name = $_FILES['thumbnail']['name'];
+                        $temp_file_location = $_FILES['thumbnail']['tmp_name'];
+                        $s3 = new Aws\S3\S3Client([
+                            'region'  => 'ap-southeast-1',
+                            'version' => 'latest',
+                            'credentials' => [
+                                'key'    => $access_key_id,
+                                'secret' => $secret
+                            ]
+                        ]);
+
+                        $result = $s3->putObject([
+                            'Bucket' => $bucket_name,
+                            'Key'    => 'img/' . $file_name,
+                            'SourceFile' => $temp_file_location,
+                            'ACL' => 'public-read'
+                        ]);
                     } else echo "<script> alert('Kích thước ảnh quá lớn');</script>";
                 } else {
                     if ($imgFileType != "")

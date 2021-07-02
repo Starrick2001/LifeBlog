@@ -166,9 +166,9 @@ else {
                 <?php
                 if (isset($_SESSION["email"]) && $email == $_SESSION["email"]) {
                 ?>
-                    <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editInformation">Sửa thông tin</a>
-                    <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#changePassword">Đổi mật khẩu</a>
-                    <label for="avatar" class="btn-outline-primary btn"> Sửa ảnh đại diện</label>
+                    <a class="btn btn-outline-primary m-1" data-bs-toggle="modal" data-bs-target="#editInformation">Sửa thông tin</a>
+                    <a class="btn btn-outline-primary m-1" data-bs-toggle="modal" data-bs-target="#changePassword">Đổi mật khẩu</a>
+                    <label for="avatar" class="btn-outline-primary btn m-1"> Sửa ảnh đại diện</label>
                     <form method="POST" enctype="multipart/form-data" class="">
                         <input type="file" name="avatar" onchange="form.submit()" id="avatar" class="d-none" />
                     </form>
@@ -188,17 +188,6 @@ else {
                             mysqli_query($connect, $sql);
                             // move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
                             require '../vendor/autoload.php';
-
-                            /** AWS S3 Bucket Name */
-                            $bucket_name = 'lifeblog';
-
-
-                            /** AWS S3 Bucket Access Key ID */
-                            $access_key_id = 'AKIAWCMJXPOBLPCSUZVF';
-
-
-                            /** AWS S3 Bucket Secret Access Key */
-                            $secret = 'J6PScH/RMWYHIJIMgDKXqfJDazTMa40w1bTZESdt';
 
 
                             $file_name = $_SESSION["email"] . "." . $imgFileType;
