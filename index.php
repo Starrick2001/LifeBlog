@@ -168,7 +168,7 @@ $result = $connect->query($query);
                                     include $url . "themes/edit-delete.php";
                                 }
                                 ?>
-                                <a class="btn btn-primary" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
+                                <a class="btn btn-primary m-1" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                             </p>
                         </div>
                         <p class="author text-end mt-2">

@@ -44,7 +44,7 @@ if (!isset($_SESSION["email"])) {
                 <textarea type="text" class="form-control" id="editor" rows="5" placeholder="Nội dung bài viết" name="content" required> </textarea>
             </div>
             <div class="input-group mb-3">
-                <input class="form-control" type="file" name="thumbnail">
+                <input class="form-control" type="file" name="thumbnail" accept="image/png, image/jpeg, image/jpg">
             </div>
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Tạo</button>
