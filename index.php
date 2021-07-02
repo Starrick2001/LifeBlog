@@ -31,35 +31,93 @@ $result = $connect->query($query);
     </script>
     <script src="function/signin-signout.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+img {vertical-align: middle;}
 
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 3s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+</style>
 </head>
-
 <body>
-    <!-- Navbar -->
-    <?php
+<?php
     $url = "";
     $setVisibleCreatePostBtn = true;
     include $url . "themes/navbar.php";
     ?>
-    <!-- Navbar -->
-    <main class="container">
-        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-touch="true">
-
-
-            <!-- Indicator -->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
-                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3"></button>
-            </div>
-
-            <!-- main carousel -->
-            <?php $data_post = $result->fetch_assoc(); ?>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" .$data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px">
-                    <div class="carousel-caption d-none d-md-block bg-text">
+    <?php $data_post = $result->fetch_assoc(); ?>
+<div class="slideshow-container">
+<div class="mySlides fade">
+  <div class="numbertext">1 / 4</div>
+  <img src="Picture/pic1.jpg"style="width:960px; height: 490px;">
+  <div class="text">
+  
+  <div class="carousel-caption d-none d-md-block bg-text">
                         <h5><?php echo $data_post["title"]; ?></h5>
                         <p>
                             <?php
@@ -71,11 +129,14 @@ $result = $connect->query($query);
                         </p>
                         <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
-                </div>
-                <?php $data_post = $result->fetch_assoc(); ?>
-                <div class="carousel-item ">
-                    <img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px">
-                    <div class="carousel-caption d-none d-md-block bg-text">
+  </div>
+</div>
+<?php $data_post = $result->fetch_assoc(); ?>
+<div class="mySlides fade">
+  <div class="numbertext">2 / 4</div>
+  <img src="Picture/pic2.jpg" style="width:960px; height: 490px;">
+  <div class="text">
+  <div class="carousel-caption d-none d-md-block bg-text">
                         <h5><?php echo $data_post["title"]; ?></h5>
                         <p>
                             <?php
@@ -87,11 +148,15 @@ $result = $connect->query($query);
                         </p>
                         <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
-                </div>
-                <?php $data_post = $result->fetch_assoc(); ?>
-                <div class="carousel-item">
-                    <img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px">
-                    <div class="carousel-caption d-none d-md-block bg-text">
+  </div>
+</div>
+
+<?php $data_post = $result->fetch_assoc(); ?>
+<div class="mySlides fade">
+  <div class="numbertext">3 / 4</div>
+  <img src="Picture/pic3.jpg" style="width:960px; height: 490px;">
+  <div class="text">
+  <div class="carousel-caption d-none d-md-block bg-text">
                         <h5><?php echo $data_post["title"]; ?></h5>
                         <p>
                             <?php
@@ -103,11 +168,14 @@ $result = $connect->query($query);
                         </p>
                         <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
-                </div>
-                <?php $data_post = $result->fetch_assoc(); ?>
-                <div class="carousel-item">
-                    <img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px">
-                    <div class="carousel-caption d-none d-md-block bg-text">
+  </div>
+</div>
+<?php $data_post = $result->fetch_assoc(); ?>
+<div class="mySlides fade">
+  <div class="numbertext">4 / 4</div>
+  <img src="Picture/pic4.jpg" style="width:960px; height: 490px;">
+  <div class="text">
+  <div class="carousel-caption d-none d-md-block bg-text">
                         <h5><?php echo $data_post["title"]; ?></h5>
                         <p>
                             <?php
@@ -119,26 +187,41 @@ $result = $connect->query($query);
                         </p>
                         <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
-                </div>
-            </div>
+  </div>
+</div>
 
+</div>
+<br>
 
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span>
+</div>
 
-            <!-- Control buttons -->
+<script>
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+var slideIndex = 0;
+showSlides();
 
-
-
-
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2200); // chuyển sau 3s
+}
+ </script> 
         <!-- Khởi tạo row -->
         <div class="row mb-2">
             <?php
