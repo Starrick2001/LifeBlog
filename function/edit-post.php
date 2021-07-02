@@ -58,13 +58,13 @@ if ($result_search->num_rows > 0) {
 
                         <div class="col-md m-auto input-group">
                             <label class="input-group-text" for="thumbnail">Sửa ảnh đại diện</label>
-                            <input class="form-control" type="file" name="thumbnail" id="thumbnail">
+                            <input class="form-control" type="file" name="thumbnail" id="thumbnail" accept="image/*" capture @change="setImage">
 
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">Lưu</button>
-                    </div>
+                    <div class=" mb-3">
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </div>
                 </form>
             </main>
             <?php
