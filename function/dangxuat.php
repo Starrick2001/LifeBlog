@@ -6,5 +6,5 @@ if (isset($_SESSION["email"])) {
 }
 ?>
 <script>
-    window.location.href = "";
+    location.reload();
 </script>
