@@ -60,7 +60,8 @@ if (!isset($_SESSION["email"])) {
     if (isset($_POST["title"]) && isset($_POST["content"])) {
         $title = $_POST["title"];
         $content = $_POST["content"];
-        $author = $_SESSION["name"] . " - " . $_SESSION["email"];
+        $author_name = $_SESSION["name"];
+        $author_email = $_SESSION["email"];
         $target_dir = "../img/";
         $target_file = $target_dir . basename($_FILES["thumbnail"]["name"]);
         $imgFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -69,7 +70,7 @@ if (!isset($_SESSION["email"])) {
         if ($imgFileType == "jpg" || $imgFileType == "png" || $imgFileType == "jpeg") {
             if ($_FILES["thumbnail"]["size"] < 600000) {
                 $imgUrl = "img/" . basename($_FILES["thumbnail"]["name"]);
-                $sql = "INSERT INTO posts (title, imgUrl,content, author, date_time) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author}','{$date}')";
+                $sql = "INSERT INTO posts (title, imgUrl,content, author_name, author_email, date_time) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author_name}', '{$author_email}', '{$date}')";
                 mysqli_query($connect, $sql);
                 // move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_file);
                 require '../vendor/autoload.php';
@@ -106,7 +107,7 @@ if (!isset($_SESSION["email"])) {
             } else echo "<script> alert('Kích thước ảnh quá lớn');</script>";
         } else {
             $imgUrl = "img/logo/Logo2.png";
-            $sql = "INSERT INTO posts (title, imgUrl,content, author, date_time) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author}','{$date}')";
+            $sql = "INSERT INTO posts (title, imgUrl,content, author_name, author_email, date_time) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author_name}', '{$author_email}', '{$date}')";
             mysqli_query($connect, $sql);
             if ($imgFileType != "")
                 echo "<script> alert('Chỉ hỗ trợ định dạng JPEG, PNG, JPG.');</script>";

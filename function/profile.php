@@ -220,7 +220,7 @@ else {
         <?php
         include_once $url . "function/connect.php";
         $name = $profile_data["name"];
-        $query = "SELECT * FROM posts WHERE author = '" . $name . " - " . $email . "' ORDER BY date_time DESC";
+        $query = "SELECT * FROM posts WHERE author_email = '" . $email . "' ORDER BY date_time DESC";
         $result = mysqli_query($connect, $query);
         ?>
 
@@ -257,7 +257,7 @@ else {
                             </p>
                         </div>
                         <p class="author text-end mt-2">
-                            <?php echo "Người viết: " . $data_post["author"]; ?>
+                            <?php echo "Người viết: " . $data_post["author_name"] . " - " . $data_post["author_email"]; ?>
                         </p>
                     </div>
                 </div>

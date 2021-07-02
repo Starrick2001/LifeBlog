@@ -9,4 +9,16 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 $date = date("Y-m-d G:i:s");
 $sql = "INSERT INTO comments (post_id,  cmt_content, cmt_parent, author, date_time) VALUES ('{$post_id}', '{$cmt_content}','{$cmt_parent}' , '{$author}', '{$date}')";
 $connect->query($sql);
-?>
+
+
+$sql_get_data_for_noti = "SELECT author, post_id FROM comments WHERE cmt_id = '" . $cmt_parent . "'";
+$result = $connect->query($sql_get_data_for_noti)->fetch_assoc();
+if ($result["author"] != $author) {
+    if ($cmt_parent == 0) {
+        $noti_content = "<strong>" . $author . "</strong> đã bình luận về bài viết của bạn";
+    } else {
+        $noti_content = "<strong>" . $author . "</strong> đã trả lời về bình luận của bạn";
+    }
+    $sql_noti_content = "INSERT INTO notification (noti_content, TIME, email, seen, post_id) VALUES ('{$noti_content}', '{$date}', '{$result["author"]}', 0, '{$result["post_id"]}')";
+    $connect->query($sql_noti_content);
+}

@@ -10,18 +10,6 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="notification" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p class="text-secondary">Tính năng này hiện đang trong giai đoạn phát triển</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="modal fade" id="signin" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">

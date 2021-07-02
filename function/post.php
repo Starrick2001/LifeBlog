@@ -24,40 +24,6 @@ if ($result->num_rows > 0) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        var url = "../";
-        $(document).ready(function() {
-            $("#cmt-btn-show").click(function() {
-                $("#cmt-btn-show").removeClass("btn-secondary");
-                $("#cmt-btn-show").addClass("btn-primary");
-                $("#input-comment").load(url + "themes/comment.php?post_id=<?php echo $post_id; ?>&cmt_parent=0");
-                $("#show-comment").load(url + "function/show-cmt.php?post_id=<?php echo $post_id; ?>&cmt_parent=0");
-            });
-
-
-            $("#like-btn").click(function() {
-                $.ajax({
-                    method: "GET",
-                    url: url + "function/modify-post-like.php",
-                    data: {
-                        post_id: <?php echo $post_id; ?>,
-                        email: "<?php if (isset($_SESSION["email"])) echo $_SESSION["email"]; ?>"
-                    },
-                    success: function(data) {
-                        if (data == "Add") {
-                            $("#like-btn").removeClass("btn-secondary");
-                            $("#like-btn").addClass("btn-primary");
-                        } else {
-                            $("#like-btn").removeClass("btn-primary");
-                            $("#like-btn").addClass("btn-secondary");
-                        }
-                        $("#like_count").load("count-post-like.php?post_id=<?php echo $post_id; ?>");
-                    }
-                });
-            });
-
-        });
-    </script>
     <script src="signin-signout.js"></script>
     <script src="comment.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -137,7 +103,7 @@ if ($result->num_rows > 0) {
             Bình luận
         </button>
         <?php
-        if (isset($_SESSION["email"]) && $data_post["author"] == $_SESSION["name"] . " - " . $_SESSION["email"]) {
+        if (isset($_SESSION["email"]) && $data_post["author_email"] == $_SESSION["email"]) {
             include $url . "themes/edit-delete.php";
         }
         ?>
@@ -152,4 +118,42 @@ if ($result->num_rows > 0) {
     include_once $url . "themes/backtotopbtn.php";
     include_once $url . "themes/modal.php";
     ?>
+    <script>
+        var url = "../";
+        $(document).ready(function() {
+            $("#cmt-btn-show").click(function() {
+                $("#cmt-btn-show").removeClass("btn-secondary");
+                $("#cmt-btn-show").addClass("btn-primary");
+                $("#input-comment").load(url + "themes/comment.php?post_id=<?php echo $post_id; ?>&cmt_parent=0");
+                $("#show-comment").load(url + "function/show-cmt.php?post_id=<?php echo $post_id; ?>&cmt_parent=0");
+            });
+
+
+            $("#like-btn").click(function() {
+                $.ajax({
+                    method: "GET",
+                    url: url + "function/modify-post-like.php",
+                    data: {
+                        post_id: <?php echo $post_id; ?>,
+                        email: "<?php if (isset($_SESSION["email"])) echo $_SESSION["email"]; ?>"
+                    },
+                    success: function(data) {
+                        if (data == "Add") {
+                            $("#like-btn").removeClass("btn-secondary");
+                            $("#like-btn").addClass("btn-primary");
+                        }
+                        if (data == "Delete") {
+                            $("#like-btn").removeClass("btn-primary");
+                            $("#like-btn").addClass("btn-secondary");
+                        }
+
+                        $("#like_count").load("count-post-like.php?post_id=<?php echo $post_id; ?>");
+                    }
+                });
+            });
+
+
+            
+        });
+    </script>
 </body>
