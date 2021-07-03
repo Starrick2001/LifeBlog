@@ -9,7 +9,7 @@ if (isset($_GET["page"])) {
 };
 if ($page == 1) {
     $start = 5;
-} else 
+} else
     $start = ($page - 1) * $limit;
 // $result = mysqli_query($connect, "SELECT post_id FROM posts LIMIT $start, $limit");
 $query = "  SELECT posts.post_id, content, imgUrl, author_name, author_email, title, date_time, COUNT(email) as 'Like'
@@ -212,7 +212,12 @@ $result_carousel = $connect->query($query_data_carousel);
                 }
             }
     ?>
-    <ul class="pagination">
+    <ul class="pagination justify-content-center">
+        <li class="page-item <?php if ($page == 1) echo "disabled"; ?>">
+            <a class="page-link" href="index.php?page=<?php echo ($page - 1); ?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
         <?php
         $result_db = mysqli_query($connect, "SELECT COUNT(post_id) FROM posts");
         $row_db = mysqli_fetch_row($result_db);
@@ -224,6 +229,11 @@ $result_carousel = $connect->query($query_data_carousel);
         <?php
         }
         ?>
+        <li class="page-item <?php if ($page == $total_pages) echo "disabled"; ?>">
+            <a class="page-link" href="index.php?page=<?php echo ($page + 1); ?>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
     </ul>
     </main>
     <?php
