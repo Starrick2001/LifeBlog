@@ -14,7 +14,7 @@ $search = "
 $result_search = $connect->query($search);
 if ($result_search->num_rows > 0) {
     $post_data = $result_search->fetch_assoc();
-    if ($post_data["author"] == $_SESSION["name"] . " - " . $_SESSION["email"]) {
+    if ($post_data["author_email"] == $_SESSION["email"]) {
 ?>
 
         <head>
@@ -76,7 +76,7 @@ if ($result_search->num_rows > 0) {
             if (isset($_POST["title"]) && isset($_POST["content"]) && isset($_POST["title"])) {
                 $title = $_POST["title"];
                 $content = $_POST["content"];
-                $author = $_SESSION["name"] . " - " . $_SESSION["email"];
+                $author = $_SESSION["email"];
                 $target_dir = "../img/";
                 $target_file = $target_dir . basename($_FILES["thumbnail"]["name"]);
                 $imgFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
