@@ -4,21 +4,23 @@ $post_id = $_GET["post_id"];
 $sql_get_imgUrl = "SELECT imgUrl FROM posts WHERE post_id = '" . $post_id . "'";
 $result = $connect->query($sql_get_imgUrl);
 if ($imgUrl = $result->fetch_assoc()) {
-    require '../vendor/autoload.php';
+    if ($imgUrl != "img/logo/Logo2.png") {
+        require '../vendor/autoload.php';
 
-    $s3 = new Aws\S3\S3Client([
-        'region'  => 'ap-southeast-1',
-        'version' => 'latest',
-        'credentials' => [
-            'key'    => $access_key_id,
-            'secret' => $secret
-        ]
-    ]);
+        $s3 = new Aws\S3\S3Client([
+            'region'  => 'ap-southeast-1',
+            'version' => 'latest',
+            'credentials' => [
+                'key'    => $access_key_id,
+                'secret' => $secret
+            ]
+        ]);
 
-    $result = $s3->deleteObject([
-        'Bucket' => $bucket_name,
-        'Key'    => $imgUrl["imgUrl"]
-    ]);
+        $result = $s3->deleteObject([
+            'Bucket' => $bucket_name,
+            'Key'    => $imgUrl["imgUrl"]
+        ]);
+    }
 }
 $sql_delete_post = "DELETE FROM posts WHERE post_id = '" . $post_id . "'";
 $connect->query($sql_delete_post);
