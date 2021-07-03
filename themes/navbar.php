@@ -121,8 +121,8 @@ global $setVisibleCreatePostBtn;
                 }
                 ?>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2 w-50" type="text" placeholder="Tìm kiếm">
+            <form class="d-flex" action="<?php echo $url . "function/search.php";?>" method="GET">
+                <input class="form-control me-2 w-50" type="text" name="content" placeholder="Tìm kiếm">
                 <button class="btn btn-primary" type="submit">Tìm kiếm</button>
             </form>
         </div>

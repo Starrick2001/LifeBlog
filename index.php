@@ -212,6 +212,7 @@ $result_carousel = $connect->query($query_data_carousel);
                 }
             }
     ?>
+    <!-- Pagination -->
     <ul class="pagination justify-content-center">
         <li class="page-item <?php if ($page == 1) echo "disabled"; ?>">
             <a class="page-link" href="index.php?page=<?php echo ($page - 1); ?>" aria-label="Previous">
