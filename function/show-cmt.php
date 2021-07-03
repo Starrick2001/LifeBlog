@@ -35,11 +35,11 @@ $cmt_parent = $_GET["cmt_parent"];
                     // Kiểm tra user đã like chưa
                     if ($result_check_user_like->num_rows > 0) {
                 ?>
-                        <button type="button" class="btn btn-primary cmt-like-btn" cmt_id=<?php echo $comment["cmt_id"]; ?>>
+                        <button type="button" class="btn btn-primary cmt-like-btn m-1" cmt_id=<?php echo $comment["cmt_id"]; ?>>
                         <?php
                     } else {
                         ?>
-                            <button type="button" class="btn btn-secondary cmt-like-btn" cmt_id=<?php echo $comment["cmt_id"]; ?>>
+                            <button type="button" class="btn btn-secondary cmt-like-btn m-1" cmt_id=<?php echo $comment["cmt_id"]; ?>>
                             <?php
                         }
                             ?>
@@ -47,7 +47,7 @@ $cmt_parent = $_GET["cmt_parent"];
                         <?php
                     } else {
                         ?>
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#signin-notification">
+                            <button type="button" class="btn btn-secondary m-1" data-bs-toggle="modal" data-bs-target="#signin-notification">
                             <?php
                         }
                         $sql_get_cmt_data_like = "SELECT COUNT(email) FROM cmt_like WHERE cmt_id='" . $comment["cmt_id"] . "'";
@@ -65,7 +65,7 @@ $cmt_parent = $_GET["cmt_parent"];
                             <?php
                             if (isset($_SESSION["email"])) {
                             ?>
-                                <button type="button" class="btn btn-secondary cmt-btn-show" cmt_id=<?php echo $comment["cmt_id"]; ?> status="false">
+                                <button type="button" class="btn btn-secondary cmt-btn-show m-1" cmt_id=<?php echo $comment["cmt_id"]; ?> status="false">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-text" viewBox="0 0 16 16">
                                         <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"></path>
                                         <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"></path>
