@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "function/connect.php";
+require_once "function/connect.php";
 $query = "  SELECT posts.post_id, content, imgUrl, author_name, author_email, title, date_time, COUNT(email) as 'Like'
                     FROM posts 
                     LEFT JOIN post_like ON post_like.post_id = posts.post_id
