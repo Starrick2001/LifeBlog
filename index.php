@@ -1,6 +1,17 @@
 <?php
 session_start();
 require_once "function/connect.php";
+$limit = 10;  //giới hạn 10 post
+if (isset($_GET["page"])) {
+    $page  = $_GET["page"];
+} else {
+    $page = 1;
+};
+if ($page == 1) {
+    $start = 5;
+} else 
+    $start = ($page - 1) * $limit;
+// $result = mysqli_query($connect, "SELECT post_id FROM posts LIMIT $start, $limit");
 $query = "  SELECT posts.post_id, content, imgUrl, author_name, author_email, title, date_time, COUNT(email) as 'Like'
                     FROM posts 
                     LEFT JOIN post_like ON post_like.post_id = posts.post_id
@@ -9,8 +20,20 @@ $query = "  SELECT posts.post_id, content, imgUrl, author_name, author_email, ti
                     DESC
                             , date_time
                     DESC
+                    LIMIT $start, $limit
         ";
 $result = $connect->query($query);
+$query_data_carousel = "    SELECT posts.post_id, content, imgUrl, author_name, author_email, title, date_time, COUNT(email) as 'Like'
+                            FROM posts 
+                            LEFT JOIN post_like ON post_like.post_id = posts.post_id
+                            GROUP BY posts.post_id
+                            ORDER BY COUNT(email)
+                            DESC
+                                , date_time
+                            DESC
+                            LIMIT 0, 4
+                        ";
+$result_carousel = $connect->query($query_data_carousel);
 ?>
 <!DOCTYPE html>
 
@@ -54,7 +77,7 @@ $result = $connect->query($query);
             </div>
 
             <!-- main carousel -->
-            <?php $data_post = $result->fetch_assoc(); ?>
+            <?php $data_post = $result_carousel->fetch_assoc(); ?>
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <a href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
@@ -71,7 +94,7 @@ $result = $connect->query($query);
                         <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
                 </div>
-                <?php $data_post = $result->fetch_assoc(); ?>
+                <?php $data_post = $result_carousel->fetch_assoc(); ?>
                 <div class="carousel-item ">
                     <a href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
                     <div class="carousel-caption d-none d-md-block bg-text">
@@ -87,7 +110,7 @@ $result = $connect->query($query);
                         <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
                 </div>
-                <?php $data_post = $result->fetch_assoc(); ?>
+                <?php $data_post = $result_carousel->fetch_assoc(); ?>
                 <div class="carousel-item">
                     <a href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
                     <div class="carousel-caption d-none d-md-block bg-text">
@@ -103,7 +126,7 @@ $result = $connect->query($query);
                         <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
                 </div>
-                <?php $data_post = $result->fetch_assoc(); ?>
+                <?php $data_post = $result_carousel->fetch_assoc(); ?>
                 <div class="carousel-item">
                     <a href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
                     <div class="carousel-caption d-none d-md-block bg-text">
@@ -189,6 +212,19 @@ $result = $connect->query($query);
                 }
             }
     ?>
+    <ul class="pagination">
+        <?php
+        $result_db = mysqli_query($connect, "SELECT COUNT(post_id) FROM posts");
+        $row_db = mysqli_fetch_row($result_db);
+        $total_records = $row_db[0];
+        $total_pages = ceil($total_records / $limit);
+        for ($i = 1; $i <= $total_pages; $i++) {
+        ?>
+            <li class='page-item'><a class='page-link' href='index.php?page=<?php echo $i; ?>'><?php echo $i; ?></a></li>
+        <?php
+        }
+        ?>
+    </ul>
     </main>
     <?php
     include_once $url . "themes/backtotopbtn.php";
