@@ -72,7 +72,7 @@ if ($result_search->num_rows > 0) {
             include $url . "themes/modal.php";
             ?>
             <?php
-            include "connect.php";
+            require_once "connect.php";
             if (isset($_POST["title"]) && isset($_POST["content"]) && isset($_POST["title"])) {
                 $title = $_POST["title"];
                 $content = $_POST["content"];

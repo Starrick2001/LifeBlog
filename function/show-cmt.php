@@ -26,6 +26,7 @@ $cmt_parent = $_GET["cmt_parent"];
                     <span class="text-end col"><?php echo $comment["date_time"]; ?></span>
                 </div>
                 <p><?php echo $comment["cmt_content"] ?></p>
+
                 <?php
                 // like
                 // Kiếm tra đã đăng nhập chưa
@@ -42,6 +43,7 @@ $cmt_parent = $_GET["cmt_parent"];
                             <button type="button" class="btn btn-secondary cmt-like-btn m-1" cmt_id=<?php echo $comment["cmt_id"]; ?>>
                             <?php
                         }
+
                             ?>
 
                         <?php
@@ -72,8 +74,32 @@ $cmt_parent = $_GET["cmt_parent"];
                                     </svg>
                                     Trả lời
                                 </button>
+                                <?php
+                                // Chỉnh sửa, xoá cmt
+                                if ($_SESSION["email"] == $comment["author"]) {
+                                ?>
+                                    <button class="btn btn-danger m-1 delete-cmt-btn" cmt_id=<?php echo $comment["cmt_id"] ?>>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+                                        </svg>
+                                        Xoá
+                                    </button>
+                                    <a class="btn btn-success m-1 edit-cmt-btn" cmt_id=<?php echo $comment["cmt_id"] ?> href="<?php echo $url . "function/edit-post.php?post_id=" . $data_post["post_id"] ?>">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                        </svg>
+                                        Chỉnh sửa
+                                    </a>
+                                    <div class="edit-cmt" cmt_id=<?php echo $comment["cmt_id"];?>></div>
+                                <?php
+                                }
+                                ?>
                                 <div class="type-cmt" cmt_id=<?php echo $comment["cmt_id"]; ?>></div>
                             <?php
+
+
                             }
                             ?>
                             <?php
@@ -114,6 +140,27 @@ $cmt_parent = $_GET["cmt_parent"];
                         }
                     });
                 });
+
+                $(".edit-cmt-btn").unbind().click(function() {
+                    var cmt_id = $(this).attr("cmt_id");
+                    $(".edit-cmt[cmt_id=" + cmt_id + "]").load("../themes/edit-comment.php?post_id=<?php echo $post_id ?>&cmt_id=" + cmt_id);
+                })
+
+                $(".delete-cmt-btn").unbind().click(function() {
+                    var cmt_id = $(this).attr("cmt_id");
+                    $.ajax({
+                        method: "GET",
+                        url: url + "function/delete-cmt.php",
+                        data: {
+                            cmt_id: cmt_id,
+                            email: "<?php if (isset($_SESSION["email"])) echo $_SESSION["email"]; ?>"
+                        },
+                        success: function(data) {
+                            $("#show-comment").load(url + "function/show-cmt.php?post_id=<?php echo $_GET["post_id"]; ?>&cmt_parent=0");
+                        }
+                    });
+                });
+
 
 
                 $(".cmt-btn-show[status=false]").unbind().click(function() {
