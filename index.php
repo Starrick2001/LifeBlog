@@ -226,7 +226,7 @@ $result_carousel = $connect->query($query_data_carousel);
         $total_pages = ceil($total_records / $limit);
         for ($i = 1; $i <= $total_pages; $i++) {
         ?>
-            <li class='page-item'><a class='page-link' href='index.php?page=<?php echo $i; ?>'><?php echo $i; ?></a></li>
+            <li class='page-item <?php if ($page == $i) echo "active" ?>'><a class='page-link' href='index.php?page=<?php echo $i; ?>'><?php echo $i; ?></a></li>
         <?php
         }
         ?>

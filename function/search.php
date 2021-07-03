@@ -109,7 +109,7 @@
             $total_pages = ceil($total_records / $limit);
             for ($i = 1; $i <= $total_pages; $i++) {
             ?>
-                <li class='page-item'><a class='page-link' href="search.php?page=<?php echo $i . "&content=" . $search; ?>"><?php echo $i; ?></a></li>
+                <li class='page-item <?php if ($page == $i) echo "active" ?>'><a class='page-link' href="search.php?page=<?php echo $i . "&content=" . $search; ?>"><?php echo $i; ?></a></li>
             <?php
             }
             ?>
