@@ -80,7 +80,7 @@ $result_carousel = $connect->query($query_data_carousel);
             <?php $data_post = $result_carousel->fetch_assoc(); ?>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
+                    <a href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
                     <div class="carousel-caption d-none d-md-block bg-text">
                         <h5><?php echo $data_post["title"]; ?></h5>
                         <p>
@@ -91,12 +91,12 @@ $result_carousel = $connect->query($query_data_carousel);
                             echo $content;
                             ?>
                         </p>
-                        <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
+                        <a class="btn btn-light" href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
                 </div>
                 <?php $data_post = $result_carousel->fetch_assoc(); ?>
                 <div class="carousel-item ">
-                    <a href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
+                    <a href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
                     <div class="carousel-caption d-none d-md-block bg-text">
                         <h5><?php echo $data_post["title"]; ?></h5>
                         <p>
@@ -107,12 +107,12 @@ $result_carousel = $connect->query($query_data_carousel);
                             echo $content;
                             ?>
                         </p>
-                        <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
+                        <a class="btn btn-light" href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
                 </div>
                 <?php $data_post = $result_carousel->fetch_assoc(); ?>
                 <div class="carousel-item">
-                    <a href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
+                    <a href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
                     <div class="carousel-caption d-none d-md-block bg-text">
                         <h5><?php echo $data_post["title"]; ?></h5>
                         <p>
@@ -123,12 +123,12 @@ $result_carousel = $connect->query($query_data_carousel);
                             echo $content;
                             ?>
                         </p>
-                        <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
+                        <a class="btn btn-light" href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
                 </div>
                 <?php $data_post = $result_carousel->fetch_assoc(); ?>
                 <div class="carousel-item">
-                    <a href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
+                    <a href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
                     <div class="carousel-caption d-none d-md-block bg-text">
                         <h5><?php echo $data_post["title"]; ?></h5>
                         <p>
@@ -139,7 +139,7 @@ $result_carousel = $connect->query($query_data_carousel);
                             echo $content;
                             ?>
                         </p>
-                        <a class="btn btn-light" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
+                        <a class="btn btn-light" href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                     </div>
                 </div>
             </div>
@@ -190,12 +190,12 @@ $result_carousel = $connect->query($query_data_carousel);
                                     include $url . "themes/edit-delete.php";
                                 }
                                 ?>
-                                <a class="btn btn-primary m-1" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
+                                <a class="btn btn-primary m-1" href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                             </p>
                         </div>
                         <p class="author text-end mt-2">
                             Người viết:
-                            <a href=<?php echo "function/profile.php?profile_email=" . $data_post["author_email"]; ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
+                            <a href=<?php echo "themes/profile.php?profile_email=" . $data_post["author_email"]; ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
                         </p>
                     </div>
                 </div>

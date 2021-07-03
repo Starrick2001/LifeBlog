@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "connect.php";
+require_once "../function/connect.php";
 $url = "../";
 $email = $_GET["profile_email"];
 $sql_get_profile_data = "SELECT email, name, avatarUrl, birth FROM member WHERE email = '$email'";
@@ -22,8 +22,7 @@ else {
     <script>
         var url = "../";
     </script>
-    <script src="signin-signout.js"></script>
-    <script src="comment.js"></script>
+    <script src="../function/signin-signout.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://lifeblog.s3.ap-southeast-1.amazonaws.com/img/logo/Logo1.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="../style.css">
@@ -177,7 +176,7 @@ else {
                 ?>
                 <?php
                 if (isset($_FILES["avatar"]["name"])) {
-                    include_once "connect.php";
+                    require_once "../function/connect.php";
                     $target_dir = "../img/avatar/";
                     $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
                     $imgFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -218,7 +217,7 @@ else {
         <!-- Bài viết -->
         <h1 class="text-center">Danh sách các bài viết</h1>
         <?php
-        include_once $url . "function/connect.php";
+        require_once $url . "function/connect.php";
         $name = $profile_data["name"];
         $query = "SELECT * FROM posts WHERE author_email = '" . $email . "' ORDER BY date_time DESC";
         $result = mysqli_query($connect, $query);
@@ -253,7 +252,7 @@ else {
                                     include $url . "themes/edit-delete.php";
                                 }
                                 ?>
-                                <a class="btn btn-primary m-1" href="<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>">Xem thêm</a>
+                                <a class="btn btn-primary m-1" href="<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>">Xem thêm</a>
                             </p>
                         </div>
                         <p class="author text-end mt-2">

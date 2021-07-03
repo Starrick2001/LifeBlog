@@ -74,12 +74,12 @@
                                         include $url . "themes/edit-delete.php";
                                     }
                                     ?>
-                                    <a class="btn btn-primary m-1" href=<?php echo $url . "function/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
+                                    <a class="btn btn-primary m-1" href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
                                 </p>
                             </div>
                             <p class="author text-end mt-2">
                                 Người viết:
-                                <a href=<?php echo "function/profile.php?profile_email=" . $data_post["author_email"]; ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
+                                <a href=<?php echo "themes/profile.php?profile_email=" . $data_post["author_email"]; ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
                             </p>
                         </div>
                     </div>

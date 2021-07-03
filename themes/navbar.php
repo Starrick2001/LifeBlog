@@ -36,7 +36,7 @@ global $setVisibleCreatePostBtn;
                 if (isset($_SESSION["email"])) {
                 ?>
                     <li class="nav-item m-auto">
-                        <a class="btn" href="<?php echo $url . "function/profile.php?profile_email=" . $_SESSION["email"]; ?>"><?php echo "Xin chào " . $_SESSION["name"]; ?></a>
+                        <a class="btn" href="<?php echo $url . "themes/profile.php?profile_email=" . $_SESSION["email"]; ?>"><?php echo "Xin chào " . $_SESSION["name"]; ?></a>
                     </li>
                     <li class="nav-item m-auto">
                         <div>
@@ -67,7 +67,7 @@ global $setVisibleCreatePostBtn;
                                         if ($data_noti["seen"] == 0) {
                                 ?>
                                             <li class="p-2">
-                                                <a class="alert alert-primary dropdown-item notification-unread position-relative mb-1" noti_id=<?php echo $data_noti["noti_id"]; ?> href=<?php echo $url . "function/post.php?post_id=" . $data_noti["post_id"]; ?>><?php echo $data_noti["noti_content"]; ?>
+                                                <a class="alert alert-primary dropdown-item notification-unread position-relative mb-1" noti_id=<?php echo $data_noti["noti_id"]; ?> href=<?php echo $url . "themes/post.php?post_id=" . $data_noti["post_id"]; ?>><?php echo $data_noti["noti_content"]; ?>
                                                     <span class="position-absolute top-0 start-0 translate-middle p-2 bg-primary border border-light rounded-circle">
                                                         <span class="visually-hidden">New</span>
                                                     </span><br>
@@ -78,7 +78,7 @@ global $setVisibleCreatePostBtn;
                                         } else {
                                         ?>
                                             <li class="p-2">
-                                                <a class="alert alert-dark dropdown-item position-relative mb-1" noti_id=<?php echo $data_noti["noti_id"]; ?> href=<?php echo $url . "function/post.php?post_id=" . $data_noti["post_id"]; ?>><?php echo $data_noti["noti_content"]; ?>
+                                                <a class="alert alert-dark dropdown-item position-relative mb-1" noti_id=<?php echo $data_noti["noti_id"]; ?> href=<?php echo $url . "themes/post.php?post_id=" . $data_noti["post_id"]; ?>><?php echo $data_noti["noti_content"]; ?>
                                                     <p class="text-muted text-end"><?php echo $data_noti["TIME"]; ?></p>
                                                 </a>
                                             </li>

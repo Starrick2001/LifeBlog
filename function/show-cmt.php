@@ -18,11 +18,11 @@ $cmt_parent = $_GET["cmt_parent"];
     ?>
         <div class="row pb-2 m-2">
             <div class="col-1 p-0">
-                <a href="<?php echo $url . "function/profile.php?profile_email=" . $comment["author"] ?>"><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $comment["avatarUrl"] ?>" class="w-100"></a>
+                <a href="<?php echo $url . "themes/profile.php?profile_email=" . $comment["author"] ?>"><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $comment["avatarUrl"] ?>" class="w-100"></a>
             </div>
             <div class="col-11">
                 <div class="row">
-                    <a class="col" href="<?php echo $url . "function/profile.php?profile_email=" . $comment["author"] ?>"><?php echo $comment["name"] . " - " . $comment["author"] ?></a>
+                    <a class="col" href="<?php echo $url . "themes/profile.php?profile_email=" . $comment["author"] ?>"><?php echo $comment["name"] . " - " . $comment["author"] ?></a>
                     <span class="text-end col"><?php echo $comment["date_time"]; ?></span>
                 </div>
                 <p><?php echo $comment["cmt_content"] ?></p>
