@@ -102,6 +102,7 @@ $cmt_parent = $_GET["cmt_parent"];
                             email: "<?php if (isset($_SESSION["email"])) echo $_SESSION["email"]; ?>"
                         },
                         success: function(data) {
+                            console.log(data);
                             if (data == "Add") {
                                 $(".cmt-like-btn[cmt_id=" + cmt_id + "]").removeClass("btn-secondary");
                                 $(".cmt-like-btn[cmt_id=" + cmt_id + "]").addClass("btn-primary");
