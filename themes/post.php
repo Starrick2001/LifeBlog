@@ -45,17 +45,34 @@ if ($result->num_rows > 0) {
 
         <!-- bao phần nội dung chính -->
         <div class="row py-3">
-            <div class="col-4">
-                <img src=<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?> class="w-100">
-            </div>
-            <div class="col-8">
-                <div class="shadow rounded p-3">
-                    <h2 class="text-center"><?php echo $data_post["title"]; ?></h2>
-                    <div class="text-muted text-end"><?php echo $data_post["date_time"] ?></div>
-                    </br>
-                    <?php echo $data_post["content"]; ?>
+            <?php
+            if ($data_post["imgUrl"] != NULL) {
+            ?>
+                <div class="col-4">
+                    <img src=<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?> class="w-100">
                 </div>
-            </div>
+                <div class="col-8">
+                    <div class="shadow rounded p-3">
+                        <h2 class="text-center"><?php echo $data_post["title"]; ?></h2>
+                        <div class="text-muted text-end"><?php echo $data_post["date_time"] ?></div>
+                        </br>
+                        <?php echo $data_post["content"]; ?>
+                    </div>
+                </div>
+            <?php
+            } else {
+            ?>
+                <div class="col">
+                    <div class="shadow rounded p-3">
+                        <h2 class="text-center"><?php echo $data_post["title"]; ?></h2>
+                        <div class="text-muted text-end"><?php echo $data_post["date_time"] ?></div>
+                        </br>
+                        <?php echo $data_post["content"]; ?>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
         </div>
         <!-- Like -->
         <?php
@@ -152,7 +169,7 @@ if ($result->num_rows > 0) {
             });
 
 
-            
+
         });
     </script>
 </body>

@@ -69,7 +69,9 @@ if (!isset($_SESSION["email"])) {
         $date = date("Y-m-d G:i:s");
         if ($imgFileType == "jpg" || $imgFileType == "png" || $imgFileType == "jpeg") {
             if ($_FILES["thumbnail"]["size"] < 600000) {
-                $imgUrl = "img/" . basename($_FILES["thumbnail"]["name"]);
+                $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $file_name = 'img-' . substr(str_shuffle($permitted_chars), 0, 16) . "." . $imgFileType;
+                $imgUrl = "img/" . $file_name;
                 $sql = "INSERT INTO posts (title, imgUrl,content, author_name, author_email, date_time) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author_name}', '{$author_email}', '{$date}')";
                 mysqli_query($connect, $sql);
                 // move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_file);
@@ -87,7 +89,6 @@ if (!isset($_SESSION["email"])) {
                 $secret = 'J6PScH/RMWYHIJIMgDKXqfJDazTMa40w1bTZESdt';
 
 
-                $file_name = $_FILES['thumbnail']['name'];
                 $temp_file_location = $_FILES['thumbnail']['tmp_name'];
                 $s3 = new Aws\S3\S3Client([
                     'region'  => 'ap-southeast-1',
@@ -106,8 +107,7 @@ if (!isset($_SESSION["email"])) {
                 ]);
             } else echo "<script> alert('Kích thước ảnh quá lớn');</script>";
         } else {
-            $imgUrl = "img/logo/Logo2.png";
-            $sql = "INSERT INTO posts (title, imgUrl,content, author_name, author_email, date_time) VALUES ('{$title}', '{$imgUrl}', '{$content}', '{$author_name}', '{$author_email}', '{$date}')";
+            $sql = "INSERT INTO posts (title, imgUrl,content, author_name, author_email, date_time) VALUES ('{$title}', NULL, '{$content}', '{$author_name}', '{$author_email}', '{$date}')";
             mysqli_query($connect, $sql);
             if ($imgFileType != "")
                 echo "<script> alert('Chỉ hỗ trợ định dạng JPEG, PNG, JPG.');</script>";

@@ -169,34 +169,68 @@ $result_carousel = $connect->query($query_data_carousel);
             ?>
                 <div class="col-lg">
                     <div class="row shadow rounded m-3 p-2">
-                        <div class="col-md-4">
-                            <img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="w-100" />
-                        </div>
-                        <div class="col-md-8">
-                            <!--                            Content-->
-                            <h6 class="pt-2"><?php echo $data_post["title"]; ?></h6>
-                            <div class="text-muted"><?php echo $data_post["date_time"] ?></div>
-                            <p class="content">
-                                <?php
-                                if (strlen($data_post["content"]) > 300)
-                                    $content =  mb_substr($data_post["content"], 0, 300, "utf-8") . "...";
-                                else $content = $data_post["content"];
-                                echo $content;
-                                ?>
+                        <?php
+                        if ($data_post["imgUrl"] != NULL) {
+                        ?>
+                            <div class="col-md-4">
+                                <img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="w-100" />
+                            </div>
+                            <div class="col-md-8">
+                                <!--                            Content-->
+                                <h6 class="pt-2"><?php echo $data_post["title"]; ?></h6>
+                                <div class="text-muted"><?php echo $data_post["date_time"] ?></div>
+                                <p class="content">
+                                    <?php
+                                    if (strlen($data_post["content"]) > 300)
+                                        $content =  mb_substr($data_post["content"], 0, 300, "utf-8") . "...";
+                                    else $content = $data_post["content"];
+                                    echo $content;
+                                    ?>
+                                </p>
+                                <p class="text-end">
+                                    <?php
+                                    if (isset($_SESSION["email"]) && $data_post["author_email"] == $_SESSION["email"]) {
+                                        include $url . "themes/edit-delete.php";
+                                    }
+                                    ?>
+                                    <a class="btn btn-primary m-1" href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
+                                </p>
+                            </div>
+                            <p class="author text-end mt-2">
+                                Người viết:
+                                <a href=<?php echo "themes/profile.php?profile_email=" . $data_post["author_email"]; ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
                             </p>
-                            <p class="text-end">
-                                <?php
-                                if (isset($_SESSION["email"]) && $data_post["author_email"] == $_SESSION["email"]) {
-                                    include $url . "themes/edit-delete.php";
-                                }
-                                ?>
-                                <a class="btn btn-primary m-1" href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
+                        <?php
+                        } else {
+                        ?>
+                            <div class="col-md">
+                                <!--                            Content-->
+                                <h6 class="pt-2"><?php echo $data_post["title"]; ?></h6>
+                                <div class="text-muted"><?php echo $data_post["date_time"] ?></div>
+                                <p class="content">
+                                    <?php
+                                    if (strlen($data_post["content"]) > 300)
+                                        $content =  mb_substr($data_post["content"], 0, 300, "utf-8") . "...";
+                                    else $content = $data_post["content"];
+                                    echo $content;
+                                    ?>
+                                </p>
+                                <p class="text-end">
+                                    <?php
+                                    if (isset($_SESSION["email"]) && $data_post["author_email"] == $_SESSION["email"]) {
+                                        include $url . "themes/edit-delete.php";
+                                    }
+                                    ?>
+                                    <a class="btn btn-primary m-1" href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>>Xem thêm</a>
+                                </p>
+                            </div>
+                            <p class="author text-end mt-2">
+                                Người viết:
+                                <a href=<?php echo "themes/profile.php?profile_email=" . $data_post["author_email"]; ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
                             </p>
-                        </div>
-                        <p class="author text-end mt-2">
-                            Người viết:
-                            <a href=<?php echo "themes/profile.php?profile_email=" . $data_post["author_email"]; ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
-                        </p>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
                 <?php

@@ -4,7 +4,7 @@ $post_id = $_GET["post_id"];
 $sql_get_imgUrl = "SELECT imgUrl FROM posts WHERE post_id = '" . $post_id . "'";
 $result = $connect->query($sql_get_imgUrl);
 if ($imgUrl = $result->fetch_assoc()) {
-    if ($imgUrl["imgUrl"] != "img/logo/Logo2.png") {
+    if ($imgUrl["imgUrl"] != NULL) {
         require '../vendor/autoload.php';
 
         $s3 = new Aws\S3\S3Client([
