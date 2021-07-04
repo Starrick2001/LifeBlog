@@ -109,7 +109,7 @@ $cmt_parent = $_GET["cmt_parent"];
                             ?>
                                 <div class="cmt_child" cmt_parent="<?php echo $comment["cmt_id"]; ?>"></div>
                                 <script>
-                                    $(".cmt_child[cmt_parent=" + <?php echo $comment["cmt_id"]; ?> + "]").load("show-cmt.php?post_id=<?php echo $post_id; ?>&cmt_parent=<?php echo $comment["cmt_id"]; ?>");
+                                    $(".cmt_child[cmt_parent=" + <?php echo $comment["cmt_id"]; ?> + "]").load(url + "function/show-cmt.php?post_id=<?php echo $post_id; ?>&cmt_parent=<?php echo $comment["cmt_id"]; ?>");
                                 </script>
                             <?php
                             }
@@ -136,14 +136,14 @@ $cmt_parent = $_GET["cmt_parent"];
                                 $(".cmt-like-btn[cmt_id=" + cmt_id + "]").removeClass("btn-primary");
                                 $(".cmt-like-btn[cmt_id=" + cmt_id + "]").addClass("btn-secondary");
                             }
-                            $(".cmt-like-count[cmt_id=" + cmt_id + "]").load("count-cmt-like.php?cmt_id=" + cmt_id);
+                            $(".cmt-like-count[cmt_id=" + cmt_id + "]").load(url + "function/count-cmt-like.php?cmt_id=" + cmt_id);
                         }
                     });
                 });
 
                 $(".edit-cmt-btn").unbind().click(function() {
                     var cmt_id = $(this).attr("cmt_id");
-                    $(".edit-cmt[cmt_id=" + cmt_id + "]").load("../themes/edit-comment.php?post_id=<?php echo $post_id ?>&cmt_id=" + cmt_id);
+                    $(".edit-cmt[cmt_id=" + cmt_id + "]").load(url + "themes/edit-comment.php?post_id=<?php echo $post_id ?>&cmt_id=" + cmt_id);
                 })
 
                 $(".delete-cmt-btn").unbind().click(function() {
@@ -167,7 +167,7 @@ $cmt_parent = $_GET["cmt_parent"];
                     var cmt_id = $(this).attr("cmt_id");
                     $(".cmt-btn-show[cmt_id=" + cmt_id + "]").removeClass("btn-secondary");
                     $(".cmt-btn-show[cmt_id=" + cmt_id + "]").addClass("btn-primary");
-                    $(".type-cmt[cmt_id=" + cmt_id + "]").load("../themes/comment.php?post_id=<?php echo $post_id ?>&cmt_parent=" + cmt_id);
+                    $(".type-cmt[cmt_id=" + cmt_id + "]").load(url + "themes/comment.php?post_id=<?php echo $post_id ?>&cmt_parent=" + cmt_id);
                     $(this).attr("status", "true");
                 });
             })
