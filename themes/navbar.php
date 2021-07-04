@@ -60,7 +60,7 @@ global $setVisibleCreatePostBtn;
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownNotification">
                                 <?php
-                                $sql_get_data_noti = "SELECT * FROM notification WHERE email = '" . $_SESSION["email"] . "' ORDER BY seen ASC";
+                                $sql_get_data_noti = "SELECT * FROM notification WHERE email = '" . $_SESSION["email"] . "' ORDER BY seen ASC, TIME DESC";
                                 $result_data_noti = $connect->query($sql_get_data_noti);
                                 if ($result_data_noti->num_rows > 0) {
                                     while ($data_noti = $result_data_noti->fetch_assoc()) {
