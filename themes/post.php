@@ -54,6 +54,9 @@ if ($result->num_rows > 0) {
                 <div class="col-8">
                     <div class="shadow rounded p-3">
                         <h2 class="text-center"><?php echo $data_post["title"]; ?></h2>
+                        <p class="text-end">
+                            <a href=<?php echo "../themes/profile.php?profile_email=" . $data_post["author_email"] ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
+                        </p>
                         <div class="text-muted text-end"><?php echo $data_post["date_time"] ?></div>
                         </br>
                         <?php echo $data_post["content"]; ?>
@@ -65,6 +68,9 @@ if ($result->num_rows > 0) {
                 <div class="col">
                     <div class="shadow rounded p-3">
                         <h2 class="text-center"><?php echo $data_post["title"]; ?></h2>
+                        <p class="text-end">
+                            <a href=<?php echo "../themes/profile.php?profile_email=" . $data_post["author_email"] ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
+                        </p>
                         <div class="text-muted text-end"><?php echo $data_post["date_time"] ?></div>
                         </br>
                         <?php echo $data_post["content"]; ?>
