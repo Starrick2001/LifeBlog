@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 04, 2021 at 05:17 PM
+-- Generation Time: Jul 04, 2021 at 05:49 PM
 -- Server version: 8.0.13-4
 -- PHP Version: 7.2.24-0ubuntu0.18.04.7
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dwNSRsKHFD`
+-- Database: `lifeblog`
 --
 
 -- --------------------------------------------------------
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `cmt_like` (
   `email` varchar(255) NOT NULL,
   `cmt_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `cmt_like`
@@ -63,7 +63,7 @@ CREATE TABLE `comments` (
   `cmt_content` text NOT NULL,
   `author` text NOT NULL,
   `date_time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `comments`
@@ -96,7 +96,7 @@ CREATE TABLE `member` (
   `avatarUrl` varchar(100) NOT NULL,
   `birth` date NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `member`
@@ -129,7 +129,7 @@ CREATE TABLE `notification` (
   `email` varchar(255) NOT NULL,
   `seen` bit(1) DEFAULT NULL,
   `post_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `notification`
@@ -141,15 +141,11 @@ INSERT INTO `notification` (`noti_id`, `noti_content`, `TIME`, `email`, `seen`, 
 (8, '<strong>myhtddiii2@gmail.com</strong> đã thích bình luận của bạn', '2021-07-03 00:11:07', 'lebuidihoa257@gmail.com', b'1', 5),
 (9, '<strong>myhtddiii2@gmail.com</strong> đã thích bài viết của bạn', '2021-07-03 00:11:10', 'lebuidihoa257@gmail.com', b'1', 5),
 (10, '<strong>myhtddiii2@gmail.com</strong> đã trả lời về bình luận của bạn', '2021-07-03 00:28:37', 'lebuidihoa257@gmail.com', b'1', 5),
-(11, '<strong>myhtddiii2@gmail.com</strong> đã trả lời về bình luận của bạn', '2021-07-03 00:29:28', 'lebuidihoa257@gmail.com', b'1', 5),
 (12, '<strong>myhtddiii2@gmail.com</strong> đã thích bài viết của bạn', '2021-07-03 12:06:01', 'lebuidihoa257@gmail.com', b'1', 2),
 (13, '<strong>nhuhuynhpham2001@gmail.com</strong> đã thích bài viết của bạn', '2021-07-03 15:24:36', 'lebuidihoa257@gmail.com', b'1', 7),
 (14, '<strong>lebuidihoa257@gmail.com</strong> đã thích bình luận của bạn', '2021-07-03 17:22:29', 'nhuhuynhpham2001@gmail.com', b'1', 5),
 (15, '<strong>ibesttrollvn1@gmail.com</strong> đã thích bài viết của bạn', '2021-07-03 19:45:14', 'myhtddiii2@gmail.com', b'1', 20),
 (16, '<strong>tai05122001@gmail.com</strong> đã thích bài viết của bạn', '2021-07-03 20:05:42', 'lebuidihoa257@gmail.com', b'1', 3),
-(17, '<strong>lebuidihoa257@gmail.com</strong> đã trả lời về bình luận của bạn', '2021-07-03 20:32:27', 'tai05122001@gmail.com', b'1', 7),
-(18, '<strong>hoale@gmail.com</strong> đã trả lời về bình luận của bạn', '2021-07-03 20:33:07', 'tai05122001@gmail.com', b'1', 7),
-(19, '<strong>lebuidihoa257@gmail.com</strong> đã trả lời về bình luận của bạn', '2021-07-03 20:34:28', 'hoale@gmail.com', b'0', 7),
 (20, '<strong>nhuhuynhpham2001@gmail.com</strong> đã thích bài viết của bạn', '2021-07-03 21:15:35', 'myhtddiii2@gmail.com', b'1', 20);
 
 -- --------------------------------------------------------
@@ -166,7 +162,7 @@ CREATE TABLE `posts` (
   `date_time` datetime NOT NULL,
   `author_email` varchar(255) NOT NULL,
   `author_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `posts`
@@ -204,7 +200,7 @@ INSERT INTO `posts` (`post_id`, `title`, `imgUrl`, `content`, `date_time`, `auth
 CREATE TABLE `post_like` (
   `email` varchar(255) NOT NULL,
   `post_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `post_like`
