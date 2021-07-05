@@ -16,6 +16,7 @@
                 success: function(data) {
                     $(".cmt-content[cmt_id=" + cmt_parent + "]").val("");
                     $("#show-comment").load(url + "function/show-cmt.php?post_id=<?php echo $_GET["post_id"]; ?>&cmt_parent=0");
+                    $("#cmt-count").load(url + "function/count-cmt.php?post_id=<?php echo $_GET["post_id"]; ?>");
                 }
             });
         });

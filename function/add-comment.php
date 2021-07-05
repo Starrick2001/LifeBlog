@@ -27,3 +27,4 @@ if ($connect->query($sql) == TRUE) {
         }
     }
 }
+?>

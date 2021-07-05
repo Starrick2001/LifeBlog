@@ -17,7 +17,6 @@
 
 <body>
     <?php
-    // if (isset($_REQUEST['ok']))
     if (isset($_GET["content"])) {
         $url = "../";
         session_start();

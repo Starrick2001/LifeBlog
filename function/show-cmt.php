@@ -167,6 +167,7 @@ $cmt_parent = $_GET["cmt_parent"];
                         },
                         success: function(data) {
                             $("#show-comment").load(url + "function/show-cmt.php?post_id=<?php echo $_GET["post_id"]; ?>&cmt_parent=0");
+                            $("#cmt-count").load(url + "function/count-cmt.php?post_id=<?php echo $_GET["post_id"]; ?>");
                         }
                     });
                 });
