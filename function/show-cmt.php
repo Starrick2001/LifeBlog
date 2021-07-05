@@ -142,26 +142,6 @@ $cmt_parent = $_GET["cmt_parent"];
                     });
                 });
 
-                // $(".cmt-like-btn.btn-primary").click(function() {
-                //     var cmt_id = $(this).attr("cmt_id");
-                //     alert("ASD");
-                //     $.ajax({
-                //         method: "GET",
-                //         url: url + "function/delete-cmt-like.php",
-                //         data: {
-                //             cmt_id: cmt_id,
-                //             email: "<?php if (isset($_SESSION["email"])) echo $_SESSION["email"]; ?>"
-                //         },
-                //         success: function(data) {
-                //             console.log(data);
-                //             if (data == "Delete") {
-                //                 $(".cmt-like-btn[cmt_id=" + cmt_id + "]").removeClass("btn-primary");
-                //                 $(".cmt-like-btn[cmt_id=" + cmt_id + "]").addClass("btn-secondary");
-                //             }
-                //             $(".cmt-like-count[cmt_id=" + cmt_id + "]").load(url + "function/count-cmt-like.php?cmt_id=" + cmt_id);
-                //         }
-                //     });
-                // });
 
 
                 $(".edit-cmt-btn").off().click(function() {
