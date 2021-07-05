@@ -20,6 +20,7 @@
     // if (isset($_REQUEST['ok']))
     if (isset($_GET["content"])) {
         $url = "../";
+        session_start();
         include_once "../themes/navbar.php";
         require_once "connect.php";
         $limit = 10;  //giới hạn 10 post
