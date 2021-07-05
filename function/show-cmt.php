@@ -118,7 +118,7 @@ $cmt_parent = $_GET["cmt_parent"];
         </div>
         <script>
             $(document).ready(function() {
-                $(".cmt-like-btn").unbind().click(function() {
+                $(".cmt-like-btn").off().click(function() {
                     var cmt_id = $(this).attr("cmt_id");
                     $.ajax({
                         method: "GET",
@@ -141,12 +141,12 @@ $cmt_parent = $_GET["cmt_parent"];
                     });
                 });
 
-                $(".edit-cmt-btn").unbind().click(function() {
+                $(".edit-cmt-btn").off().click(function() {
                     var cmt_id = $(this).attr("cmt_id");
                     $(".edit-cmt[cmt_id=" + cmt_id + "]").load(url + "themes/edit-comment.php?post_id=<?php echo $post_id ?>&cmt_id=" + cmt_id);
                 })
 
-                $(".delete-cmt-btn").unbind().click(function() {
+                $(".delete-cmt-btn").off().click(function() {
                     var cmt_id = $(this).attr("cmt_id");
                     $.ajax({
                         method: "GET",
@@ -163,7 +163,7 @@ $cmt_parent = $_GET["cmt_parent"];
 
 
 
-                $(".cmt-btn-show[status=false]").unbind().click(function() {
+                $(".cmt-btn-show[status=false]").off().click(function() {
                     var cmt_id = $(this).attr("cmt_id");
                     $(".cmt-btn-show[cmt_id=" + cmt_id + "]").removeClass("btn-secondary");
                     $(".cmt-btn-show[cmt_id=" + cmt_id + "]").addClass("btn-primary");
