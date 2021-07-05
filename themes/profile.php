@@ -314,10 +314,16 @@ else {
                 ?>
         </div>
         <div class="row mb-2">
-    <?php
+        <?php
                 } else {
                     $tmp += 1;
                 }
+            }
+            if ($tmp == 1) {
+        ?>
+        </div>
+    <?php
+
             }
     ?>
     <ul class="pagination justify-content-center">

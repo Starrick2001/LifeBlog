@@ -240,10 +240,15 @@ $result_carousel = $connect->query($query_data_carousel);
                 ?>
         </div>
         <div class="row mb-2">
-    <?php
+        <?php
                 } else {
                     $tmp += 1;
                 }
+            }
+            if ($tmp == 1) {
+        ?>
+        </div>
+    <?php
             }
     ?>
     <!-- Pagination -->

@@ -18,19 +18,19 @@
 <body>
     <?php
     // if (isset($_REQUEST['ok']))
-        if (isset($_GET["content"])) {
-            $url = "../";
-            include_once "../themes/navbar.php";
-            require_once "connect.php";
-            $limit = 10;  //giới hạn 10 post
-            if (isset($_GET["page"])) {
-                $page  = $_GET["page"];
-            } else {
-                $page = 1;
-            }
-            $start = ($page - 1) * $limit;
-            $search =  $_GET["content"];
-            $query = "  SELECT posts.post_id, content, imgUrl, author_name, author_email, title, date_time, COUNT(email) as 'Like'
+    if (isset($_GET["content"])) {
+        $url = "../";
+        include_once "../themes/navbar.php";
+        require_once "connect.php";
+        $limit = 10;  //giới hạn 10 post
+        if (isset($_GET["page"])) {
+            $page  = $_GET["page"];
+        } else {
+            $page = 1;
+        }
+        $start = ($page - 1) * $limit;
+        $search =  $_GET["content"];
+        $query = "  SELECT posts.post_id, content, imgUrl, author_name, author_email, title, date_time, COUNT(email) as 'Like'
                         FROM posts 
                         LEFT JOIN post_like ON post_like.post_id = posts.post_id
                         WHERE title LIKE '%$search%'
@@ -42,7 +42,7 @@
                         LIMIT $start, $limit
                         
             ";
-            $result = $connect->query($query);
+        $result = $connect->query($query);
     ?>
         <main class="container">
             <!-- Khởi tạo row -->
@@ -90,10 +90,15 @@
                     ?>
             </div>
             <div class="row mb-2">
-        <?php
+            <?php
                     } else {
                         $tmp += 1;
                     }
+                }
+                if ($tmp == 1) {
+            ?>
+            </div>
+        <?php
                 }
         ?>
         <ul class="pagination justify-content-center">
@@ -122,4 +127,4 @@
         </main>
 </body>
 <?php
-        }
+    }
