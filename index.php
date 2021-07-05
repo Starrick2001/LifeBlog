@@ -8,9 +8,9 @@ if (isset($_GET["page"])) {
     $page = 1;
 };
 if ($page == 1) {
-    $start = 5;
+    $start = 4;
 } else
-    $start = ($page - 1) * $limit;
+    $start = (($page - 1) * $limit) + 4;
 // $result = mysqli_query($connect, "SELECT post_id FROM posts LIMIT $start, $limit");
 $query = "  SELECT posts.post_id, content, imgUrl, author_name, author_email, title, date_time, COUNT(email) as 'Like'
                     FROM posts 
@@ -261,7 +261,7 @@ $result_carousel = $connect->query($query_data_carousel);
         <?php
         $result_db = mysqli_query($connect, "SELECT COUNT(post_id) FROM posts");
         $row_db = mysqli_fetch_row($result_db);
-        $total_records = $row_db[0];
+        $total_records = $row_db[0] - 4;
         $total_pages = ceil($total_records / $limit);
         for ($i = 1; $i <= $total_pages; $i++) {
         ?>
