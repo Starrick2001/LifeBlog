@@ -79,7 +79,7 @@
                             </div>
                             <p class="author text-end mt-2">
                                 Người viết:
-                                <a href=<?php echo "themes/profile.php?profile_email=" . $data_post["author_email"]; ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
+                                <a href=<?php echo $url . "themes/profile.php?profile_email=" . $data_post["author_email"]; ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
                             </p>
                         </div>
                     </div>

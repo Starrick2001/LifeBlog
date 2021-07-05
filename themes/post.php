@@ -176,7 +176,7 @@ if ($result_num_cmt->num_rows > 0) {
                             $("#like-btn").addClass("btn-secondary");
                         }
 
-                        $("#like_count").load("count-post-like.php?post_id=<?php echo $post_id; ?>");
+                        $("#like_count").load(url + "function/count-post-like.php?post_id=<?php echo $post_id; ?>");
                     }
                 });
             });
