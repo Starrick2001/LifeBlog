@@ -118,26 +118,33 @@ $cmt_parent = $_GET["cmt_parent"];
         </div>
         <script>
             $(document).ready(function() {
-                $(".cmt-like-btn").off("click").on("click",function() {
+                $(".cmt-like-btn.btn-secondary").one("click",function() {
                     var cmt_id = $(this).attr("cmt_id");
                     $.ajax({
                         method: "GET",
-                        url: url + "function/modify-cmt-like.php",
+                        url: url + "function/add-cmt-like.php",
                         data: {
                             cmt_id: cmt_id,
                             email: "<?php if (isset($_SESSION["email"])) echo $_SESSION["email"]; ?>"
                         },
                         success: function(data) {
-                            console.log(data);
-                            if (data == "Add") {
-                                $(".cmt-like-btn[cmt_id=" + cmt_id + "]").removeClass("btn-secondary");
-                                $(".cmt-like-btn[cmt_id=" + cmt_id + "]").addClass("btn-primary");
-                            } 
-                            if (data == "Delete") {
-                                $(".cmt-like-btn[cmt_id=" + cmt_id + "]").removeClass("btn-primary");
-                                $(".cmt-like-btn[cmt_id=" + cmt_id + "]").addClass("btn-secondary");
-                            }
-                            $(".cmt-like-count[cmt_id=" + cmt_id + "]").load(url + "function/count-cmt-like.php?cmt_id=" + cmt_id);
+                            $("#show-comment").load(url + "function/show-cmt.php?post_id=<?php echo $post_id; ?>&cmt_parent=0");
+                        }
+                    });
+                });
+
+                $(".cmt-like-btn.btn-primary").one("click",function() {
+                    var cmt_id = $(this).attr("cmt_id");
+                    $.ajax({
+                        method: "GET",
+                        url: url + "function/delete-cmt-like.php",
+                        data: {
+                            cmt_id: cmt_id,
+                            email: "<?php if (isset($_SESSION["email"])) echo $_SESSION["email"]; ?>"
+                        },
+                        success: function(data) {
+                            $("#show-comment").load(url + "function/show-cmt.php?post_id=<?php echo $post_id; ?>&cmt_parent=0");
+                            
                         }
                     });
                 });
