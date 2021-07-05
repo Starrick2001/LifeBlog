@@ -219,8 +219,20 @@ else {
         <?php
         require_once $url . "function/connect.php";
         $name = $profile_data["name"];
-        $query = "SELECT * FROM posts WHERE author_email = '" . $email . "' ORDER BY date_time DESC";
-        $result = mysqli_query($connect, $query);
+        // $query = "SELECT * FROM posts WHERE author_email = '" . $email . "' ORDER BY date_time DESC";
+        // $result = mysqli_query($connect, $query);
+        $limit = 10;  //giới hạn 10 post
+        if (isset($_GET["page"])) {
+            $page  = $_GET["page"];
+        } else {
+            $page = 1;
+        }
+        $start = ($page - 1) * $limit;
+        $query = "  SELECT * FROM posts WHERE author_email = '" . $email . "' ORDER BY date_time DESC
+                    LIMIT $start, $limit
+                        
+            ";
+        $result = $connect->query($query);
         ?>
 
         <!-- Khởi tạo row -->
@@ -231,7 +243,7 @@ else {
             ?>
                 <div class="col-lg">
                     <div class="row shadow rounded m-3 p-2">
-                    <?php
+                        <?php
                         if ($data_post["imgUrl"] != NULL) {
                         ?>
                             <div class="col-md-4">
@@ -260,7 +272,7 @@ else {
                             </div>
                             <p class="author text-end mt-2">
                                 Người viết:
-                                <a href=<?php echo "themes/profile.php?profile_email=" . $data_post["author_email"]; ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
+                                <a href=<?php echo $url . "themes/profile.php?profile_email=" . $data_post["author_email"]; ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
                             </p>
                         <?php
                         } else {
@@ -288,7 +300,7 @@ else {
                             </div>
                             <p class="author text-end mt-2">
                                 Người viết:
-                                <a href=<?php echo "themes/profile.php?profile_email=" . $data_post["author_email"]; ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
+                                <a href=<?php echo $url . "themes/profile.php?profile_email=" . $data_post["author_email"]; ?>><?php echo $data_post["author_name"] . " - " . $data_post["author_email"]; ?></a>
                             </p>
                         <?php
                         }
@@ -308,6 +320,29 @@ else {
                 }
             }
     ?>
+    <ul class="pagination justify-content-center">
+        <li class="page-item <?php if ($page == 1) echo "disabled"; ?>">
+            <a class="page-link" href="profile.php?profile_email=<?php echo $email ?>&page=<?php echo $i; ?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <?php
+        $result_db = mysqli_query($connect, "SELECT COUNT(post_id) FROM posts WHERE author_email = '" . $email . "'");
+        $row_db = mysqli_fetch_row($result_db);
+        $total_records = $row_db[0];
+        $total_pages = ceil($total_records / $limit);
+        for ($i = 1; $i <= $total_pages; $i++) {
+        ?>
+            <li class='page-item <?php if ($page == $i) echo "active" ?>'><a class='page-link' href="profile.php?profile_email=<?php echo $email ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+        <?php
+        }
+        ?>
+        <li class="page-item <?php if ($page == $total_pages) echo "disabled"; ?>">
+            <a class="page-link" href="profile.php?profile_email=<?php echo $email ?>&page=<?php echo $i; ?>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
     <!-- Bài viết -->
     <!-- kết thúc nội dung chính -->
     <div class="modal fade" id="editInformation">
