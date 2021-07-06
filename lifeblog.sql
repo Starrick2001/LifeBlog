@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jul 04, 2021 at 05:49 PM
--- Server version: 8.0.13-4
--- PHP Version: 7.2.24-0ubuntu0.18.04.7
+-- Host: 127.0.0.1
+-- Generation Time: Jul 06, 2021 at 06:26 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -31,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `cmt_like` (
   `email` varchar(255) NOT NULL,
   `cmt_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cmt_like`
@@ -39,16 +38,20 @@ CREATE TABLE `cmt_like` (
 
 INSERT INTO `cmt_like` (`email`, `cmt_id`) VALUES
 ('hoale@gmail.com', 1),
-('lebuidihoa257@gmail.com', 1),
-('myhtddiii2@gmail.com', 1),
 ('hoale@gmail.com', 2),
+('hoale@gmail.com', 11),
+('lebuidihoa257@gmail.com', 1),
 ('lebuidihoa257@gmail.com', 3),
 ('lebuidihoa257@gmail.com', 5),
+('lebuidihoa257@gmail.com', 8),
 ('lebuidihoa257@gmail.com', 9),
-('hoale@gmail.com', 11),
+('lebuidihoa257@gmail.com', 10),
 ('lebuidihoa257@gmail.com', 11),
-('myhtddiii2@gmail.com', 12),
-('lebuidihoa257@gmail.com', 19);
+('lebuidihoa257@gmail.com', 13),
+('lebuidihoa257@gmail.com', 19),
+('lebuidihoa257@gmail.com', 27),
+('myhtddiii2@gmail.com', 1),
+('myhtddiii2@gmail.com', 12);
 
 -- --------------------------------------------------------
 
@@ -61,9 +64,9 @@ CREATE TABLE `comments` (
   `cmt_parent` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `cmt_content` text NOT NULL,
-  `author` text NOT NULL,
+  `author` varchar(255) NOT NULL,
   `date_time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `comments`
@@ -82,7 +85,10 @@ INSERT INTO `comments` (`cmt_id`, `cmt_parent`, `post_id`, `cmt_content`, `autho
 (12, 0, 9, 'Biết sai lầm vậy sao không thay đổi đi?', 'myhtddiii2@gmail.com', '2021-07-03 00:12:12'),
 (13, 8, 5, 'Don’t', 'myhtddiii2@gmail.com', '2021-07-03 00:28:37'),
 (14, 0, 20, 'Dân chuyên văn đăng bài nó khác thật ', 'nhuhuynhpham2001@gmail.com', '2021-07-03 21:16:48'),
-(15, 0, 9, 'Dính sai lầm lần đầu là do bạn còn non, nhưng vẫn dính sai lầm đó vào những lần sau? Là do bạn ngu', 'HoaSimp@gmail.com', '2021-07-03 21:29:01');
+(15, 0, 9, 'Dính sai lầm lần đầu là do bạn còn non, nhưng vẫn dính sai lầm đó vào những lần sau? Là do bạn ngu', 'HoaSimp@gmail.com', '2021-07-03 21:29:01'),
+(27, 10, 5, 'Check in', 'asd@gmail.com', '2021-07-05 17:54:16'),
+(28, 11, 5, 'test', 'lebuidihoa257@gmail.com', '2021-07-05 21:09:16'),
+(29, 8, 5, 'a', 'hoale@gmail.com', '2021-07-05 21:09:36');
 
 -- --------------------------------------------------------
 
@@ -96,22 +102,24 @@ CREATE TABLE `member` (
   `avatarUrl` varchar(100) NOT NULL,
   `birth` date NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `member`
 --
 
 INSERT INTO `member` (`email`, `name`, `avatarUrl`, `birth`, `password`) VALUES
-('bancuaHoaLe@Wibunetwork.com', 'Ngô Hải', 'img/logo/Logo1.png', '2001-08-03', '74fc46011350386f05c94c9b48633ae7'),
-('Baoquoccle@gmail.com', 'Lê Quốc Bảo', 'img/logo/Logo1.png', '2001-05-19', '68fe8f2aa739126f5df2c6e556f800ae'),
-('dbrr@gmail.com', 'VL nuôn', 'img/logo/Logo1.png', '2021-07-13', '9d372c45762b35e645f110b9d4b56029'),
-('hieubui12345@gmail.com', 'Hiếu Bùi', 'img/logo/Logo1.png', '2001-09-09', '01ddae4032e17a1c338baac9c4322b30'),
+('abc@gmail.com', 'abc', 'img/avatar/abc@gmail.com.png', '2021-07-06', '7815696ecbf1c96e6894b779456d330e'),
+('asd@gmail.com', 'Hofa Lee', 'img/avatar/Logo1.png', '2021-07-05', '7815696ecbf1c96e6894b779456d330e'),
+('bancuaHoaLe@Wibunetwork.com', 'Ngô Hải', 'img/avatar/Logo1.png', '2001-08-03', '74fc46011350386f05c94c9b48633ae7'),
+('Baoquoccle@gmail.com', 'Lê Quốc Bảo', 'img/avatar/Logo1.png', '2001-05-19', '68fe8f2aa739126f5df2c6e556f800ae'),
+('dbrr@gmail.com', 'VL nuôn', 'img/avatar/Logo1.png', '2021-07-13', '9d372c45762b35e645f110b9d4b56029'),
+('hieubui12345@gmail.com', 'Hiếu Bùi', 'img/avatar/Logo1.png', '2001-09-09', '01ddae4032e17a1c338baac9c4322b30'),
 ('hoale@gmail.com', 'Hoà Lê', 'img/avatar/hoale@gmail.com.png', '2021-06-21', '912ec803b2ce49e4a541068d495ab570'),
 ('HoaSimp@gmail.com', 'SimpLord', 'img/avatar/Logo1.png', '2001-07-13', '6994e1b7ee5373fd66675c705ae1f306'),
 ('ibesttrollvn1@gmail.com', 'love my', 'img/avatar/Logo1.png', '1998-10-13', '46773c6b28758022b6d6f8729a79f787'),
 ('lebuidihoa257@gmail.com', 'Lê Bùi Dĩ Hoà', 'img/avatar/lebuidihoa257@gmail.com.jpg', '2001-07-25', '7815696ecbf1c96e6894b779456d330e'),
-('minh2454@gmail.com', 'Minh Fet', 'img/logo/Logo1.png', '2001-05-03', '5ab434881fffb9ad3fc061997aae8f51'),
+('minh2454@gmail.com', 'Minh Fet', 'img/avatar/Logo1.png', '2001-05-03', '5ab434881fffb9ad3fc061997aae8f51'),
 ('myhtddiii2@gmail.com', 'Huỳnh Trương Diễm My', 'img/avatar/myhtddiii2@gmail.com.jpg', '2021-07-30', 'c89f51a4377670c244c7b2baa3a2d8f2'),
 ('nhuhuynhpham2001@gmail.com', 'Huỳnh Như', 'img/avatar/nhuhuynhpham2001@gmail.com.jpg', '2001-08-11', 'd0b656889d677ccd2bff8e3c40f05242'),
 ('tai05122001@gmail.com', 'Tài Đòn', 'img/avatar/tai05122001@gmail.com.jpg', '2001-12-03', 'bb82fd2ec53bc92ea9a9b5ee8a8ac85b');
@@ -129,7 +137,7 @@ CREATE TABLE `notification` (
   `email` varchar(255) NOT NULL,
   `seen` bit(1) DEFAULT NULL,
   `post_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `notification`
@@ -144,9 +152,19 @@ INSERT INTO `notification` (`noti_id`, `noti_content`, `TIME`, `email`, `seen`, 
 (12, '<strong>myhtddiii2@gmail.com</strong> đã thích bài viết của bạn', '2021-07-03 12:06:01', 'lebuidihoa257@gmail.com', b'1', 2),
 (13, '<strong>nhuhuynhpham2001@gmail.com</strong> đã thích bài viết của bạn', '2021-07-03 15:24:36', 'lebuidihoa257@gmail.com', b'1', 7),
 (14, '<strong>lebuidihoa257@gmail.com</strong> đã thích bình luận của bạn', '2021-07-03 17:22:29', 'nhuhuynhpham2001@gmail.com', b'1', 5),
-(15, '<strong>ibesttrollvn1@gmail.com</strong> đã thích bài viết của bạn', '2021-07-03 19:45:14', 'myhtddiii2@gmail.com', b'1', 20),
 (16, '<strong>tai05122001@gmail.com</strong> đã thích bài viết của bạn', '2021-07-03 20:05:42', 'lebuidihoa257@gmail.com', b'1', 3),
-(20, '<strong>nhuhuynhpham2001@gmail.com</strong> đã thích bài viết của bạn', '2021-07-03 21:15:35', 'myhtddiii2@gmail.com', b'1', 20);
+(38, '<strong>asd@gmail.com</strong> đã thích bài viết của bạn', '2021-07-05 17:31:23', 'lebuidihoa257@gmail.com', b'1', 7),
+(42, '<strong>lebuidihoa257@gmail.com</strong> đã trả lời về bình luận của bạn', '2021-07-05 17:37:18', 'hoale@gmail.com', b'1', 7),
+(43, '<strong>lebuidihoa257@gmail.com</strong> đã trả lời về bình luận của bạn', '2021-07-05 17:41:28', 'hoale@gmail.com', b'1', 7),
+(48, '<strong>hoale@gmail.com</strong> đã bình luận về bài viết của bạn', '2021-07-05 17:49:20', 'lebuidihoa257@gmail.com', b'1', 7),
+(395, '<strong>lebuidihoa257@gmail.com</strong> đã thích bình luận của bạn', '2021-07-05 20:51:59', 'myhtddiii2@gmail.com', b'0', 5),
+(396, '<strong>lebuidihoa257@gmail.com</strong> đã thích bình luận của bạn', '2021-07-05 20:54:30', 'asd@gmail.com', b'0', 5),
+(397, '<strong>lebuidihoa257@gmail.com</strong> đã thích bình luận của bạn', '2021-07-05 21:02:01', 'hoale@gmail.com', b'1', 5),
+(398, '<strong>lebuidihoa257@gmail.com</strong> đã trả lời về bình luận của bạn', '2021-07-05 21:09:16', 'myhtddiii2@gmail.com', b'0', 5),
+(399, '<strong>hoale@gmail.com</strong> đã trả lời về bình luận của bạn', '2021-07-05 21:09:36', 'lebuidihoa257@gmail.com', b'1', 5),
+(401, '<strong>abc@gmail.com</strong> đã thích bài viết của bạn', '2021-07-06 08:56:23', 'myhtddiii2@gmail.com', b'0', 20),
+(402, '<strong>abc@gmail.com</strong> đã bình luận về bài viết của bạn', '2021-07-06 08:56:27', 'myhtddiii2@gmail.com', b'0', 20),
+(403, '<strong>lebuidihoa257@gmail.com</strong> đã thích bài viết của bạn', '2021-07-06 09:03:52', 'abc@gmail.com', b'1', 34);
 
 -- --------------------------------------------------------
 
@@ -162,7 +180,7 @@ CREATE TABLE `posts` (
   `date_time` datetime NOT NULL,
   `author_email` varchar(255) NOT NULL,
   `author_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `posts`
@@ -189,7 +207,9 @@ INSERT INTO `posts` (`post_id`, `title`, `imgUrl`, `content`, `date_time`, `auth
 (20, 'Chọn người mình yêu hay người yêu mình? ', 'img/blog1.jpg', '<p>Mình biết bạn đang phân vân với câu trả lời của chính mình, thật khó để lựa chọn đúng không?&nbsp;</p><p>Thật ra tuổi trẻ ai cũng sẽ có ít nhất 1 mối tình làm mình “ lên bờ xuống ruộng ” nhưng bạn vẫn sẽ cứ yêu, nó như một chất kích thích vậy. Sự mới mẻ, cảm giác tò mò thú vị pha thêm một chút khoái lạc sẽ chẳng ai muốn dứt ra cả, cảm giác đó rất tuyệt vời mình biết. Tất nhiên chẳng có cuộc tình nào toàn trái ngọt cả, dần dà cả 2 sẽ khó hiểu nhau hơn, con người thật sự sẽ lộ diện cộng với cái tuổi đôi mươi mang trên vai nhiều gánh nặng, những cuộc cãi vã và lời qua tiếng lại chưa từng có khi trước giờ lại cứ buông lời cho nhau. Rồi ta lại cứ làm nhau đau, một vòng tròn lẩn quẩn cứ xoay thật nhanh cho đến một ngày vô tình dừng lại thấy trên người đầy những vết thương. Hỏi khi ấy thấy đau không? Không, sẽ chỉ còn thẩn thờ và đó cũng là lúc ta tỉnh giấc với một câu hỏi rất lớn trong đầu “ Họ có thực sự yêu mình không? \"&nbsp;</p><p>Đến lúc này bạn nên tự ngồi lại một mình, xâu chuỗi lại tất cả mọi thứ họ dành cho mình và quan trọng nhất là hãy đánh giá nó bằng lí trí nhé! Rồi bạn sẽ có câu trả lời.&nbsp;</p><p>Mình không khuyên bạn nên chọn ai, những hãy yêu lấy bản thân mình, nhất định phải yêu lấy nó, đừng để bất kì ai làm tổn thương mình bạn nhé, chúng ta dù có luân hồi chuyển kiếp bao nhiêu lần để đến với thế giới này thì cũng chỉ vì mục tiêu cuối cùng là hạnh phúc thôi.</p>', '2021-07-03 00:20:32', 'myhtddiii2@gmail.com', 'Huỳnh Trương Diễm My'),
 (22, 'Tiêu cực của mình', 'img/inbound7429504503618288278.jpg', '<p>Thật ra đôi khi mình cũng rơi vào trạng thái cực kỳ tiêu cực nhưng có vẻ kiểu người như mình thì trạng thái đó kéo dài không lâu lắm. Lần gần đây nhất chỉ kéo dài đúng nửa ngày. Tuy nhiên, có thể là mình có khả năng nhanh chóng thoát khỏi tình trạng đó nhưng chỉ được một phần nào thôi. Phần còn lại nó cứ đeo bám âm ỉ bên cạnh mình cả một &nbsp;quãng thời gian dài mà mình cũng chẳng nhớ được.&nbsp;</p><p>Và mình vẫn chưa tìm được cách giải quyết những vấn đề lộn xộn đó.</p>', '2021-07-03 19:41:20', 'nhuhuynhpham2001@gmail.com', 'Huỳnh Như'),
 (23, 'Speak yourself ', 'img/inbound6122973406022071040.jpg', '<p>“No matter who you are, where you from, your skin color, gender identity, just speak yourself ”</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -<i> Kim NamJoon</i>-</p>', '2021-07-03 19:45:29', 'nhuhuynhpham2001@gmail.com', 'Huỳnh Như'),
-(25, 'Thôi xong', 'img/sticker-facebook-hot-nhat-2020-300x300.jpg', '<p>&nbsp;</p><p>Một anh chàng đi&nbsp;làm&nbsp;ca chiều về, cảm thấy ” thèm ” vợ.</p><p>Anh lẻn vào phòng ngủ, thấy vợ&nbsp;đang&nbsp;ngủ trên giường.</p><p>Vứt vội quần áo, anh ta chui từ cuối giường xuống dưới chăn…(&nbsp;háo hức&nbsp;! …)</p><p>Xong việc anh bỗng thấy thèm thuốc lá và một cốc bia nên dậy đi xuống bếp.</p><p>Ở dưới bếp anh gặp… vợ&nbsp;đã&nbsp;ngồi chờ mình !</p><p>– Ơ. Giờ này em&nbsp;vẫn&nbsp;sử dụng&nbsp;gì ở đây ?&nbsp;vì sao&nbsp;em&nbsp;luôn luôn&nbsp;chưa ngủ ? Ai ở trong phòng ngủ vậy ?</p><p>– À quên, bà ngoại đến chơi&nbsp;vừa mới&nbsp;ngủ trong đấy, tự nhiên bà cảm thấy&nbsp;k&nbsp;được khỏe !</p><p>– C…á…a…i….g…g…gì…i…..</p>', '2021-07-03 20:19:31', 'tai05122001@gmail.com', 'Tài đẹp trai');
+(25, 'Thôi xong', 'img/sticker-facebook-hot-nhat-2020-300x300.jpg', '<p>&nbsp;</p><p>Một anh chàng đi&nbsp;làm&nbsp;ca chiều về, cảm thấy ” thèm ” vợ.</p><p>Anh lẻn vào phòng ngủ, thấy vợ&nbsp;đang&nbsp;ngủ trên giường.</p><p>Vứt vội quần áo, anh ta chui từ cuối giường xuống dưới chăn…(&nbsp;háo hức&nbsp;! …)</p><p>Xong việc anh bỗng thấy thèm thuốc lá và một cốc bia nên dậy đi xuống bếp.</p><p>Ở dưới bếp anh gặp… vợ&nbsp;đã&nbsp;ngồi chờ mình !</p><p>– Ơ. Giờ này em&nbsp;vẫn&nbsp;sử dụng&nbsp;gì ở đây ?&nbsp;vì sao&nbsp;em&nbsp;luôn luôn&nbsp;chưa ngủ ? Ai ở trong phòng ngủ vậy ?</p><p>– À quên, bà ngoại đến chơi&nbsp;vừa mới&nbsp;ngủ trong đấy, tự nhiên bà cảm thấy&nbsp;k&nbsp;được khỏe !</p><p>– C…á…a…i….g…g…gì…i…..</p>', '2021-07-03 20:19:31', 'tai05122001@gmail.com', 'Tài đẹp trai'),
+(33, 'asd', 'img/img-B3DKzLedyP7FvkHS.jpg', '<p>asd</p>', '2021-07-06 09:02:38', 'abc@gmail.com', 'abc'),
+(34, 'ddd', NULL, '<p>ddd</p>', '2021-07-06 09:02:50', 'abc@gmail.com', 'abc');
 
 -- --------------------------------------------------------
 
@@ -200,31 +220,35 @@ INSERT INTO `posts` (`post_id`, `title`, `imgUrl`, `content`, `date_time`, `auth
 CREATE TABLE `post_like` (
   `email` varchar(255) NOT NULL,
   `post_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `post_like`
 --
 
 INSERT INTO `post_like` (`email`, `post_id`) VALUES
+('abc@gmail.com', 20),
+('abc@gmail.com', 34),
+('asd@gmail.com', 7),
 ('asdf', 2),
-('lebuidihoa257@gmail.com', 2),
-('myhtddiii2@gmail.com', 2),
 ('asdf', 3),
-('lebuidihoa257@gmail.com', 3),
-('tai05122001@gmail.com', 3),
-('lebuidihoa257@gmail.com', 5),
-('myhtddiii2@gmail.com', 5),
-('nhuhuynhpham2001@gmail.com', 5),
+('asdf', 12),
 ('hoale@gmail.com', 6),
+('hoale@gmail.com', 12),
+('ibesttrollvn1@gmail.com', 20),
+('lebuidihoa257@gmail.com', 2),
+('lebuidihoa257@gmail.com', 3),
+('lebuidihoa257@gmail.com', 5),
 ('lebuidihoa257@gmail.com', 6),
 ('lebuidihoa257@gmail.com', 7),
-('nhuhuynhpham2001@gmail.com', 7),
-('asdf', 12),
-('hoale@gmail.com', 12),
 ('lebuidihoa257@gmail.com', 13),
-('ibesttrollvn1@gmail.com', 20),
+('lebuidihoa257@gmail.com', 34),
+('myhtddiii2@gmail.com', 2),
+('myhtddiii2@gmail.com', 5),
+('nhuhuynhpham2001@gmail.com', 5),
+('nhuhuynhpham2001@gmail.com', 7),
 ('nhuhuynhpham2001@gmail.com', 20),
+('tai05122001@gmail.com', 3),
 ('tai05122001@gmail.com', 25);
 
 --
@@ -243,7 +267,8 @@ ALTER TABLE `cmt_like`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`cmt_id`),
-  ADD KEY `fk_post_id` (`post_id`);
+  ADD KEY `fk_post_id` (`post_id`),
+  ADD KEY `author` (`author`);
 
 --
 -- Indexes for table `member`
@@ -281,28 +306,35 @@ ALTER TABLE `post_like`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `cmt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `cmt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `noti_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `noti_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=404;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `cmt_like`
+--
+ALTER TABLE `cmt_like`
+  ADD CONSTRAINT `cmt_like_ibfk_1` FOREIGN KEY (`email`) REFERENCES `member` (`email`);
+
+--
 -- Constraints for table `comments`
 --
 ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`author`) REFERENCES `member` (`email`),
   ADD CONSTRAINT `fk_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`);
 
 --
