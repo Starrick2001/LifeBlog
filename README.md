@@ -2,8 +2,11 @@
 https://ptud-web.herokuapp.com/
 
 Web được code bằng PHP (back-end), Front-end sử dụng hai thư viện là jQuery và Bootstrap
+
 CKEditor 5 (Thêm, sửa bài viết)
+
 AWS S3 để làm server lưu trữ ảnh của tài khoản, bài viết
+
 CSDL là MySQL
 
 ## Hướng dẫn cài đặt
