@@ -1,18 +1,16 @@
 <?php
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
-// $database = "lifeblog";
-$servername = "remotemysql.com";
-$username = "dwNSRsKHFD";
-$password = "9j86ae7qYs";
-$database = "dwNSRsKHFD";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "lifeblog";
 $connect = new mysqli($servername, $username, $password, $database);
 
 if ($connect->connect_error) {
     die("Failed");
 }
 $connect->set_charset('utf8');
+
+// Dùng AWS S3 để lưu trữ ảnh
 /** AWS S3 Bucket Name */
 $bucket_name = 'lifeblog';
 
