@@ -21,3 +21,6 @@ $access_key_id = '';
 
 /** AWS S3 Bucket Secret Access Key */
 $secret = '';
+
+/** AWS S3 URL */
+$link = "";

@@ -45,8 +45,8 @@ $result_carousel = $connect->query($query_data_carousel);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="https://lifeblog.s3.ap-southeast-1.amazonaws.com/img/logo/Logo1.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="https://lifeblog.s3.ap-southeast-1.amazonaws.com/img/logo/Logo1.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="<?php echo $link; ?>img/logo/Logo1.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="<?php echo $link; ?>img/logo/Logo1.png" sizes="16x16" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -80,7 +80,7 @@ $result_carousel = $connect->query($query_data_carousel);
             <?php $data_post = $result_carousel->fetch_assoc(); ?>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
+                    <a href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo $link . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
                     <div class="carousel-caption d-none d-md-block bg-text">
                         <h5><?php echo $data_post["title"]; ?></h5>
                         <p>
@@ -96,7 +96,7 @@ $result_carousel = $connect->query($query_data_carousel);
                 </div>
                 <?php $data_post = $result_carousel->fetch_assoc(); ?>
                 <div class="carousel-item ">
-                    <a href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
+                    <a href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo $link . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
                     <div class="carousel-caption d-none d-md-block bg-text">
                         <h5><?php echo $data_post["title"]; ?></h5>
                         <p>
@@ -112,7 +112,7 @@ $result_carousel = $connect->query($query_data_carousel);
                 </div>
                 <?php $data_post = $result_carousel->fetch_assoc(); ?>
                 <div class="carousel-item">
-                    <a href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
+                    <a href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo $link . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
                     <div class="carousel-caption d-none d-md-block bg-text">
                         <h5><?php echo $data_post["title"]; ?></h5>
                         <p>
@@ -128,7 +128,7 @@ $result_carousel = $connect->query($query_data_carousel);
                 </div>
                 <?php $data_post = $result_carousel->fetch_assoc(); ?>
                 <div class="carousel-item">
-                    <a href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
+                    <a href=<?php echo $url . "themes/post.php?post_id=" . $data_post["post_id"]; ?>><img src="<?php echo $link . $data_post["imgUrl"]; ?>" class="d-block w-100" style="object-fit:cover" width="960px" height="540px"></a>
                     <div class="carousel-caption d-none d-md-block bg-text">
                         <h5><?php echo $data_post["title"]; ?></h5>
                         <p>
@@ -173,7 +173,7 @@ $result_carousel = $connect->query($query_data_carousel);
                         if ($data_post["imgUrl"] != NULL) {
                         ?>
                             <div class="col-md-4">
-                                <img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="w-100" />
+                                <img src="<?php echo $link . $data_post["imgUrl"]; ?>" class="w-100" />
                             </div>
                             <div class="col-md-8">
                                 <!--                            Content-->

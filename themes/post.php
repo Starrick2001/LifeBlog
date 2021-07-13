@@ -31,7 +31,7 @@ if ($result_num_cmt->num_rows > 0) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../function/signin-signout.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://lifeblog.s3.ap-southeast-1.amazonaws.com/img/logo/Logo1.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="<?php echo $link; ?>img/logo/Logo1.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="../style.css">
 </head>
 
@@ -54,7 +54,7 @@ if ($result_num_cmt->num_rows > 0) {
             if ($data_post["imgUrl"] != NULL) {
             ?>
                 <div class="col-4">
-                    <img src=<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?> class="w-100">
+                    <img src=<?php echo $link . $data_post["imgUrl"]; ?> class="w-100">
                 </div>
                 <div class="col-8">
                     <div class="shadow rounded p-3">

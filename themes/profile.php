@@ -24,7 +24,7 @@ else {
     </script>
     <script src="../function/signin-signout.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://lifeblog.s3.ap-southeast-1.amazonaws.com/img/logo/Logo1.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="<?php echo $link; ?>img/logo/Logo1.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="../style.css">
     <style>
         #editInformation .form-floating:focus-within {
@@ -157,7 +157,7 @@ else {
         <!-- bao phần nội dung chính -->
         <div class="row shadow m-3 p-2">
             <div class="col-md-2 position-relative my-3">
-                <img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $profile_data["avatarUrl"] ?>" class="w-100">
+                <img src="<?php echo $link . $profile_data["avatarUrl"] ?>" class="w-100">
             </div>
             <div class="col-md-10 my-3">
                 <h2 class="mt-3"><?php echo $profile_data["name"]; ?></h2>
@@ -247,7 +247,7 @@ else {
                         if ($data_post["imgUrl"] != NULL) {
                         ?>
                             <div class="col-md-4">
-                                <img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $data_post["imgUrl"]; ?>" class="w-100" />
+                                <img src="<?php echo $link . $data_post["imgUrl"]; ?>" class="w-100" />
                             </div>
                             <div class="col-md-8">
                                 <!--                            Content-->

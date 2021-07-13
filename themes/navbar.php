@@ -1,6 +1,7 @@
 <?php
 global $url;
 global $setVisibleCreatePostBtn;
+require_once $url . "function/connect.php";
 ?>
 <html>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -25,7 +26,7 @@ global $setVisibleCreatePostBtn;
 <nav class="navbar navbar-light navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a class="navbar-brand px-2 py-0" href="<?php echo $url; ?>">
-            <img src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . 'img/logo/Logo2.png' ?>" width="56px" height="56px">
+            <img src="<?php echo $link . 'img/logo/Logo2.png' ?>" width="56px" height="56px">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content">
             <span class="navbar-toggler-icon"></span>

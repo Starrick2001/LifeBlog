@@ -28,7 +28,7 @@ if ($result_search->num_rows > 0) {
             </script>
             <script src="../function/signin-signout.js"></script>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="icon" href="https://lifeblog.s3.ap-southeast-1.amazonaws.com/img/logo/Logo1.png" sizes="16x16" type="image/png">
+            <link rel="icon" href="<?php echo $link; ?>img/logo/Logo1.png" sizes="16x16" type="image/png">
             <link rel="stylesheet" href="../style.css">
             <style>
                 .ck-editor {
@@ -54,7 +54,7 @@ if ($result_search->num_rows > 0) {
                     </div>
                     <div id="word-count"></div>
                     <div class="input-group mb-3 row">
-                        <img class="col-md-4" src="<?php echo "https://lifeblog.s3.ap-southeast-1.amazonaws.com/" . $post_data["imgUrl"]; ?>">
+                        <img class="col-md-4" src="<?php echo $link . $post_data["imgUrl"]; ?>">
 
                         <div class="col-md m-auto input-group">
                             <label class="input-group-text" for="thumbnail">Sửa ảnh đại diện</label>
