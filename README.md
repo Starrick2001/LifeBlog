@@ -1,6 +1,13 @@
 # LifeBlog
+Web được code bằng PHP (back-end), Front-end sử dụng hai thư viện là jQuery và Bootstrap
+CKEditor 5 (Thêm, sửa bài viết)
+AWS S3 để làm server lưu trữ ảnh của tài khoản, bài viết
+CSDL là MySQL
 
+## Hướng dẫn cài đặt
+### Composer
 Chạy lệnh "composer update" để kiểm tra, cài đặt updates từ các gói hosting cũ và dependencies một lần cho tất cả các packages hoặc dependencies.
+### MySQL
 Chỉnh sửa file connect.php trong thư mục function để truy cập cơ sở dữ liệu
 
 ## Tính năng
