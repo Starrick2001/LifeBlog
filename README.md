@@ -14,12 +14,18 @@ Chỉnh sửa file connect.php trong thư mục function để truy cập cơ s�
 
 ### Đăng ký
 ![image](https://user-images.githubusercontent.com/24567549/125442829-d550b959-39db-4321-83c0-c25eb826d8cf.png)
+
 Form đăng ký tài khoản của trang web sẽ hiện ra khi nhấn Đăng ký
+
 ![image](https://user-images.githubusercontent.com/24567549/125442893-56ec30fa-5be0-4f16-932c-8654dcd8ab23.png)
+
 ### Đăng nhập
 ![image](https://user-images.githubusercontent.com/24567549/125442936-efbd1af5-c67a-4e02-8e33-73e3b91c1690.png)
+
 Nhập thông tin Đăng nhập khi nhấn nút Đăng nhập. Nếu thông tin đăng nhập bị sai sẽ có thông báo
+
 ![image](https://user-images.githubusercontent.com/24567549/125442954-13e65dc7-7464-433a-9bdf-6fef32c2ab72.png)
+
 Nếu đăng nhập đúng sẽ có dòng xin chào + tên user
 ### Đăng xuất
 ![image](https://user-images.githubusercontent.com/24567549/125442981-1be47d0f-3e5a-46dc-a852-223b5a4a15d7.png)
