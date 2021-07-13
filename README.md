@@ -4,3 +4,5 @@ Chạy lệnh "composer update" để kiểm tra, cài đặt updates từ các 
 Chỉnh sửa file connect.php trong thư mục function để truy cập cơ sở dữ liệu
 
 ## Tính năng
+
+### Đăng ký
