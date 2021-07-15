@@ -15,7 +15,7 @@ Chạy lệnh "composer update" để kiểm tra, cài đặt updates từ các 
 ### MySQL
 Chỉnh sửa $servername, $username, $password, $database trong file connect.php trong thư mục function để truy cập cơ sở dữ liệu
 ### AWS S3
-Chỉnh sửa $bucket_name, access_key_id, secret trong file connect.php trong thư mục function để truy cập AWS
+Chỉnh sửa $bucket_name, $access_key_id, $secret trong file connect.php trong thư mục function để truy cập AWS
 
 ## Tính năng
 
