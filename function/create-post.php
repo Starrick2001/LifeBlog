@@ -18,7 +18,7 @@ if (!isset($_SESSION["email"])) {
     </script>
     <script src="../function/signin-signout.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/logo/Logo1.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="<?php echo $link; ?>img/logo/Logo1.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="../style.css">
     <style>
         .ck-editor {
