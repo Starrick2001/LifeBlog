@@ -77,17 +77,6 @@ if (!isset($_SESSION["email"])) {
                 // move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_file);
                 require '../vendor/autoload.php';
 
-                /** AWS S3 Bucket Name */
-                $bucket_name = 'lifeblog';
-
-
-                /** AWS S3 Bucket Access Key ID */
-                $access_key_id = 'AKIAWCMJXPOBLPCSUZVF';
-
-
-                /** AWS S3 Bucket Secret Access Key */
-                $secret = 'J6PScH/RMWYHIJIMgDKXqfJDazTMa40w1bTZESdt';
-
 
                 $temp_file_location = $_FILES['thumbnail']['tmp_name'];
                 $s3 = new Aws\S3\S3Client([
