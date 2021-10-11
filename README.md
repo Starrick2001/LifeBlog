@@ -1,5 +1,4 @@
 # LifeBlog
-https://ptud-web.herokuapp.com/
 
 Web được code bằng PHP (back-end), Front-end sử dụng hai thư viện là jQuery và Bootstrap
 
